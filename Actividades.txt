@@ -6,3 +6,7 @@ desarollamos actividades de convivencia y varios alumnos tomaron un 7 y hasta un
 segundo dia 
 
 investigación sobre que es un perceptrón, ejemplo teorico y un grafico representtivo de un perceptrón 
+
+Tercer dia 
+
+ejercicios de Ackley Function
