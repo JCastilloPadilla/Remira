@@ -18,3 +18,5 @@ caso planteado - Sistema de detccion de correos electrónicos maliciosos utiliza
 
 
 terminar de hacer todo el anteproyecto y resolver la segunda funicon ackley
+
+Exponer mi proyecto frente al equipo de 3 personas para elegir uno
