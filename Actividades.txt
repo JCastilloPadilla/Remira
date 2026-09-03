@@ -10,3 +10,8 @@ investigación sobre que es un perceptrón, ejemplo teorico y un grafico represe
 Tercer dia 
 
 ejercicios de Ackley Function
+
+
+Plantear un problema de un caso que apliquen las técnicas de inteligencia artificial 
+
+caso planteado - Sistema de detccion de correos electrónicos maliciosos utilizando técnicas de IA 
