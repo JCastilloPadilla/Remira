@@ -15,3 +15,6 @@ ejercicios de Ackley Function
 Plantear un problema de un caso que apliquen las técnicas de inteligencia artificial 
 
 caso planteado - Sistema de detccion de correos electrónicos maliciosos utilizando técnicas de IA 
+
+
+terminar de hacer todo el anteproyecto y resolver la segunda funicon ackley
