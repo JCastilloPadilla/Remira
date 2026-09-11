@@ -36,3 +36,14 @@ Usuario → Interfaz → Preprocesamiento → TF-IDF → Modelo IA → Clasifica
 
 
 
+analisis de datos y procesamiento de estos
+
+Dataset seleccionado: XXXXX
+Número de correos: 15,000
+Legítimos: 8,200
+Maliciosos: 6,800
+Variables disponibles: asunto, cuerpo, categoría...
+Clases utilizadas: legítimo / malicioso.
+
+
+
