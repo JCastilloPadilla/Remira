@@ -46,4 +46,7 @@ Variables disponibles: asunto, cuerpo, categoría...
 Clases utilizadas: legítimo / malicioso.
 
 
+ limitaciones y riesgos del modelo
+
+
 
