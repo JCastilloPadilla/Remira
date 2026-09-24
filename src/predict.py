@@ -1,22 +1,27 @@
-"""Demostración local del flujo previo a la clasificación."""
+"""Demostración local de clasificación con el modelo preentrenado."""
 
 from src.email_data import EmailData
-from src.preprocessing import preprocess_email
+from src.hf_classifier import ClassificationResult, PhishingEmailClassifier
 
 
-def run_demo(input_fn=input, output_fn=print) -> str:
-    """Solicita un correo y muestra el texto preparado para un modelo futuro."""
+def run_demo(
+    input_fn=input,
+    output_fn=print,
+    classifier: PhishingEmailClassifier | None = None,
+) -> ClassificationResult:
+    """Solicita un correo y muestra la clasificación local obtenida."""
     subject = input_fn("Introduzca asunto: ")
     body = input_fn("Introduzca contenido: ")
 
     email = EmailData(subject=subject, body=body)
-    prepared_text = preprocess_email(email)
+    result = (classifier or PhishingEmailClassifier()).classify(email)
 
-    output_fn("\nTexto preparado para el modelo:")
-    output_fn(prepared_text)
-    output_fn("\nModelo aún no entrenado; demostración de preparación de entrada.")
+    output_fn("\nClasificación del modelo:")
+    output_fn(f"Etiqueta: {result.label}")
+    output_fn(f"Confianza: {result.confidence:.2%}")
+    output_fn(f"Etiqueta original: {result.source_label}")
 
-    return prepared_text
+    return result
 
 
 if __name__ == "__main__":

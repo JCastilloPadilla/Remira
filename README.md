@@ -2,36 +2,32 @@
 
 Proyecto semestral de la materia **Técnicas de Inteligencia Artificial**.
 
-El objetivo es desarrollar una aplicación capaz de analizar un correo electrónico y clasificarlo como **legítimo** o **potencialmente malicioso**, mediante técnicas de aprendizaje automático supervisado. La clasificación se realizará con modelos propios entrenados con datasets públicos etiquetados; no dependerá de servicios externos de IA generativa.
+El objetivo es desarrollar una aplicación capaz de analizar un correo electrónico y clasificarlo como **legítimo** o **potencialmente malicioso**, mediante aprendizaje automático. La primera versión usa un modelo especializado preentrenado de Hugging Face que se descarga una vez y se ejecuta localmente; no envía el contenido de los correos a un servicio externo.
 
 ## Objetivo del MVP
 
-La primera versión funcional permitirá que una persona escriba el asunto y el cuerpo de un correo en una interfaz web. El backend procesará el texto, lo transformará en características numéricas y utilizará un modelo previamente entrenado para emitir una clasificación.
+La primera versión funcional permitirá que una persona escriba el asunto y el cuerpo de un correo en una interfaz web. El backend unirá y normalizará el texto y utilizará un modelo previamente entrenado para emitir una clasificación.
 
 ```text
-Usuario → Formulario web → Flask → Preprocesamiento → Pipeline ML → Resultado
+Usuario → Formulario web → Flask → Preprocesamiento → Modelo local → Resultado
 ```
 
 El entrenamiento y la clasificación serán procesos separados. El modelo no se volverá a entrenar cada vez que alguien analice un correo.
 
 ## Arquitectura planeada
 
-### Entrenamiento
+### Evaluación del modelo preentrenado
 
 ```text
-Dataset etiquetado
+CEAS_08 etiquetado
     ↓
-Limpieza y preparación de datos
+Muestra estratificada reproducible
     ↓
 Preprocesamiento de asunto + cuerpo
     ↓
-TF-IDF
+Modelo especializado de Hugging Face ejecutado localmente
     ↓
-Naive Bayes / SVM / Random Forest
-    ↓
-Evaluación y selección del modelo
-    ↓
-Guardar pipeline entrenado
+Métricas y matriz de confusión
 ```
 
 ### Uso del modelo
@@ -43,7 +39,7 @@ EmailData
     ↓
 Preprocesamiento compartido
     ↓
-Pipeline previamente entrenado
+Clasificador preentrenado local
     ↓
 Clasificación: legítimo o potencialmente malicioso
 ```
@@ -54,15 +50,15 @@ En fases posteriores, la entrada podrá provenir de un formulario web, un archiv
 
 - **Python**: lenguaje principal.
 - **Pandas**: carga, limpieza y exploración del dataset.
-- **Scikit-learn**: TF-IDF, entrenamiento, evaluación y serialización del pipeline.
+- **Transformers y PyTorch**: descarga y ejecución local del modelo de lenguaje especializado.
+- **Scikit-learn**: muestreo estratificado y métricas de evaluación.
 - **Flask**: backend y futura API `POST /api/analyze`.
 - **HTML, CSS y JavaScript**: interfaz web.
-- **Joblib**: guardado y carga del modelo entrenado.
 - **SQLite**: opcional para historial de análisis.
 
 ## Evaluación prevista
 
-Se compararán Naive Bayes, Support Vector Machine (SVM) y Random Forest bajo las mismas condiciones experimentales. La decisión del modelo final se basará en resultados reales y no solo en accuracy.
+El modelo preentrenado se medirá con CEAS_08 bajo condiciones reproducibles. Más adelante podrá compararse contra modelos propios (Naive Bayes, SVM y Random Forest) con el mismo conjunto de evaluación.
 
 Las métricas previstas son:
 
@@ -76,9 +72,13 @@ Se dará especial atención a los falsos negativos: correos realmente maliciosos
 
 ## Estado actual
 
-El proyecto se encuentra en la etapa inicial de planeación y preparación de la base de código.
+El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. Todavía no se ha implementado Flask, IMAP, OAuth ni la recepción automática de correos.
 
-Todavía no se ha seleccionado un dataset definitivo, no existe un modelo entrenado y no hay métricas reales. Tampoco se ha implementado Flask, TF-IDF, IMAP, OAuth ni la recepción automática de correos.
+La primera evaluación reproducible con una muestra estratificada de 100 correos
+obtuvo F1-score de 0.8829. El detalle, incluidos los falsos positivos y falsos
+negativos, está en [docs/resultados-preentrenado.md](docs/resultados-preentrenado.md).
+La descripción de cada módulo y el comando para repetir el experimento están en
+[docs/modelo-preentrenado.md](docs/modelo-preentrenado.md).
 
 Los primeros avances de código están en la rama `feature/foundation-prototype`:
 
@@ -88,17 +88,14 @@ Los primeros avances de código están en la rama `feature/foundation-prototype`
 | `cdaae50` | Función centralizada de preprocesamiento: combina texto, convierte a minúsculas y normaliza espacios. |
 | `754267a` | Demostración local por consola del flujo previo al entrenamiento. |
 
-Estos avances incluyen pruebas automatizadas y no realizan clasificación; únicamente preparan el flujo que después utilizará TF-IDF y el modelo de Machine Learning.
+Estos avances incluyen pruebas automatizadas y preparan el flujo de texto que utiliza el clasificador preentrenado.
 
 ## Próximos pasos
 
-1. Seleccionar un dataset público de correos etiquetados.
-2. Inspeccionar sus columnas, clases, valores faltantes, duplicados y balance.
-3. Preparar un dataset limpio y reproducible.
-4. Entrenar un baseline con TF-IDF + Naive Bayes.
-5. Evaluar el baseline con métricas reales.
-6. Comparar con SVM y Random Forest.
-7. Guardar el pipeline seleccionado antes de iniciar la integración con Flask.
+1. Ejecutar y documentar la evaluación del modelo preentrenado con CEAS_08.
+2. Revisar errores y métricas, especialmente falsos negativos.
+3. Comparar contra un baseline propio si se requiere justificar la elección del modelo.
+4. Integrar el clasificador validado con Flask.
 
 ## Principios del proyecto
 
