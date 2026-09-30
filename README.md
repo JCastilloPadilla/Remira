@@ -9,7 +9,7 @@ El objetivo es desarrollar una aplicación capaz de analizar un correo electrón
 La primera versión funcional permitirá que una persona escriba el asunto y el cuerpo de un correo en una interfaz web. El backend unirá y normalizará el texto y utilizará un modelo previamente entrenado para emitir una clasificación.
 
 ```text
-Usuario → Formulario web → Flask → Preprocesamiento → Modelo local → Resultado
+Usuario → Interfaz React → API Flask → Preprocesamiento → Modelo local → Resultado en React
 ```
 
 El entrenamiento y la clasificación serán procesos separados. El modelo no se volverá a entrenar cada vez que alguien analice un correo.
@@ -46,15 +46,33 @@ Clasificación: legítimo o potencialmente malicioso
 
 En fases posteriores, la entrada podrá provenir de un formulario web, un archivo `.eml` o una cuenta de correo mediante IMAP. Todas las fuentes deberán producir una estructura interna común antes de pasar al clasificador.
 
-## Tecnologías propuestas
+## Tecnologías definidas
 
 - **Python**: lenguaje principal.
 - **Pandas**: carga, limpieza y exploración del dataset.
 - **Transformers y PyTorch**: descarga y ejecución local del modelo de lenguaje especializado.
 - **Scikit-learn**: muestreo estratificado y métricas de evaluación.
 - **Flask**: backend y futura API `POST /api/analyze`.
-- **HTML, CSS y JavaScript**: interfaz web.
+- **React y TypeScript**: interfaz web basada en componentes.
+- **Vite**: servidor de desarrollo y compilación del frontend.
+- **Tailwind CSS**: estilos, colores y adaptación a distintos tamaños de pantalla.
+- **shadcn/ui**: componentes de interacción como formularios, botones, pestañas, diálogos y tablas.
+- **React Bits**: componentes gratuitos para animaciones, fondos y detalles visuales.
 - **SQLite**: opcional para historial de análisis.
+
+### Decisión sobre la interfaz web — 29 de septiembre de 2026
+
+El stack acordado para la primera versión web es **React + TypeScript + Vite + Tailwind CSS + shadcn/ui + React Bits**, con **Flask** como backend. Esta decisión sustituye la propuesta inicial de construir la interfaz con HTML, CSS y JavaScript sin un framework de componentes.
+
+La propuesta de pantallas, maquetación, navegación y estados está documentada en [docs/interfaz-web-v1.md](docs/interfaz-web-v1.md).
+
+React gestionará la interfaz y enviará asunto y cuerpo del correo a `POST /api/analyze`. Flask utilizará el preprocesamiento y el clasificador local existentes y devolverá la clasificación y la confianza para mostrarlas en la interfaz.
+
+shadcn/ui aportará los controles de uso diario; React Bits complementará el diseño con efectos visuales seleccionados. Se usarán componentes gratuitos de React Bits, incorporando únicamente los componentes y dependencias necesarios. Los efectos deberán preservar la legibilidad del formulario y del resultado, respetar la preferencia de movimiento reducido y funcionar en dispositivos móviles.
+
+El primer borrador se centrará en introducir asunto y cuerpo, analizar el correo y presentar el resultado, con estados de carga y error. La conexión con Gmail y el historial quedan para etapas posteriores.
+
+Node.js y un gestor de paquetes se utilizarán para desarrollar y compilar el frontend; Python seguirá ejecutando la API y el modelo. El stack está definido, pero todavía no se han instalado las dependencias del frontend ni implementado la interfaz.
 
 ## Evaluación prevista
 
@@ -72,7 +90,7 @@ Se dará especial atención a los falsos negativos: correos realmente maliciosos
 
 ## Estado actual
 
-El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. Todavía no se ha implementado Flask, IMAP, OAuth ni la recepción automática de correos.
+El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. El stack web está definido; todavía no se han implementado la interfaz React, Flask, IMAP, OAuth ni la recepción automática de correos.
 
 La primera evaluación reproducible con una muestra estratificada de 100 correos
 obtuvo F1-score de 0.8829. El detalle, incluidos los falsos positivos y falsos
