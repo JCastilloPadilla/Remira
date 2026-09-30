@@ -2,7 +2,7 @@
 
 Fecha: 29 de septiembre de 2026.  
 Rama de trabajo: `feature/web-interface-v1`.  
-Estado: propuesta de pantallas, maquetación y flujo; pendiente de implementación en React.
+Estado: propuesta de flujo y pantallas; primera pantalla maquetada en React con datos de demostración.
 
 ## Propósito
 
@@ -336,4 +336,10 @@ El servicio de demostración y el servicio HTTP compartirán la misma forma de r
 - `src/email_data.py`: entrada interna con asunto y cuerpo.
 - `src/hf_classifier.py`: etiquetas, score y límite de 512 tokens.
 
-Este documento describe la maquetación propuesta. No acredita pantallas ya implementadas, dependencias instaladas ni una API disponible.
+## Avance implementado — primera pantalla
+
+La pantalla Analizar correo está maquetada en `frontend/`. Incluye formulario, estados inicial/carga/resultado/error, dos ejemplos ficticios, confirmación de limpieza o reemplazo y ayuda en un diálogo. React Bits aporta la transición del resultado mediante FadeContent; el encabezado usa una ilustración estática para conservar la lectura.
+
+La ayuda en diálogo sustituye temporalmente la ruta independiente Cómo funciona, que queda para el siguiente avance. No hay enlaces activos a pantallas todavía inexistentes. El texto libre informa que falta integrar el modelo; únicamente los ejemplos exactos devuelven resultados simulados.
+
+La compilación y el lint pasaron, junto con las 12 pruebas Python existentes. Se revisó la pantalla en navegador a 360, 768 y 1440 px sin desplazamiento horizontal, además de las interacciones de carga, validación, edición, limpieza y ayuda. La API Flask y las pantallas posteriores siguen pendientes. Las instrucciones están en [frontend/README.md](../frontend/README.md).

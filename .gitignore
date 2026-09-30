@@ -15,3 +15,9 @@ models/*
 instance/*.db
 instance/*-journal
 tmp/
+
+# Frontend: dependencias y compilación local.
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+.env.local
