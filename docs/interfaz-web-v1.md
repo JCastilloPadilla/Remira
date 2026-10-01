@@ -2,7 +2,9 @@
 
 Fecha: 29 de septiembre de 2026.  
 Rama de trabajo: `feature/web-interface-v1`.  
-Estado: propuesta de flujo y pantallas; primera pantalla maquetada en React con datos de demostración.
+Actualización: 1 de octubre de 2026.
+
+Estado: landing y analizador maquetados en React con datos de demostración.
 
 ## Propósito
 
@@ -12,16 +14,19 @@ La tecnología ya está acordada: **React + TypeScript + Vite + Tailwind CSS + s
 
 ## Cantidad de pantallas y alcance
 
-La primera versión tendrá **dos pantallas navegables**. El resultado, la carga y los errores son estados de la pantalla de análisis, no páginas adicionales.
+El borrador actual tiene **dos pantallas navegables: landing y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
 
 | Pantalla | Ruta propuesta | Primera versión | Propósito |
 | --- | --- | --- | --- |
-| Analizar correo | `/` | Sí | Introducir el correo y consultar el resultado. |
-| Cómo funciona | `/como-funciona` | Sí | Explicar uso, privacidad y límites del análisis. |
+| Landing / acerca de | `/` | Implementada | Presentar el proyecto y acceder al analizador sin cuenta. |
+| Analizar correo | `/analizar` | Implementada | Introducir el correo y consultar el resultado. |
+| Login | `/login` | Fase posterior | Iniciar sesión para funciones asociadas a una cuenta. |
 | Bandeja de Gmail | `/bandeja` | Fase posterior | Consultar y analizar correos de una cuenta conectada. |
 | Historial | `/historial` | Fase posterior | Revisar análisis guardados. |
+| Cuenta y conexiones | `/cuenta` | Fase posterior | Gestionar la cuenta y la conexión con Gmail. |
+| Ayuda / cómo funciona | `/como-funciona` | Diálogo por ahora | Explicar uso, privacidad y límites del análisis. |
 
-Se consideran cuatro pantallas para la evolución del producto, pero solo dos forman parte del primer borrador. Gmail e historial no aparecerán como botones activos hasta contar con esas funciones. No se necesita una pantalla de inicio comercial, un dashboard con estadísticas ni un registro de usuarios para analizar un correo manualmente.
+La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
 ## Alternativas consideradas
 
@@ -31,7 +36,23 @@ Se consideran cuatro pantallas para la evolución del producto, pero solo dos fo
 | Dos pantallas: análisis y ayuda | Mantiene la tarea principal directa y permite explicar el sistema. | Requiere navegación simple. |
 | Landing, dashboard, análisis y resultado separado | Más espacio para presentar el proyecto. | Introduce pasos y páginas que todavía no tienen información propia. |
 
-Se propone la segunda alternativa. La entrada abre directamente el analizador y la ayuda queda accesible desde el encabezado.
+La propuesta original elegía análisis y ayuda. Con la ampliación solicitada el 1 de octubre, la entrada pasa a ser la landing, con acceso directo al analizador; la ayuda detallada continúa disponible en un diálogo. La clasificación sigue apareciendo en la misma pantalla del formulario.
+
+## Landing implementada
+
+Ruta: `/`. Su objetivo es presentar el proyecto académico y ofrecer un camino claro hacia la demostración.
+
+1. Encabezado con identidad, enlaces a Cómo funciona y Acerca del proyecto y botón Abrir analizador.
+2. Presentación: «Un correo puede parecer confiable. Revísalo antes.» y acceso al analizador. A la derecha aparece un correo ficticio con una clasificación explícitamente ilustrativa.
+3. Aviso del estado actual: ejemplos preparados y conexión con el modelo pendiente.
+4. Cómo funciona: introducir el mensaje → revisar la clasificación → decidir con más contexto.
+5. Acerca del proyecto: propósito académico, modelo preentrenado, evaluación con CEAS_08, entradas y salidas y enlace al repositorio.
+6. Limitaciones y alcance de la demostración.
+7. Llamada final a explorar la demostración y pie con enlaces al proyecto.
+
+En escritorio, la presentación y el correo ilustrativo comparten dos columnas. En celular se apilan; los pasos y el contenido de acerca del proyecto también pasan a una columna. Se conservan Manrope, los tonos azules del analizador, Button y Badge de shadcn/ui y FadeContent de React Bits en el título. No se añaden métricas, testimonios ni predicciones reales ficticias.
+
+React Router gestiona `/` y `/analizar`; las rutas desconocidas vuelven al inicio. El nombre del proyecto en el analizador regresa a la landing. Recargar o abandonar el analizador reinicia su borrador, que solo vive en memoria. Abrir y cerrar su ayuda conserva el contenido.
 
 ## Dirección visual
 
@@ -206,7 +227,7 @@ No se publicará la evaluación de 100 correos como una garantía de precisión 
 
 ```mermaid
 flowchart TD
-    A[Entrar a la aplicación] --> B[Analizar correo]
+    A[Entrar a la landing] --> B[Analizar correo]
     B --> C[Escribir o cargar ejemplo]
     C --> D{Entrada válida}
     D -->|No| E[Mostrar error junto al campo]
@@ -225,7 +246,7 @@ flowchart TD
     L --> B
 ```
 
-Navegar a la ayuda y volver conservará el borrador y el resultado durante la sesión de la aplicación. Se mantendrán en memoria de React, sin guardarlos en almacenamiento persistente del navegador. Recargar la página reiniciará el formulario; no se ofrecerán enlaces compartibles a resultados en v1.
+Abrir y cerrar la ayuda del analizador conserva el borrador y el resultado en memoria de React. Volver a la landing o recargar reinicia el formulario; no se utiliza almacenamiento persistente ni se ofrecen enlaces compartibles a resultados. La conservación al navegar entre futuras páginas deberá diseñarse cuando se implementen.
 
 ## Pantallas previstas para una fase posterior
 
@@ -268,7 +289,7 @@ Requerirá decidir qué se almacena, durante cuánto tiempo y cómo se elimina. 
 | `HeaderVisual` | Efecto decorativo aislado del flujo. | Componente gratuito de React Bits. |
 | Servicio de análisis | Petición a Flask y traducción de errores. | TypeScript; sin dependencias visuales. |
 
-Se propone alojar el frontend en `frontend/`, separado de `src/`, que contiene la lógica Python. La estructura concreta y el mecanismo de rutas se definirán en el plan de implementación. No se añadirán bibliotecas de estado global para este flujo pequeño.
+El frontend está en `frontend/`, separado de `src/`, que contiene la lógica Python. `App.tsx` define las rutas con React Router; `features/landing/` contiene la presentación y `features/analysis/AnalysisPage.tsx` coordina el análisis. No se añaden bibliotecas de estado global para este flujo pequeño.
 
 ## Conexión con el backend
 
@@ -307,7 +328,7 @@ El servicio de demostración y el servicio HTTP compartirán la misma forma de r
 
 ## Criterios para revisar el primer borrador
 
-- Las dos pantallas se pueden abrir, navegar y volver sin perder el borrador durante la sesión.
+- La landing y el analizador se pueden abrir y navegar; la ayuda en diálogo conserva el borrador. Salir del analizador lo reinicia.
 - La pantalla inicial explica qué hacer y no muestra cifras ficticias de actividad.
 - Se pueden demostrar los estados inicial, analizando, legítimo, malicioso, entrada inválida y error.
 - Editar el correo invalida la clasificación visible anterior.
@@ -340,6 +361,10 @@ El servicio de demostración y el servicio HTTP compartirán la misma forma de r
 
 La pantalla Analizar correo está maquetada en `frontend/`. Incluye formulario, estados inicial/carga/resultado/error, dos ejemplos ficticios, confirmación de limpieza o reemplazo y ayuda en un diálogo. React Bits aporta la transición del resultado mediante FadeContent; el encabezado usa una ilustración estática para conservar la lectura.
 
-La ayuda en diálogo sustituye temporalmente la ruta independiente Cómo funciona, que queda para el siguiente avance. No hay enlaces activos a pantallas todavía inexistentes. El texto libre informa que falta integrar el modelo; únicamente los ejemplos exactos devuelven resultados simulados.
+La ayuda en diálogo sustituye temporalmente la ruta independiente Cómo funciona. La landing añade una explicación general del flujo. No hay enlaces activos a pantallas todavía inexistentes. El texto libre informa que falta integrar el modelo; únicamente los ejemplos exactos devuelven resultados simulados.
+
+## Avance implementado — landing
+
+El 1 de octubre se añadió la landing en `/` y se movió el analizador a `/analizar`, sin cambiar su servicio de demostración. Se comprobó el acceso desde la landing, el regreso mediante la marca, las anclas internas y la recarga directa del analizador. La presentación se revisó a 360, 768 y 1440 px sin desplazamiento horizontal. Build y lint pasaron; Vite informa que el paquete JavaScript supera 500 kB antes de gzip. El servidor de producción necesitará devolver `index.html` para las rutas del frontend. Login y la conexión con el modelo quedan pendientes.
 
 La compilación y el lint pasaron, junto con las 12 pruebas Python existentes. Se revisó la pantalla en navegador a 360, 768 y 1440 px sin desplazamiento horizontal, además de las interacciones de carga, validación, edición, limpieza y ayuda. La API Flask y las pantallas posteriores siguen pendientes. Las instrucciones están en [frontend/README.md](../frontend/README.md).

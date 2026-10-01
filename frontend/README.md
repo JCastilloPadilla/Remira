@@ -1,6 +1,6 @@
 # Frontend del detector de correos
 
-Primera pantalla **Analizar correo**, creada con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits.
+Landing de presentación y pantalla **Analizar correo**, creadas con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits. React Router gestiona la navegación.
 
 ## Ejecutar
 
@@ -20,8 +20,18 @@ npm run build
 npm run lint
 ```
 
+## Rutas
+
+- `/`: landing con presentación, cómo funciona, acerca del proyecto, limitaciones y acceso al analizador.
+- `/analizar`: formulario y resultados de demostración.
+- Las rutas desconocidas redirigen al inicio.
+
+Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las rutas del frontend directamente. Vite ya permite recargar `/analizar` durante el desarrollo.
+
 ## Qué se puede probar
 
+- Navegar desde la landing al analizador y regresar mediante el nombre del proyecto.
+- Abrir las secciones Cómo funciona y Acerca del proyecto de la landing.
 - Introducir asunto y cuerpo; el cuerpo vacío o con espacios se rechaza.
 - Cargar dos ejemplos ficticios y ver resultados simulados, con una espera breve.
 - Consultar clasificación y confianza de demostración.
@@ -32,14 +42,15 @@ npm run lint
 
 **Flask y el modelo todavía no están conectados.** Solo los ejemplos exactos tienen una respuesta preparada. Cualquier otro texto presenta un aviso de integración pendiente; no se intenta clasificarlo mediante reglas. No hay almacenamiento persistente ni llamadas a una API.
 
-La ayuda está en un diálogo para este avance. La página independiente Cómo funciona, Gmail y el historial no están implementados.
+La ayuda detallada del analizador está en un diálogo. La landing incluye una explicación general del flujo. Login, Gmail, historial y cuenta todavía no están implementados.
 
 ## Organización
 
-- `src/App.tsx`: composición de la pantalla y estado del análisis.
-- `src/features/analysis/`: formulario, resultado y servicio de demostración.
+- `src/App.tsx`: rutas de la aplicación.
+- `src/features/landing/`: página de presentación y sus estilos.
+- `src/features/analysis/`: página de análisis, formulario, resultado y servicio de demostración.
 - `src/components/ui/`: controles originales de shadcn/ui, estilo Base Nova.
-- `src/components/react-bits/FadeContent.tsx`: transición original de React Bits para el resultado.
+- `src/components/react-bits/FadeContent.tsx`: transición de React Bits para el título de la landing y el resultado.
 - `src/index.css`: tokens, estilos de la pantalla y adaptación a distintos tamaños.
 
 ## Componentes externos
@@ -52,7 +63,7 @@ Las versiones instaladas se fijan en `package-lock.json`. Manrope se sirve desde
 
 ## Verificación de este avance
 
-- `npm run build`: correcto, incluye comprobación de TypeScript.
+- `npm run build`: correcto, incluye comprobación de TypeScript; Vite avisa de un paquete JavaScript mayor de 500 kB antes de gzip.
 - `npm run lint`: correcto, sin avisos.
 - Pruebas Python existentes: 12 correctas.
 - Revisión en navegador a 360, 768 y 1440 px: sin desplazamiento horizontal.
