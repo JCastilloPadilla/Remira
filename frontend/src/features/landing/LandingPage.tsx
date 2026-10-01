@@ -67,6 +67,9 @@ export function LandingPage() {
           <nav aria-label="Navegación principal" className="landing-nav-links">
             <a href="#como-funciona">Cómo funciona</a>
             <a href="#acerca">Acerca del proyecto</a>
+            <Link to="/login" className="landing-login-link">
+              Iniciar sesión
+            </Link>
             <Button
               render={<Link to="/analizar" />}
               className="landing-nav-cta"

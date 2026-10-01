@@ -447,7 +447,7 @@
   .landing-nav-links {
     gap: 18px;
   }
-  .landing-nav-links > a:not(.landing-nav-cta) {
+  .landing-nav-links > a:not(.landing-nav-cta):not(.landing-login-link) {
     display: none;
   }
   .landing-about-grid,

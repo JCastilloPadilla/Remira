@@ -1,6 +1,6 @@
 # Frontend del detector de correos
 
-Landing de presentación y pantalla **Analizar correo**, creadas con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits. React Router gestiona la navegación.
+Landing de presentación, login y pantalla **Analizar correo**, creadas con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits. React Router gestiona la navegación.
 
 ## Ejecutar
 
@@ -24,6 +24,7 @@ npm run lint
 
 - `/`: landing con presentación, cómo funciona, acerca del proyecto, limitaciones y acceso al analizador.
 - `/analizar`: formulario y resultados de demostración.
+- `/login`: maqueta de acceso con Google y entrada al analizador sin cuenta.
 - Las rutas desconocidas redirigen al inicio.
 
 Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las rutas del frontend directamente. Vite ya permite recargar `/analizar` durante el desarrollo.
@@ -32,6 +33,7 @@ Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las ru
 
 - Navegar desde la landing al analizador y regresar mediante el nombre del proyecto.
 - Abrir las secciones Cómo funciona y Acerca del proyecto de la landing.
+- Abrir el login, consultar el aviso de autenticación pendiente y continuar sin cuenta.
 - Introducir asunto y cuerpo; el cuerpo vacío o con espacios se rechaza.
 - Cargar dos ejemplos ficticios y ver resultados simulados, con una espera breve.
 - Consultar clasificación y confianza de demostración.
@@ -42,12 +44,13 @@ Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las ru
 
 **Flask y el modelo todavía no están conectados.** Solo los ejemplos exactos tienen una respuesta preparada. Cualquier otro texto presenta un aviso de integración pendiente; no se intenta clasificarlo mediante reglas. No hay almacenamiento persistente ni llamadas a una API.
 
-La ayuda detallada del analizador está en un diálogo. La landing incluye una explicación general del flujo. Login, Gmail, historial y cuenta todavía no están implementados.
+La ayuda detallada del analizador está en un diálogo. La landing incluye una explicación general del flujo. El login es una maqueta: el botón de Google muestra un aviso y no inicia OAuth, crea sesiones ni lee correos. Gmail, historial y cuenta todavía no están implementados.
 
 ## Organización
 
 - `src/App.tsx`: rutas de la aplicación.
 - `src/features/landing/`: página de presentación y sus estilos.
+- `src/features/auth/`: maqueta de login y sus estilos.
 - `src/features/analysis/`: página de análisis, formulario, resultado y servicio de demostración.
 - `src/components/ui/`: controles originales de shadcn/ui, estilo Base Nova.
 - `src/components/react-bits/FadeContent.tsx`: transición de React Bits para el título de la landing y el resultado.

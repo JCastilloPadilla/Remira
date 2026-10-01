@@ -4,7 +4,7 @@ Fecha: 29 de septiembre de 2026.
 Rama de trabajo: `feature/web-interface-v1`.  
 Actualización: 1 de octubre de 2026.
 
-Estado: landing y analizador maquetados en React con datos de demostración.
+Estado: landing, login y analizador maquetados en React con datos de demostración.
 
 ## Propósito
 
@@ -14,13 +14,13 @@ La tecnología ya está acordada: **React + TypeScript + Vite + Tailwind CSS + s
 
 ## Cantidad de pantallas y alcance
 
-El borrador actual tiene **dos pantallas navegables: landing y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
+El borrador actual tiene **tres pantallas navegables: landing, login y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
 
 | Pantalla | Ruta propuesta | Primera versión | Propósito |
 | --- | --- | --- | --- |
 | Landing / acerca de | `/` | Implementada | Presentar el proyecto y acceder al analizador sin cuenta. |
 | Analizar correo | `/analizar` | Implementada | Introducir el correo y consultar el resultado. |
-| Login | `/login` | Fase posterior | Iniciar sesión para funciones asociadas a una cuenta. |
+| Login | `/login` | Maqueta implementada | Presentar el acceso con Google para futuras funciones personales. |
 | Bandeja de Gmail | `/bandeja` | Fase posterior | Consultar y analizar correos de una cuenta conectada. |
 | Historial | `/historial` | Fase posterior | Revisar análisis guardados. |
 | Cuenta y conexiones | `/cuenta` | Fase posterior | Gestionar la cuenta y la conexión con Gmail. |
@@ -365,6 +365,14 @@ La ayuda en diálogo sustituye temporalmente la ruta independiente Cómo funcion
 
 ## Avance implementado — landing
 
-El 1 de octubre se añadió la landing en `/` y se movió el analizador a `/analizar`, sin cambiar su servicio de demostración. Se comprobó el acceso desde la landing, el regreso mediante la marca, las anclas internas y la recarga directa del analizador. La presentación se revisó a 360, 768 y 1440 px sin desplazamiento horizontal. Build y lint pasaron; Vite informa que el paquete JavaScript supera 500 kB antes de gzip. El servidor de producción necesitará devolver `index.html` para las rutas del frontend. Login y la conexión con el modelo quedan pendientes.
+El 1 de octubre se añadió la landing en `/` y se movió el analizador a `/analizar`, sin cambiar su servicio de demostración. Se comprobó el acceso desde la landing, el regreso mediante la marca, las anclas internas y la recarga directa del analizador. La presentación se revisó a 360, 768 y 1440 px sin desplazamiento horizontal. Build y lint pasaron; Vite informa que el paquete JavaScript supera 500 kB antes de gzip. El servidor de producción necesitará devolver `index.html` para las rutas del frontend. La autenticación real y la conexión con el modelo quedan pendientes.
 
 La compilación y el lint pasaron, junto con las 12 pruebas Python existentes. Se revisó la pantalla en navegador a 360, 768 y 1440 px sin desplazamiento horizontal, además de las interacciones de carga, validación, edición, limpieza y ayuda. La API Flask y las pantallas posteriores siguen pendientes. Las instrucciones están en [frontend/README.md](../frontend/README.md).
+
+## Avance implementado — login
+
+Ruta `/login`, accesible desde Iniciar sesión en la landing. En escritorio presenta el contexto de Gmail e historial a la izquierda y el acceso a la derecha; en celular prioriza el acceso. Mantiene Manrope, la paleta azul, Button y Badge de shadcn/ui y FadeContent de React Bits.
+
+Continuar con Google muestra un aviso accesible de integración pendiente; no solicita credenciales, crea una sesión ficticia ni inicia una petición externa. Continuar sin cuenta abre `/analizar`; la marca y Volver al inicio llevan a `/`. El texto distingue inicio de sesión de autorización adicional de Gmail. No hay formulario de contraseña, recuperación ni registro independiente porque el acceso previsto utiliza Google.
+
+Se revisaron los anchos de 360, 768 y 1440 px, el aviso, la navegación y la recarga directa. Build y lint correctos. OAuth, sesiones, Gmail e historial siguen pendientes.
