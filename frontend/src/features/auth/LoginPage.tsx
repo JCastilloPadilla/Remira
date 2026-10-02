@@ -143,6 +143,9 @@ export function LoginPage() {
           <p className="login-guest-note">
             Puedes probar los ejemplos del analizador sin iniciar sesión.
           </p>
+          <Link to="/bandeja" className="login-inbox-link">
+            Explorar la bandeja de demostración <ArrowRight size={14} />
+          </Link>
           <div className="login-permissions">
             <ShieldCheck size={19} strokeWidth={1.5} />
             <p>

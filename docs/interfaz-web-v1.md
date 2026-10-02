@@ -2,9 +2,9 @@
 
 Fecha: 29 de septiembre de 2026.  
 Rama de trabajo: `feature/web-interface-v1`.  
-Actualización: 1 de octubre de 2026.
+Actualización: 2 de octubre de 2026.
 
-Estado: landing, login y analizador maquetados en React con datos de demostración.
+Estado: landing, login, bandeja y analizador maquetados en React con datos de demostración.
 
 ## Propósito
 
@@ -14,14 +14,14 @@ La tecnología ya está acordada: **React + TypeScript + Vite + Tailwind CSS + s
 
 ## Cantidad de pantallas y alcance
 
-El borrador actual tiene **tres pantallas navegables: landing, login y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
+El borrador actual tiene **cuatro pantallas navegables: landing, login, bandeja y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
 
 | Pantalla | Ruta propuesta | Primera versión | Propósito |
 | --- | --- | --- | --- |
 | Landing / acerca de | `/` | Implementada | Presentar el proyecto y acceder al analizador sin cuenta. |
 | Analizar correo | `/analizar` | Implementada | Introducir el correo y consultar el resultado. |
 | Login | `/login` | Maqueta implementada | Presentar el acceso con Google para futuras funciones personales. |
-| Bandeja de Gmail | `/bandeja` | Fase posterior | Consultar y analizar correos de una cuenta conectada. |
+| Bandeja de Gmail | `/bandeja` | Maqueta implementada | Explorar mensajes ficticios; conexión real pendiente. |
 | Historial | `/historial` | Fase posterior | Revisar análisis guardados. |
 | Cuenta y conexiones | `/cuenta` | Fase posterior | Gestionar la cuenta y la conexión con Gmail. |
 | Ayuda / cómo funciona | `/como-funciona` | Diálogo por ahora | Explicar uso, privacidad y límites del análisis. |
@@ -376,3 +376,13 @@ Ruta `/login`, accesible desde Iniciar sesión en la landing. En escritorio pres
 Continuar con Google muestra un aviso accesible de integración pendiente; no solicita credenciales, crea una sesión ficticia ni inicia una petición externa. Continuar sin cuenta abre `/analizar`; la marca y Volver al inicio llevan a `/`. El texto distingue inicio de sesión de autorización adicional de Gmail. No hay formulario de contraseña, recuperación ni registro independiente porque el acceso previsto utiliza Google.
 
 Se revisaron los anchos de 360, 768 y 1440 px, el aviso, la navegación y la recarga directa. Build y lint correctos. OAuth, sesiones, Gmail e historial siguen pendientes.
+
+## Avance implementado — bandeja de Gmail
+
+El 2 de octubre se añadió `/bandeja`, accesible desde el login mediante Explorar la bandeja de demostración. La pantalla ofrece lista y detalle en escritorio; en celular alterna entre ambos con Volver a los mensajes.
+
+Incluye los dos ejemplos existentes del analizador, remitentes con dominios `.example`, búsqueda por asunto o remitente, filtros por estado/clasificación, estado sin coincidencias y análisis individual con resultados explícitamente simulados. Los resultados se mantienen por mensaje en memoria; recargar o abandonar la bandeja los reinicia. Se reutiliza el servicio de demostración; cambiar de selección durante el análisis no cambia el destinatario del resultado. Solo se procesa un ejemplo a la vez.
+
+Conectar Gmail abre un diálogo que explica la integración pendiente y enlaza al login. No se implementan OAuth, sincronización, lectura real, selección masiva ni guardado persistente. El contenido se muestra como texto y los enlaces del correo no son interactivos.
+
+Se revisaron escritorio, tableta y celular, búsqueda sin coincidencias, filtros, ambos resultados, cambio de selección durante el análisis, navegación y aviso de conexión. Build y lint correctos; se mantiene el aviso de Vite sobre el tamaño del paquete JavaScript.
