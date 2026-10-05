@@ -267,7 +267,7 @@ export function LandingPage() {
       <footer className="landing-footer">
         <div className="page-width landing-footer-links">
           <div className="landing-footer-brand">
-            <BrandMark />
+            <BrandMark tone="light" />
             <p><BrandName /><span>Hecho para mirar con más atención.</span></p>
           </div>
           <nav aria-label="Navegación del pie de página">

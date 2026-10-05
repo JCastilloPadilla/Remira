@@ -90,6 +90,8 @@
   height: 100%;
   object-fit: contain;
 }
+.brand-mark-light { background: transparent; }
+.brand-mark-light img { filter: brightness(0) invert(1); }
 .remira-wordmark {
   display: block;
   font-family: "Fraunces", Georgia, serif;

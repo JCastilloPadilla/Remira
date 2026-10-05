@@ -17,3 +17,11 @@ Use case: logo-brand. Create a single original logo SYMBOL concept for Remira, a
 ## Verificación
 
 Carga del nuevo símbolo comprobada en las siete rutas, junto con la disponibilidad del favicon y del icono de acceso directo. Revisión visual de encabezado y footer en escritorio y móvil, sin desbordamiento horizontal. Compilación y lint completados. Se mantiene el aviso previo de tamaño del paquete JavaScript.
+
+## Variante blanca para fondos oscuros
+
+`BrandMark` admite `tone="light"`: presenta el mismo símbolo en blanco puro mediante un filtro de color, conservando su transparencia y silueta. El footer utiliza esta variante con fondo transparente, sin el recuadro de papel que tenía antes. La variante puede reutilizarse en cualquier otra superficie oscura.
+
+La pestaña utiliza `frontend/public/brand/favicon-remira-adaptive-v3.svg`, sin fondo. En tema claro mantiene el azul tinta; en tema oscuro utiliza blanco. El SVG contiene la imagen del símbolo y un filtro de color, no una reconstrucción vectorial. La adaptación se basa en `prefers-color-scheme`.
+
+Se comprobó en navegador que el footer no tiene fondo en el símbolo y que el favicon aplica blanco únicamente en tema oscuro. Revisión visual y compilación/lint completados correctamente.

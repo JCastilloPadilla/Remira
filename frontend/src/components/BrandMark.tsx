@@ -1,6 +1,6 @@
-export function BrandMark() {
+export function BrandMark({ tone = "ink" }: { tone?: "ink" | "light" }) {
   return (
-    <span className="brand-mark" aria-hidden="true">
+    <span className={tone === "light" ? "brand-mark brand-mark-light" : "brand-mark"} aria-hidden="true">
       <img
         src="/brand/logo-remira-segunda-hoja-v2.png"
         alt=""
