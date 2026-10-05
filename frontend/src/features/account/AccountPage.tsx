@@ -71,6 +71,7 @@ export function AccountPage() {
             <Link to="/cuenta" aria-current="page">
               Cuenta
             </Link>
+            <Link to="/como-funciona">Ayuda</Link>
           </nav>
         </div>
       </header>

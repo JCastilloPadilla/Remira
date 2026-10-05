@@ -478,3 +478,5 @@
 .inbox-nav nav {
   flex-wrap: wrap;
 }
+
+@media (max-width: 1023px) { .inbox-nav { flex-wrap: wrap; padding-block: 18px; gap: 20px; } }

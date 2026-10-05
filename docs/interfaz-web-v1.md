@@ -4,7 +4,7 @@ Fecha: 29 de septiembre de 2026.
 Rama de trabajo: `feature/web-interface-v1`.  
 Actualización: 4 de octubre de 2026.
 
-Estado: landing, login, bandeja, historial, cuenta y analizador maquetados en React con datos de demostración.
+Estado: las siete pantallas propuestas están maquetadas; integración real pendiente. en React con datos de demostración.
 
 ## Propósito
 
@@ -14,7 +14,7 @@ La tecnología ya está acordada: **React + TypeScript + Vite + Tailwind CSS + s
 
 ## Cantidad de pantallas y alcance
 
-El borrador actual tiene **seis pantallas navegables: landing, login, bandeja, historial, cuenta y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
+El borrador actual tiene **siete pantallas navegables: landing, login, bandeja, historial, cuenta, analizador y ayuda**. El analizador conserva también su ayuda breve en un diálogo. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
 
 | Pantalla | Ruta propuesta | Primera versión | Propósito |
 | --- | --- | --- | --- |
@@ -24,7 +24,7 @@ El borrador actual tiene **seis pantallas navegables: landing, login, bandeja, h
 | Bandeja de Gmail | `/bandeja` | Maqueta implementada | Explorar mensajes ficticios; conexión real pendiente. |
 | Historial | `/historial` | Maqueta implementada | Consultar registros ficticios; almacenamiento real pendiente. |
 | Cuenta y conexiones | `/cuenta` | Maqueta implementada | Consultar acceso y explorar estados ficticios de conexión con Gmail. |
-| Ayuda / cómo funciona | `/como-funciona` | Diálogo por ahora | Explicar uso, privacidad y límites del análisis. |
+| Ayuda / cómo funciona | `/como-funciona` | Implementada | Explicar uso, privacidad y límites del análisis. |
 
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
@@ -285,7 +285,7 @@ Requerirá decidir qué se almacena, durante cuánto tiempo y cómo se elimina. 
 | `ExamplePicker` | Elegir un mensaje ficticio. | shadcn/ui: Dialog y Button. |
 | `AnalysisResult` | Clasificación, confianza y orientación. | shadcn/ui: Badge, Alert y Button. |
 | `ClearConfirmation` | Confirmar que se borra el contenido. | shadcn/ui: AlertDialog. |
-| `HowItWorksPage` | Ayuda, privacidad y limitaciones. | Texto y Accordion de shadcn/ui. |
+| `HelpPage` | Ayuda, privacidad, limitaciones y preguntas frecuentes. | Texto, detalles nativos, Button y Badge de shadcn/ui. |
 | `HeaderVisual` | Efecto decorativo aislado del flujo. | Componente gratuito de React Bits. |
 | Servicio de análisis | Petición a Flask y traducción de errores. | TypeScript; sin dependencias visuales. |
 
@@ -361,7 +361,7 @@ El servicio de demostración y el servicio HTTP compartirán la misma forma de r
 
 La pantalla Analizar correo está maquetada en `frontend/`. Incluye formulario, estados inicial/carga/resultado/error, dos ejemplos ficticios, confirmación de limpieza o reemplazo y ayuda en un diálogo. React Bits aporta la transición del resultado mediante FadeContent; el encabezado usa una ilustración estática para conservar la lectura.
 
-La ayuda en diálogo sustituye temporalmente la ruta independiente Cómo funciona. La landing añade una explicación general del flujo. No hay enlaces activos a pantallas todavía inexistentes. El texto libre informa que falta integrar el modelo; únicamente los ejemplos exactos devuelven resultados simulados.
+En el primer avance, la ayuda en diálogo sustituyó temporalmente la ruta independiente Cómo funciona; ahora ambas están disponibles. La landing añade una explicación general del flujo. No hay enlaces activos a pantallas todavía inexistentes. El texto libre informa que falta integrar el modelo; únicamente los ejemplos exactos devuelven resultados simulados.
 
 ## Avance implementado — landing
 
@@ -402,3 +402,11 @@ Ruta `/cuenta`, accesible desde la navegación de la bandeja y el historial. Sep
 Mostrar conexión ficticia presenta una identidad `.example` y autorización explícitamente simulada. Permite abrir la bandeja ficticia o Desconectar ejemplo, con confirmación y opción de cancelar. El cambio se anuncia mediante un estado accesible y solo modifica memoria local. Recargar o abandonar la página reinicia la maqueta. No hay OAuth, credenciales, revocación real, edición de perfil ni cierre de sesión ficticio.
 
 Se mantienen React, TypeScript, shadcn/ui, FadeContent de React Bits y la dirección visual existente. En celular las áreas se apilan y las acciones se adaptan al ancho. Build y lint verificados; revisión visual e interacción en navegador pendientes por falta de herramientas de navegador en esta sesión.
+
+## Avance implementado — ayuda / cómo funciona
+
+Ruta `/como-funciona`. Completa las siete pantallas del borrador. Incluye índice de secciones, pasos del analizador, significado de las clases y confianza, privacidad actual y prevista, autorización separada de Gmail, límites del clasificador y preguntas frecuentes con `details` nativos accesibles por teclado. FadeContent anima el encabezado; se conservan el stack y el estilo existentes.
+
+Se enlaza desde la navegación de bandeja, historial y cuenta, y desde el pie de la landing. El diálogo del analizador conserva la ayuda breve y abre la página completa en una nueva pestaña para mantener el borrador de correo. En celular el índice deja de ser fijo y precede al contenido. El máximo de 512 tokens se verificó en `src/hf_classifier.py`.
+
+Build y lint verificados. La revisión visual e interacción en navegador sigue pendiente en esta sesión. El modelo, autenticación, Gmail y almacenamiento permanecen sin conexión con la web; tener las siete pantallas maquetadas no completa esas integraciones.

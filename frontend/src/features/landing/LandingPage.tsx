@@ -306,6 +306,7 @@ export function LandingPage() {
         <p>Detector de correos · Proyecto académico</p>
         <div>
           <a href="#acerca">Acerca del proyecto</a>
+          <Link to="/como-funciona">Ayuda</Link>
           <a
             href="https://github.com/JCastilloPadilla/email-threat-detector"
             target="_blank"

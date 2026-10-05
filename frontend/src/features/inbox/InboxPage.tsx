@@ -139,6 +139,7 @@ export function InboxPage() {
               Bandeja de Gmail
             </Link>
             <Link to="/cuenta">Cuenta</Link>
+            <Link to="/como-funciona">Ayuda</Link>
           </nav>
         </div>
       </header>

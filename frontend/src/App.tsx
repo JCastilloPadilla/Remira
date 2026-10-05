@@ -5,6 +5,7 @@ import { LoginPage } from "@/features/auth/LoginPage";
 import { InboxPage } from "@/features/inbox/InboxPage";
 import { HistoryPage } from "@/features/history/HistoryPage";
 import { AccountPage } from "@/features/account/AccountPage";
+import { HelpPage } from "@/features/help/HelpPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/bandeja" element={<InboxPage />} />
         <Route path="/historial" element={<HistoryPage />} />
         <Route path="/cuenta" element={<AccountPage />} />
+        <Route path="/como-funciona" element={<HelpPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -98,6 +98,7 @@ export function HistoryPage() {
               Historial
             </Link>
             <Link to="/cuenta">Cuenta</Link>
+            <Link to="/como-funciona">Ayuda</Link>
           </nav>
         </div>
       </header>

@@ -173,6 +173,14 @@ function AnalysisPage() {
                     El contenido de este borrador permanece en memoria durante
                     la sesión. Recargar la página lo borra.
                   </p>
+                  <Link
+                    to="/como-funciona"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-4"
+                  >
+                    Ayuda completa (nueva pestaña)
+                  </Link>
                 </div>
               </DialogContent>
             </Dialog>
