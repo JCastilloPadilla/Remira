@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandMark";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -7,7 +8,6 @@ import {
   FlaskConical,
   LockKeyhole,
   Mail,
-  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -121,9 +121,7 @@ function AnalysisPage() {
             className="flex items-center gap-3"
             aria-label="Detector de correos, inicio"
           >
-            <span className="brand-mark">
-              <ShieldCheck size={23} strokeWidth={1.7} />
-            </span>
+            <BrandMark />
             <span className="font-semibold tracking-tight">
               Detector de correos
               <span className="block text-xs font-normal tracking-normal text-muted-foreground">

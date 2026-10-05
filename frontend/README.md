@@ -96,3 +96,7 @@ Build y lint correctos. La revisión visual y de interacción en navegador de `/
 ### Verificación de ayuda
 
 Build y lint correctos. Se contrastó el límite de tokens con el clasificador local. Revisión visual, navegación por anclas y preguntas desplegables en navegador pendientes por falta de herramientas de navegador en esta sesión.
+
+## Identidad visual
+
+El símbolo Segunda mirada se sirve desde `public/brand/logo-segunda-mirada-v1.png`. `src/components/BrandMark.tsx` lo comparte entre los siete encabezados; `index.html` lo usa como favicon e icono de acceso directo. Es un PNG con transparencia, generado para el proyecto. Concepto y prompts en [docs/logo-propuesta-v1.md](../docs/logo-propuesta-v1.md). Revisión visual en navegador pendiente.

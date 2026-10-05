@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandMark";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -54,9 +55,7 @@ export function AccountPage() {
             className="account-brand"
             aria-label="Detector de correos, inicio"
           >
-            <span className="brand-mark">
-              <ShieldCheck size={23} strokeWidth={1.7} />
-            </span>
+            <BrandMark />
             <span>
               Detector de correos
               <span className="account-brand-caption">
