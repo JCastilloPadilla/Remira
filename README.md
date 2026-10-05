@@ -72,7 +72,7 @@ shadcn/ui aportará los controles de uso diario; React Bits complementará el di
 
 El primer borrador se centrará en introducir asunto y cuerpo, analizar el correo y presentar el resultado, con estados de carga y error. La conexión con Gmail y el historial quedan para etapas posteriores.
 
-Node.js y un gestor de paquetes se utilizan para desarrollar y compilar el frontend; Python seguirá ejecutando la API y el modelo. La landing (`/`), el login (`/login`), la bandeja ficticia (`/bandeja`) y el analizador (`/analizar`) están maquetados en `frontend/`, con navegación mediante React Router, resultados de demostración y sin conexión a Flask. Las instrucciones para ejecutarlos están en [frontend/README.md](frontend/README.md).
+Node.js y un gestor de paquetes se utilizan para desarrollar y compilar el frontend; Python seguirá ejecutando la API y el modelo. La landing (`/`), el login (`/login`), la bandeja ficticia (`/bandeja`), el historial ilustrativo (`/historial`) y el analizador (`/analizar`) están maquetados en `frontend/`, con navegación mediante React Router, resultados de demostración y sin conexión a Flask. Las instrucciones para ejecutarlos están en [frontend/README.md](frontend/README.md).
 
 ## Evaluación prevista
 
@@ -90,7 +90,7 @@ Se dará especial atención a los falsos negativos: correos realmente maliciosos
 
 ## Estado actual
 
-El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. En `feature/web-interface-v1` están maquetadas la landing del proyecto, la pantalla de login, la bandeja ficticia y la pantalla React de análisis manual, con ejemplos y respuestas simuladas. Todavía no se han implementado Flask, IMAP, OAuth ni la recepción automática de correos.
+El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. En `feature/web-interface-v1` están maquetadas la landing del proyecto, la pantalla de login, la bandeja ficticia, el historial ilustrativo y la pantalla React de análisis manual, con ejemplos y respuestas simuladas. Todavía no se han implementado Flask, IMAP, OAuth ni la recepción automática de correos.
 
 La primera evaluación reproducible con una muestra estratificada de 100 correos
 obtuvo F1-score de 0.8829. El detalle, incluidos los falsos positivos y falsos

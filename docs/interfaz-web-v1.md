@@ -2,9 +2,9 @@
 
 Fecha: 29 de septiembre de 2026.  
 Rama de trabajo: `feature/web-interface-v1`.  
-Actualización: 2 de octubre de 2026.
+Actualización: 4 de octubre de 2026.
 
-Estado: landing, login, bandeja y analizador maquetados en React con datos de demostración.
+Estado: landing, login, bandeja, historial y analizador maquetados en React con datos de demostración.
 
 ## Propósito
 
@@ -14,7 +14,7 @@ La tecnología ya está acordada: **React + TypeScript + Vite + Tailwind CSS + s
 
 ## Cantidad de pantallas y alcance
 
-El borrador actual tiene **cuatro pantallas navegables: landing, login, bandeja y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
+El borrador actual tiene **cinco pantallas navegables: landing, login, bandeja, historial y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
 
 | Pantalla | Ruta propuesta | Primera versión | Propósito |
 | --- | --- | --- | --- |
@@ -22,7 +22,7 @@ El borrador actual tiene **cuatro pantallas navegables: landing, login, bandeja 
 | Analizar correo | `/analizar` | Implementada | Introducir el correo y consultar el resultado. |
 | Login | `/login` | Maqueta implementada | Presentar el acceso con Google para futuras funciones personales. |
 | Bandeja de Gmail | `/bandeja` | Maqueta implementada | Explorar mensajes ficticios; conexión real pendiente. |
-| Historial | `/historial` | Fase posterior | Revisar análisis guardados. |
+| Historial | `/historial` | Maqueta implementada | Consultar registros ficticios; almacenamiento real pendiente. |
 | Cuenta y conexiones | `/cuenta` | Fase posterior | Gestionar la cuenta y la conexión con Gmail. |
 | Ayuda / cómo funciona | `/como-funciona` | Diálogo por ahora | Explicar uso, privacidad y límites del análisis. |
 
@@ -386,3 +386,11 @@ Incluye los dos ejemplos existentes del analizador, remitentes con dominios `.ex
 Conectar Gmail abre un diálogo que explica la integración pendiente y enlaza al login. No se implementan OAuth, sincronización, lectura real, selección masiva ni guardado persistente. El contenido se muestra como texto y los enlaces del correo no son interactivos.
 
 Se revisaron escritorio, tableta y celular, búsqueda sin coincidencias, filtros, ambos resultados, cambio de selección durante el análisis, navegación y aviso de conexión. Build y lint correctos; se mantiene el aviso de Vite sobre el tamaño del paquete JavaScript.
+
+## Avance implementado — historial
+
+El 4 de octubre se añadió `/historial`, accesible desde la navegación de la bandeja. Presenta dos registros ficticios basados en los ejemplos existentes, con fecha, origen, clasificación y confianza ilustrativos. No se incorporan automáticamente los análisis realizados en otras pantallas.
+
+Permite buscar por asunto, filtrar por clasificación y por intervalo de fechas inclusivo, restablecer filtros y abrir el detalle en un diálogo. Un intervalo invertido muestra un error. Ver historial vacío oculta los ejemplos sin borrar información real; Mostrar ejemplos los recupera. En celular cada fila se organiza verticalmente con etiquetas. Se conservan el stack, la paleta y la tipografía del proyecto; FadeContent anima el resultado del detalle.
+
+No existe almacenamiento persistente, sesión real, exportación ni eliminación de registros. El cuerpo se presenta como texto. Recargar o abandonar reinicia los filtros y la selección. Build y lint se verificaron; la revisión visual y de interacciones en navegador queda pendiente por falta de herramientas de navegador en esta sesión.

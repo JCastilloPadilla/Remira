@@ -133,6 +133,7 @@ export function InboxPage() {
             </span>
           </Link>
           <nav aria-label="Navegación principal">
+            <Link to="/historial">Historial</Link>
             <Link to="/analizar">Analizar correo</Link>
             <Link to="/bandeja" aria-current="page">
               Bandeja de Gmail
