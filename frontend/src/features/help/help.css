@@ -2,7 +2,7 @@
 .help-page .site-header { background:transparent; border-bottom:0; }
 .help-page { position: relative; isolation: isolate; }
 .help-color-filters { position:absolute; pointer-events:none; }
-.help-page > header, .help-page > main, .help-footer-transition, .help-footer { position: relative; z-index: 1; }
+.help-page > header, .help-page > main, .help-footer-transition, .help-page > .landing-footer { position: relative; z-index: 1; }
 .help-page > header { z-index: 3; }
 .help-backdrop { position: absolute; inset: 0; z-index: 0; overflow: clip; pointer-events: none; }
 .help-background-garden { position: absolute; top: 46%; right: -110px; width: clamp(230px, 24vw, 360px); height: auto; opacity: 0.2; }
@@ -21,7 +21,7 @@
 .help-chapter-illustration { float: right; width: 165px; height: auto; margin: 0 0 20px 28px; }
 .help-article section { display: flow-root; }
 .help-question-envelope { float: right; width: 72px; height: auto; margin: 0 4px 16px 20px; transform: rotate(-12deg); }
-.help-page .brand-mark { background:transparent; width:34px; height:34px; }
+.help-nav .brand-mark { background:transparent; width:34px; height:34px; }
 .help-nav { position:relative; display:flex; align-items:center; justify-content:center; gap:44px; min-height:88px; }
 .help-brand { display:flex; align-items:center; gap:10px; }
 .help-brand .remira-wordmark { font-size:32px; }
@@ -49,12 +49,16 @@
 .help-contents { padding-bottom: 36px; border-bottom: 1px solid #132c4d24; }
 .help-contents > h2 { font-family: Georgia, "Times New Roman", serif; font-size: 27px; line-height: 1.3; font-weight: 400; letter-spacing: -0.6px; }
 .help-index-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 28px; margin-top: 24px; }
-.help-index-list a { display: flex; flex-direction: column; align-items: center; gap: 18px; min-height: 160px; padding: 8px; color: var(--help-ink); }
-.help-index-list img { display: block; width: 100%; max-width: 160px; height: 100px; object-fit: contain; }
+.help-index-list a { position:relative; display: flex; flex-direction: column; align-items: center; gap: 18px; min-height: 160px; padding: 8px; color: var(--help-ink); transition:color 280ms ease; }
+.help-index-list a::after { content:""; position:absolute; bottom:0; left:12%; right:12%; height:1px; background:var(--help-blue); transform:scaleX(0); transform-origin:center; transition:transform 420ms cubic-bezier(.22,1,.36,1); }
+.help-index-list img { display: block; width: 100%; max-width: 160px; height: 100px; object-fit: contain; transition:transform 420ms cubic-bezier(.22,1,.36,1); }
 .help-index-list span { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 600; line-height: 1.6; text-align: center; }
 .help-index-list span svg { flex-shrink: 0; color: var(--help-blue); }
 .help-index-list a:hover { color: var(--help-blue); }
-.help-index-list a:hover span { text-decoration: underline; text-underline-offset: 5px; }
+.help-index-list a:is(:hover,:focus-visible)::after { transform:scaleX(1); }
+.help-index-list a:is(:hover,:focus-visible) img { transform:translateY(-4px); }
+.help-index-list span svg { transition:transform 420ms cubic-bezier(.22,1,.36,1); }
+.help-index-list a:is(:hover,:focus-visible) span svg { transform:translate(2px,2px); }
 .help-desktop-nav a:hover { color: var(--help-blue); }
 .help-article { width: min(100%, 760px); margin-inline: auto; min-width: 0; }
 .help-article section { padding-bottom:52px; margin-bottom:52px; border-bottom:1px solid #132c4d24; scroll-margin-top:28px; }
@@ -88,19 +92,12 @@
 .help-faq summary svg { flex-shrink:0; color:var(--help-muted); transition:transform 180ms ease; }
 .help-faq details[open] summary svg { transform:rotate(180deg); }
 .help-faq details > p { padding-bottom:24px; font-size:14px; line-height:1.95; color:var(--help-muted); }
+@supports (interpolate-size:allow-keywords) {
+  .help-faq details { interpolate-size:allow-keywords; }
+  .help-faq details::details-content { height:0; opacity:0; overflow:clip; transition:height 380ms cubic-bezier(.22,1,.36,1), opacity 280ms ease, content-visibility 380ms allow-discrete; }
+  .help-faq details[open]::details-content { height:auto; opacity:1; }
+}
 .help-footer-transition { height:clamp(100px,12vw,170px); background:linear-gradient(#d6e3ee,#c2d2e1 15%,#9cb2c9 35%,#6582a0 55%,#355676 75%,#19395d 90%,#0f2f56); }
-.help-footer { background:#0f2f56; color:var(--help-paper); }
-.help-final { text-align:center; padding-block:12px 72px; }
-.help-final > img { display:block; width:80px; height:auto; margin:0 auto 24px; transform:rotate(-8deg); }
-.help-final h2 { font-family:Georgia,"Times New Roman",serif; font-size:clamp(32px,3.5vw,46px); font-weight:400; line-height:1.2; letter-spacing:-1px; }
-.help-final p { max-width:480px; margin:18px auto 0; font-size:13px; line-height:1.9; color:#bdcee0; }
-.help-final [data-slot="button"] { margin-top:26px; min-height:44px; padding-inline:24px; border-radius:999px; background:var(--help-paper); color:#0f2f56; font-size:13px; }
-.help-final [data-slot="button"]:hover { background:#e5e8e7; }
-.help-footer-bottom { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:24px; border-top:1px solid #bdcee030; font-size:11px; color:#bdcee0; }
-.help-footer-bottom > a { min-height:44px; display:inline-flex; align-items:center; }
-.help-footer-bottom .help-brand { color:var(--help-paper); }
-.help-footer a:hover { text-decoration:underline; text-underline-offset:5px; }
-.help-footer a:focus-visible { outline-color:var(--help-paper); }
 html.help-scroll { scroll-behavior:smooth; }
 @media (max-width:1023px) {
   .help-nav { gap:28px; }
@@ -129,7 +126,7 @@ html.help-scroll { scroll-behavior:smooth; }
   .help-nav-cta { padding-inline:14px; }
   .help-brand { gap:7px; }
   .help-brand .remira-wordmark { font-size:28px; }
-  .help-page .brand-mark { width:29px; height:29px; }
+  .help-nav .brand-mark { width:29px; height:29px; }
   .help-hero { min-height:calc(100svh - 72px); }
   .help-heading h1 { font-size:clamp(36px,8vw,48px); letter-spacing:-1.4px; }
   .help-heading > p { max-width:480px; }
@@ -149,9 +146,6 @@ html.help-scroll { scroll-behavior:smooth; }
   .help-steps li { padding-left:43px; }
   .help-classification { gap:10px; }
   .help-classification h3 { padding:8px 10px; font-size:12px; }
-  .help-final { padding-bottom:48px; }
-  .help-footer-bottom { flex-wrap:wrap; gap:12px 20px; }
-  .help-footer-bottom > p { flex-basis:100%; order:1; }
 }
 @media (max-width:639px) {
   .help-page .site-header .help-nav { flex-wrap:nowrap; padding-block:10px; gap:12px; }
@@ -170,5 +164,6 @@ html.help-scroll { scroll-behavior:smooth; }
 }
 @media (prefers-reduced-motion:reduce) {
   html.help-scroll { scroll-behavior:auto; }
-  .help-page [data-slot="button"],.help-faq summary svg { transition:none; }
+  .help-page [data-slot="button"],.help-faq summary svg,.help-faq details::details-content,.help-index-list a,.help-index-list a::after,.help-index-list img,.help-index-list span svg { transition:none; }
+  .help-index-list a:is(:hover,:focus-visible) img,.help-index-list a:is(:hover,:focus-visible) span svg { transform:none; }
 }

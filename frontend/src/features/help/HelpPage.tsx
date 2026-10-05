@@ -1,3 +1,5 @@
+import SplitText from "@/components/react-bits/SplitText";
+import { IllustratedFooter } from "@/components/IllustratedFooter";
 import { BrandMark } from "@/components/BrandMark";
 import { BrandName } from "@/components/BrandName";
 import { useEffect } from "react";
@@ -109,9 +111,7 @@ export function HelpPage() {
           <div className="page-width help-heading">
             <span className="help-eyebrow">Una guía para mirar mejor</span>
             <h1 id="help-title">
-              Una segunda mirada,
-              <br />
-              con el contexto necesario.
+              <SplitText text="Una segunda mirada, con el contexto necesario." tag="span" splitType="words" delay={45} duration={0.7} rootMargin="0px" />
             </h1>
             <p>
               Aprende a usar la demostración y a interpretar sus resultados sin
@@ -293,19 +293,7 @@ export function HelpPage() {
           </div>
       </main>
       <div className="help-footer-transition" aria-hidden="true" />
-      <footer className="help-footer">
-        <section className="page-width help-final" aria-labelledby="help-final-title">
-          <img src="/illustrations/journey-envelope-v1.webp" alt="" width={240} height={128} loading="lazy" />
-          <h2 id="help-final-title">Ahora, dale otra mirada.</h2>
-          <p>Empieza con un ejemplo y explora el resultado con más contexto.</p>
-          <Button render={<Link to="/analizar" />}>Probar el analizador <ArrowRight size={16} /></Button>
-        </section>
-        <div className="page-width help-footer-bottom">
-          <Link to="/" className="help-brand" aria-label="Remira, inicio"><BrandMark tone="light" /><BrandName /></Link>
-          <p>Una segunda mirada a tus mensajes</p>
-          <a href="#help-main">Volver al inicio ↑</a>
-        </div>
-      </footer>
+      <IllustratedFooter topHref="#help-main" />
     </div>
   );
 }

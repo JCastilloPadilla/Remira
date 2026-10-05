@@ -81,6 +81,16 @@ Prompt móvil: «Generate a mobile 1024x1536 portrait recomposition of this exac
 
 Se revisaron capturas en 1440×900, 1900×780, 390×900, 320×568 y 844×390 px, comprobando imagen completa, ancho total, recurso responsivo y lectura sin ilustraciones encimadas. Las comprobaciones de navegación, preguntas con teclado, movimiento reducido y accesibilidad de la guía pasaron. Build y lint correctos.
 
+## Movimiento y footer compartido
+
+`IllustratedFooter` reúne el footer de la landing y de esta guía: marca blanca, navegación, llamada al analizador y paisaje nocturno, con las mismas imágenes de escritorio y móvil. Sus estilos se extraen a `illustrated-footer.css` para mantener una única implementación. La transición previa conserva el color final de cada página. Los enlaces al proyecto y al inicio apuntan al destino correspondiente; la landing reconoce el ancla del proyecto al llegar desde la guía.
+
+El título utiliza el mismo `SplitText` de React Bits que la portada: palabras, retraso de 45 ms y duración de 0,7 s. El índice incorpora una línea que crece desde el centro al pasar el cursor o recibir foco, una elevación de 4 px en su ilustración y desplazamiento de 2 px en la flecha, durante 420 ms. No se añaden movimientos continuos.
+
+Las preguntas mantienen `details` y `summary`. En navegadores compatibles, `::details-content` interpola su altura en 380 ms y su opacidad en 280 ms para suavizar apertura y cierre. Se usa `@supports` para conservar el funcionamiento nativo donde no existe esta capacidad. Referencia: [animación de altura intrínseca en MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/interpolate-size). La preferencia de movimiento reducido desactiva todas estas transiciones y la entrada del título.
+
+Se comprobaron la igualdad del footer entre las dos rutas, imágenes responsivas, animación intermedia al abrir y cerrar preguntas, foco y hover del índice, acceso al proyecto, ausencia de errores JavaScript y accesibilidad en escritorio y móvil. Compilación y lint correctos.
+
 ## Índice ilustrado al inicio
 
 Se sustituye el índice lateral que acompañaba el scroll por una entrada titulada «Elige por dónde empezar». Cada acceso reutiliza una ilustración del proyecto: sobre, escritorio con lupa, cartas atadas, avión y jardín. Los enlaces conservan el desplazamiento suave hacia los cinco capítulos, respetando la preferencia de movimiento reducido.
