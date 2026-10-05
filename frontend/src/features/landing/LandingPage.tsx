@@ -180,39 +180,38 @@ export function LandingPage() {
                 <span className="landing-handnote">Un momento para mirar mejor.</span>
               </div>
               <AnimatedContent distance={28} duration={0.65} className="landing-preview-wrap">
-                <div className="landing-preview" aria-label="Ejemplo ficticio de un correo y su clasificación">
-                  <div className="preview-label">
+                <figure className="landing-preview" aria-label="Ejemplo ficticio de un correo y su clasificación">
+                  <figcaption className="preview-label">
                     <Mail size={17} /> <span>Un correo bajo la lupa</span>
-                    <span className="preview-example">Ejemplo</span>
-                  </div>
+                    <span className="preview-example">Ejemplo ficticio</span>
+                  </figcaption>
                   <article className="preview-mail">
                     <div className="preview-mail-heading">
-                      <span className="preview-avatar">V</span>
                       <div>
-                        <strong>Verificación de cuenta</strong>
-                        <span>Correo de ejemplo</span>
+                        <span>Remitente</span>
+                        <strong>Departamento de verificación</strong>
                       </div>
                     </div>
                     <h3>Tu cuenta requiere atención</h3>
                     <p>
-                      Detectamos un problema con tu cuenta. Para evitar el bloqueo,
-                      confirma tus datos en las próximas dos horas.
+                      Detectamos un problema con tu cuenta. Para evitar el bloqueo,{' '}
+                      <mark>confirma tus datos en las próximas dos horas.</mark>
                     </p>
                     <div className="preview-link">verificacion-cuenta.example</div>
-                    <p className="preview-signature">Departamento de verificación</p>
-                  </article>
-                  <div className="preview-verdict">
-                    <ShieldAlert size={24} strokeWidth={1.5} />
-                    <div>
-                      <strong>Potencialmente malicioso</strong>
-                      <p>Resultado de ejemplo</p>
+                    <p className="preview-annotation">Una petición urgente de datos merece otra mirada.</p>
+                    <div className="preview-verdict">
+                      <ShieldAlert size={20} strokeWidth={1.5} />
+                      <div>
+                        <strong>Potencialmente malicioso</strong>
+                        <p>Resultado de ejemplo</p>
+                      </div>
                     </div>
-                  </div>
+                  </article>
                   <div className="preview-caption">
                     <Mail size={15} />
                     <span>Revisa el remitente antes de responder.</span>
                   </div>
-                </div>
+                </figure>
               </AnimatedContent>
             </div>
           </section>

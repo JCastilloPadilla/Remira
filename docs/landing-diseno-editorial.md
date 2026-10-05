@@ -161,3 +161,11 @@ Esta revisión sustituye el recorrido animado por elección del usuario. Se reti
 `CorrespondenceBackdrop` compone dos recorridos punteados con aviones y seis sobres estáticos distribuidos en los márgenes del fondo de las secciones intermedias. La decoración queda detrás del contenido, sin capturar clics ni formar parte del árbol accesible. No se extiende a la ilustración inicial ni a la del footer. En móvil se utiliza un avión con un recorrido breve y dos sobres ubicados en los espacios libres superiores e inferiores, sin añadir altura a las secciones. Las otras animaciones preexistentes de la interfaz permanecen.
 
 Se comprobó que las piezas mantienen posición y rotación al hacer scroll, que no invaden las ilustraciones ni el área de contenido en escritorio y que no producen desbordamiento horizontal en 1920, 1440, 1366, 768, 390 y 320 px. Se revisaron visualmente el conjunto y la versión móvil. Compilación y lint completados correctamente.
+
+## Ejemplo de correo como carta revisada
+
+El bloque «Un correo bajo la lupa» se convierte en una sola hoja de correspondencia, en coherencia con el paisaje ilustrado y los sobres del fondo. Se eliminan el marco redondeado exterior, la cinta, el avatar y los paneles anidados. La hoja marfil tiene una esquina doblada realizada con CSS y un encabezado serif acorde con la composición editorial.
+
+La petición de datos aparece subrayada en ocre; una anotación explica por qué conviene revisarla. La clasificación conserva su texto y el icono de alerta, presentada como un sello de tinta sin fondo rosa. El ejemplo ficticio y su resultado siguen identificados explícitamente. El dominio de ejemplo es texto, sin enlace navegable. No se modifica la lógica de análisis.
+
+Se verificaron legibilidad, límites del sello, separación de palabras, ausencia de desbordamiento horizontal y accesibilidad del bloque en 1440, 768, 390 y 320 px. Se revisaron capturas de escritorio y móvil. Compilación y lint completados; permanece el aviso previo de tamaño del paquete JavaScript.
