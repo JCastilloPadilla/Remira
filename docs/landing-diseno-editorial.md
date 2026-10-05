@@ -84,3 +84,11 @@ La transición hacia el footer deja de concentrarse en una franja de 120 px. Ocu
 Tech Text se reubica en un bloque amplio azul oscuro. Se aplican los parámetros de la captura del usuario: fuente heredada, peso 600, tamaño 150, color y acento `#ffffff`, espaciado `-0.05em`, revelado por letra, alcance 200, suavidad 0.7, línea discontinua, longitud 4, separación 2, grosor 1.5, velocidad 1, 15 partículas y selección, etiquetas, arrastre y barrido activados. Solo el texto se adapta al proyecto: «Mira más allá». La configuración se declara explícitamente en el componente. El efecto también está disponible en pantallas táctiles; el texto estático se reserva para movimiento reducido.
 
 Se verificaron los anchos completos, la proporción original y la ausencia de máscaras y desplazamiento horizontal en 1920×914, 1440×900, 1366×768, 1280×720, 1366×600, 1920×768, 768×1024, 390×844, 320×568 y 844×390 px. En estos tamaños la ilustración principal completa queda dentro de la primera ventana. También se comprobó el barrido automático, arrastre y liberación de letras, el comportamiento táctil y la navegación al analizador. Las comprobaciones de accesibilidad en escritorio y móvil no detectaron infracciones.
+
+## Portada anclada al borde inferior de la ventana
+
+El bloque inicial ocupa la altura disponible de la ventana, descontando la navegación. El espacio flexible entre el texto y la ilustración mantiene el borde inferior de la imagen alineado con el borde inferior del viewport, con ancho completo y proporción natural. La nota bajo la ilustración pasa a continuación de la portada, fuera de la primera vista. La navegación móvil conserva una altura coherente para mantener esta alineación.
+
+Tech Text cambia su parámetro `speed` a `0.5`; conserva los demás parámetros solicitados.
+
+Se verificó la alineación del borde inferior, el ancho completo y la proporción de la imagen en diez tamaños entre 320×568 y 1920×914 px, además de redimensionar la ventana sin recargar. No se detectaron errores JavaScript ni desbordamiento horizontal. Build y lint completados correctamente; permanece el aviso previo de tamaño del paquete JavaScript.

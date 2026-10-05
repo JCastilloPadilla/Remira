@@ -102,10 +102,10 @@ export function LandingPage() {
               fetchPriority="high"
             />
           </div>
-          <div className="landing-hero-note">
-            <Mail size={16} /> Cada mensaje cuenta una historia. Conviene leerla con atención.
-          </div>
         </section>
+        <div className="landing-hero-note">
+          <Mail size={16} /> Cada mensaje cuenta una historia. Conviene leerla con atención.
+        </div>
 
         <div className="landing-story">
           <section id="como-funciona" className="page-width landing-process" aria-labelledby="process-title">
@@ -150,7 +150,7 @@ export function LandingPage() {
                     dashLength={4}
                     dashGap={2}
                     strokeWidth={1.5}
-                    speed={1}
+                    speed={0.5}
                     specks={15}
                     selection
                     labels
