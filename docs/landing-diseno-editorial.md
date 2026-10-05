@@ -187,3 +187,13 @@ Prompt: «Create a MOBILE PORTRAIT variant of the referenced Remira website illu
 ### Verificación
 
 Se comprobaron 320×568, 390×844, 430×932, 600×800, 767×1024, 844×390 y 1440×900 px: selección del recurso según orientación, carga de imagen, ancho completo, ausencia de desbordamiento horizontal y errores JavaScript. Se verificó el borde inferior del viewport en los tres tamaños de teléfono, el menú móvil, su cierre al seleccionar una sección y el desplazamiento suave. Los seis sobres permanecen visibles en móvil. La revisión de accesibilidad de la landing a 390 px no detectó infracciones; las capturas de portada y secciones se revisaron visualmente. Compilación y lint completados correctamente; permanece el aviso previo de tamaño del paquete JavaScript.
+
+## Papel más neutro en móvil y escritorio
+
+El fondo compartido cambia de `#f7f4e9` a `#f7f8f6` para reducir el matiz amarillo, manteniendo el azul de marca y el contraste del texto. La carta pasa a `#fcfcf9`. La transición hacia las secciones azules utiliza automáticamente el nuevo tono inicial.
+
+Dos filtros SVG de presentación, con interpolación explícita en sRGB, ajustan el papel de las portadas sin regenerar ni editar los archivos. Se calibran por separado porque el cielo original tiene valores medios RGB distintos: aproximadamente (247, 244, 234) en escritorio y (250, 248, 237) en móvil. La transformación lineal de cada canal aproxima el papel a (247, 248, 246) y fija como referencia oscura la tinta (19, 44, 77). La selección del filtro utiliza la misma condición de ancho y orientación que `picture`; no se aplica al footer ni a otras pantallas.
+
+En las capturas finales el fondo mide (247, 248, 246) en ambas vistas; una muestra del cielo central mide (247, 247, 246) en móvil y (247, 247, 247) en escritorio. La textura conserva pequeñas variaciones naturales. Esto armoniza la paleta de la web; los ajustes físicos de cada pantalla pueden seguir cambiando su apariencia.
+
+Se repitieron las comprobaciones de los siete tamaños de la revisión móvil, sin desbordamientos ni errores JavaScript, y la revisión de accesibilidad a 390 px sin infracciones. Se revisó visualmente la nueva portada. Compilación y lint completados correctamente.

@@ -50,6 +50,17 @@ export function LandingPage() {
 
   return (
     <div className="landing-page">
+      <svg className="landing-color-filters" aria-hidden="true" focusable="false" width="0" height="0">
+        <defs>
+          {/* Match each image's paper to #f7f8f6 while anchoring the navy ink tone. */}
+          <filter id="remira-paper-desktop" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1.02 0 0 -0.003451  0 0 1.076433 0 -0.023079  0 0 0 1 0" />
+          </filter>
+          <filter id="remira-paper-mobile" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0.987013 0 0 0 0.000968  0 1 0 0 0  0 0 1.05625 0 -0.016985  0 0 0 1 0" />
+          </filter>
+        </defs>
+      </svg>
       <a href="#landing-main" className="skip-link">Ir al contenido</a>
       <header className="site-header">
         <div className="page-width landing-nav">

@@ -1,5 +1,5 @@
 .landing-page {
-  --landing-paper: #f7f4e9;
+  --landing-paper: #f7f8f6;
   --landing-ink: #132c4d;
   --landing-blue: #2457c5;
   --landing-muted: #53647a;
@@ -8,6 +8,7 @@
   background: var(--landing-paper);
   color: var(--landing-ink);
 }
+.landing-color-filters { position: absolute; pointer-events: none; }
 .landing-page .site-header {
   background: transparent;
   border-bottom: 0;
@@ -146,6 +147,7 @@
   display: block;
   width: 100%;
   height: auto;
+  filter: url("#remira-paper-desktop");
 }
 .landing-hero-note {
   display: flex;
@@ -273,7 +275,7 @@
 .preview-mail {
   position: relative;
   padding: 34px;
-  background: #fffdf8;
+  background: #fcfcf9;
   clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
 }
 .preview-mail::after {
@@ -436,6 +438,7 @@
   .landing-hero-actions .landing-primary-action { min-height: 44px; }
   .landing-hero-art { position: absolute; inset: 0; margin-top: 0; overflow: clip; }
   .landing-hero-art picture { position: absolute; bottom: 0; width: 100%; }
+  .landing-hero-art img { filter: url("#remira-paper-mobile"); }
   .landing-hero-art::before { content: ""; position: absolute; inset: 0 0 auto; height: 15%; background: linear-gradient(var(--landing-paper), transparent); }
   .landing-process, .landing-demo-section, .landing-about { padding-block: 56px; }
   .landing-tech-stage { border-radius: 10px; }
