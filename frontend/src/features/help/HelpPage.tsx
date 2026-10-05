@@ -66,6 +66,16 @@ export function HelpPage() {
 
   return (
     <div className="help-page">
+      <svg className="help-color-filters" width="0" height="0" aria-hidden="true">
+        <defs>
+          <filter id="help-paper-desktop" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="1.001725 0 0 0 -0.000129 0 0.993648 0 0 0.001096 0 0 0.998204 0 0.000542 0 0 0 1 0" />
+          </filter>
+          <filter id="help-paper-mobile" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0.997235 0 0 0 0.000206 0 0.989408 0 0 0.001828 0 0 0.992436 0 0.002284 0 0 0 1 0" />
+          </filter>
+        </defs>
+      </svg>
       <HelpBackdrop />
       <a href="#help-main" className="skip-link">
         Ir al contenido
@@ -111,8 +121,8 @@ export function HelpPage() {
           </div>
           <figure className="help-hero-illustration">
             <picture>
-              <source media="(max-width: 767px) and (orientation: portrait)" srcSet="/illustrations/guide-panorama-mobile-v1.webp" width={1024} height={1536} />
-              <img src="/illustrations/guide-panorama-v1.webp" alt="" width={2172} height={724} fetchPriority="high" />
+              <source media="(max-width: 767px) and (orientation: portrait)" srcSet="/illustrations/guide-panorama-mobile-v2.webp" width={1024} height={1536} />
+              <img src="/illustrations/guide-panorama-v2.webp" alt="" width={1774} height={887} fetchPriority="high" />
             </picture>
             <figcaption>La mejor pista empieza por leer con atención.</figcaption>
           </figure>
