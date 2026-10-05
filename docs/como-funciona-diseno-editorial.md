@@ -4,7 +4,7 @@
 
 La ruta `/como-funciona` adopta el lenguaje de la landing: papel neutro `#f7f8f6`, tinta `#132c4d`, azul de marca `#2457c5`, texto secundario `#53647a` y cierre nocturno `#0f2f56`. Fraunces identifica la marca; Georgia compone títulos editoriales y Manrope mantiene la lectura del cuerpo. La ilustración representa el acto de revisar una carta, en lugar de repetir el paisaje de portada.
 
-Se retiran la insignia de título, la descripción secundaria de la marca, el aviso en tarjeta y FadeContent del encabezado. La introducción muestra texto e ilustración en dos columnas y se apila en móvil. Una nota breve identifica la demostración y sus mensajes ficticios, sin prometer análisis reales ni acceso a Gmail.
+Se retiran la insignia de título, la descripción secundaria de la marca, el aviso en tarjeta y FadeContent del encabezado. La introducción muestra el título centrado sobre una ilustración panorámica de lado a lado, con una composición vertical propia para móvil. Una nota breve identifica la demostración y sus mensajes ficticios, sin prometer análisis reales ni acceso a Gmail.
 
 ## Estructura y navegación
 
@@ -46,6 +46,23 @@ Jardín: «Portrait 2:3 decorative margin vignette: a little rocky garden at the
 Carta: «Landscape 4:3 small chapter illustration: two ivory letters neatly tied with a cobalt ribbon and a tiny plain gold wax seal, an open blue envelope behind, a small dark-blue fountain pen beside them and one delicate olive sprig. Clear readable correspondence silhouette, graceful hand-drawn shapes, slightly irregular paper edges. No wooden desk and no magnifying glass. Intended as a miniature vignette beside the privacy chapter of a website guide. The ribbon holds the papers closed, not a padlock or shield.»
 
 Se repitieron las comprobaciones de los cinco anchos, navegación y preguntas con teclado, accesibilidad en escritorio y móvil y movimiento reducido. Se comprobó que las imágenes cargan, que el fondo conserva su posición al hacer scroll y que el menú móvil permite navegar a Cuenta. Capturas de resultados y privacidad revisadas en 1440 y 390 px. Compilación y lint completados correctamente.
+
+## Portada panorámica del taller de lectura
+
+La escena aislada del escritorio se sustituye por un taller abierto de correspondencia: arcadas, mesas con cartas y lupa, lectores bajo un toldo azul, jardín y avión. Conserva el lenguaje de tinta azul y acuarela de la landing, con una composición distinta para esta guía. El pie termina de forma orgánica entre plantas y trazos sobre papel neutro; no se aplica un difuminado CSS. El escritorio original se conserva como imagen del índice.
+
+El título y su explicación se centran encima de la escena. La ilustración ocupa el ancho completo de la página; el contenido de lectura conserva su ancho limitado. Un elemento `picture` selecciona la composición vertical para teléfonos en orientación vertical y la panorámica para escritorio y móvil horizontal. Ambas se muestran completas, con altura proporcional, sin recortes.
+
+Recursos generados con la herramienta integrada de imágenes, convertidos a WebP y guardados en el repositorio:
+
+- `frontend/public/illustrations/guide-panorama-v1.webp`: 2172×724 px, aproximadamente 522 KiB.
+- `frontend/public/illustrations/guide-panorama-mobile-v1.webp`: 1024×1536 px, aproximadamente 534 KiB.
+
+Prompt de escritorio: «Use case: illustration-story. Asset: full-width panorama hero for Remira's How it works reading guide. Use supplied image as STYLE reference ONLY: detailed navy ink etching, cobalt watercolor, muted gold, professional hand-drawn correspondence world. Generate a NEW different composition, panoramic 3:1, 2172x724 or similar. A beautiful open-air correspondence school and reading workshop: left an elegant stone arcade with pigeonhole shelves and letters; center a long winding wooden reading table with open letters, pens, ribbon-bound stacks, a large brass magnifier on one letter; right two small adult readers patiently examining correspondence under a cobalt canopy among cypresses and botanical plants. A small blue paper airplane travels above the tables. Distant quiet hills, no central lake or bridge from the reference. Narrative is learning to read and interpret letters. Upper 20% quiet near-white neutral paper #f7f8f6 sky, illustration spreads across the whole width. Bottom boundary ORGANIC irregular silhouette of grasses, rocks, table legs and sparse ink strokes dissolving naturally into plain neutral #f7f8f6 bare paper. No straight bottom edge, NO white blur or fog, no rectangular framed image, no text or logos. Intricate yet calm, small golden highlights, predominantly navy and cobalt, avoid cream/yellow background. Keep all focal objects complete.»
+
+Prompt móvil: «Create a mobile portrait 2:3 1024x1536 version of the supplied Remira correspondence-school panorama. Reference is subject/style reference, recompose thoughtfully, NOT crop. Match navy ink etching, cobalt watercolor, neutral near-white #f7f8f6 paper, restrained gold. A winding wooden reading table in the foreground with open letters, a clear brass magnifying glass, pens, blue ribbon-bound letters. Left stone arcade with correspondence shelves, right one small adult reading a letter beneath a cobalt canopy. Cypress garden and distant hills. Small paper plane in the upper quiet sky. Keep upper 15% very quiet pale neutral sky. Complete objects contained. Irregular organic bottom silhouette with plants, rocks and sparse ink strokes ending naturally onto bare near-white #f7f8f6 paper, no straight bottom edge, NO blur or mist overlay. This is a how-it-works guide illustration, professional and charming, no readable text, logos or frame. Vertical visual hierarchy, main objects large enough for a phone.»
+
+Verificación: imagen completa y ancho de pared a pared en 1440, 390, 320 y 844 px (este último en orientación horizontal); carga del recurso correspondiente y ausencia de desbordamiento.
 
 ## Índice ilustrado al inicio
 
