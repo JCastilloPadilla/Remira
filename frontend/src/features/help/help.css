@@ -1,5 +1,28 @@
 .help-page { --help-paper:#f7f8f6; --help-ink:#132c4d; --help-muted:#53647a; --help-blue:#2457c5; min-height:100dvh; color:var(--help-ink); background:linear-gradient(180deg,var(--help-paper) 0%,var(--help-paper) 18%,#e9edf1 55%,#d6e3ee 85%,#d6e3ee 100%); }
 .help-page .site-header { background:transparent; border-bottom:0; }
+.help-page { position: relative; isolation: isolate; }
+.help-page > header, .help-page > main, .help-footer-transition, .help-footer { position: relative; z-index: 1; }
+.help-page > header { z-index: 3; }
+.help-backdrop { position: absolute; inset: 0; z-index: 0; overflow: clip; pointer-events: none; }
+.help-background-garden { position: absolute; top: 46%; right: -110px; width: clamp(230px, 24vw, 360px); height: auto; opacity: 0.2; }
+.help-background-envelope { position: absolute; width: clamp(90px, 8vw, 140px); height: auto; opacity: 0.18; }
+.help-background-envelope--1 { top: 16%; left: 2%; transform: rotate(-18deg); }
+.help-background-envelope--2 { top: 27%; right: -20px; transform: rotate(16deg); }
+.help-background-envelope--3 { top: 45%; left: -15px; transform: rotate(12deg); }
+.help-background-envelope--4 { top: 67%; right: -20px; transform: rotate(-24deg); }
+.help-background-envelope--5 { top: 79%; left: 3%; transform: rotate(22deg); }
+.help-flight { position: absolute; width: 160px; height: 620px; }
+.help-flight--1 { top: 21%; right: -30px; }
+.help-flight--2 { top: 62%; left: -20px; transform: scaleX(-1); }
+.help-flight svg { display: block; width: 100%; height: 100%; }
+.help-flight path { stroke: #667f9d; stroke-width: 1; stroke-dasharray: 4 8; opacity: 0.4; }
+.help-flight img { position: absolute; bottom: 0; left: 45%; width: 92px; height: auto; transform: translateX(-50%) rotate(75deg); opacity: 0.4; }
+.help-margin-note { margin-top: 32px; padding-right: 20px; }
+.help-margin-note img { display: block; width: 100%; max-height: 255px; object-fit: contain; }
+.help-margin-note p { margin-top: 14px; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 16px; line-height: 1.5; color: #355d94; text-align: center; }
+.help-chapter-illustration { float: right; width: 165px; height: auto; margin: 0 0 20px 28px; }
+.help-article section { display: flow-root; }
+.help-question-envelope { float: right; width: 72px; height: auto; margin: 0 4px 16px 20px; transform: rotate(-12deg); }
 .help-page .brand-mark { background:transparent; width:34px; height:34px; }
 .help-nav { position:relative; display:flex; align-items:center; justify-content:center; gap:44px; min-height:88px; }
 .help-brand { display:flex; align-items:center; gap:10px; }
@@ -81,6 +104,16 @@ html.help-scroll { scroll-behavior:smooth; }
   .help-layout { grid-template-columns:190px minmax(0,1fr); gap:44px; }
 }
 @media (max-width:767px) {
+  .help-margin-note { display: none; }
+  .help-background-garden { top: 46%; right: -65px; width: 235px; opacity: 0.12; }
+  .help-background-envelope { width: 110px; opacity: 0.12; }
+  .help-background-envelope--1 { left: -20px; }
+  .help-background-envelope--5 { left: -20px; }
+  .help-flight { width: 125px; height: 520px; }
+  .help-flight path { opacity: 0.25; }
+  .help-flight img { opacity: 0.24; width: 80px; }
+  .help-chapter-illustration { float: none; width: 135px; margin: 0 0 20px auto; }
+  .help-question-envelope { width: 55px; }
   .help-nav { justify-content:space-between; min-height:72px; }
   .help-desktop-nav { display:none; }
   .help-mobile-menu { display:block; }
@@ -120,4 +153,7 @@ html.help-scroll { scroll-behavior:smooth; }
 @media (prefers-reduced-motion:reduce) {
   html.help-scroll { scroll-behavior:auto; }
   .help-page [data-slot="button"],.help-faq summary svg { transition:none; }
+}
+@media (min-width:768px) and (max-height:740px) {
+  .help-margin-note { display: none; }
 }

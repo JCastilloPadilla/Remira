@@ -27,3 +27,22 @@ Prompt: «Create a single isolated editorial illustration for Remira's 'How it w
 ## Verificación
 
 Se revisaron 1440, 1024, 768, 390 y 320 px de ancho: carga de ilustración, ausencia de desbordamiento horizontal, navegación del índice a las cinco secciones, apertura y cierre de preguntas con Enter, menú móvil y salida al analizador. Se verificó la limpieza de la clase de scroll y la preferencia de movimiento reducido. La revisión de accesibilidad no detectó infracciones en 1440 y 390 px. Se inspeccionaron capturas de introducción, resultados y footer. Compilación y lint completados correctamente; permanece el aviso previo de tamaño del paquete JavaScript.
+
+## Ilustraciones durante la lectura
+
+El usuario pidió más vida y carisma después de la introducción. `HelpBackdrop` incorpora cinco sobres y dos recorridos estáticos del avión, con un jardín de correspondencia en el margen derecho. La decoración se ubica detrás de las secciones, con opacidad reducida, sin capturar clics ni formar parte del árbol accesible. En móvil se reduce su intensidad y se mantienen los motivos visibles junto al texto. No se añaden animaciones de scroll.
+
+El índice de escritorio incluye una ilustración a color con una pequeña nota editorial; se omite esa pieza en pantallas de poca altura para mantener la navegación utilizable. Privacidad recibe una ilustración propia de cartas atadas con una cinta azul. Preguntas frecuentes incorpora un pequeño sobre. El menú se sitúa sobre el contenido para conservar sus enlaces disponibles.
+
+Dos recursos generados con la herramienta integrada de imágenes, usando `correspondence-guide-v1.webp` como referencia de estilo:
+
+- `frontend/public/illustrations/guide-garden-v1.webp`: 600×900 px, transparencia, aproximadamente 218 KiB. Ciprés, flores, cartas, sobre, rocas y avión.
+- `frontend/public/illustrations/guide-private-letter-v1.webp`: 500×375 px, transparencia, aproximadamente 44 KiB. Cartas con cinta azul, sello de cera, sobre y pluma.
+
+Prompt base de ambos: «Use the reference ONLY to match Remira's fine navy ink etching, cobalt watercolor, neutral ivory paper, restrained warm gold and slightly imperfect professional editorial illustration. Isolated illustration on genuinely TRANSPARENT background. No text, readable handwriting, logos, badges, backdrop, shadows outside the object, gradient, or white rectangular panel. Keep the entire subject with 8% transparent margin.»
+
+Jardín: «Portrait 2:3 decorative margin vignette: a little rocky garden at the base of a tall slender cypress and delicate blue foliage, three ivory and blue letters caught between stems, one folded cobalt envelope resting on a stone, a small paper airplane near the top with only a short broken ink trail. Botanical drawing connects naturally to a landscape of correspondence; charming but quiet, NOT a fantasy creature, no people. Tall narrow asymmetric silhouette for the side margin of a website reading guide. Sharply drawn tiny plants end naturally in sparse ink hatching on transparent canvas at bottom, no fog. Objects and foliage must remain distinguishable when scaled to 200px wide.»
+
+Carta: «Landscape 4:3 small chapter illustration: two ivory letters neatly tied with a cobalt ribbon and a tiny plain gold wax seal, an open blue envelope behind, a small dark-blue fountain pen beside them and one delicate olive sprig. Clear readable correspondence silhouette, graceful hand-drawn shapes, slightly irregular paper edges. No wooden desk and no magnifying glass. Intended as a miniature vignette beside the privacy chapter of a website guide. The ribbon holds the papers closed, not a padlock or shield.»
+
+Se repitieron las comprobaciones de los cinco anchos, navegación y preguntas con teclado, accesibilidad en escritorio y móvil y movimiento reducido. Se comprobó que las imágenes cargan, que el fondo conserva su posición al hacer scroll y que el menú móvil permite navegar a Cuenta. Capturas de resultados y privacidad revisadas en 1440 y 390 px. Compilación y lint completados correctamente.

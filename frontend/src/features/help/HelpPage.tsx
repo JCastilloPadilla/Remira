@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HelpBackdrop } from "./HelpBackdrop";
 import "./help.css";
 
 const sections = [
@@ -64,6 +65,7 @@ export function HelpPage() {
 
   return (
     <div className="help-page">
+      <HelpBackdrop />
       <a href="#help-main" className="skip-link">
         Ir al contenido
       </a>
@@ -126,6 +128,10 @@ export function HelpPage() {
                 {section.title}
               </a>
             ))}
+            <div className="help-margin-note" aria-hidden="true">
+              <img src="/illustrations/guide-garden-v1.webp" alt="" width={600} height={900} loading="lazy" />
+              <p>Leer despacio también<br />es una forma de cuidarte.</p>
+            </div>
           </nav>
           <div className="help-article">
             <section id="primeros-pasos" aria-labelledby="help-steps-title">
@@ -197,6 +203,7 @@ export function HelpPage() {
               </p>
             </section>
             <section id="privacidad" aria-labelledby="help-privacy-title">
+              <img className="help-chapter-illustration" src="/illustrations/guide-private-letter-v1.webp" alt="" width={500} height={375} loading="lazy" />
               <span className="help-section-number">Datos y acceso</span>
               <h2 id="help-privacy-title">Qué ocurre con tu información.</h2>
               <p>
@@ -252,6 +259,7 @@ export function HelpPage() {
               </p>
             </section>
             <section id="preguntas" aria-labelledby="help-faq-title">
+              <img className="help-question-envelope" src="/illustrations/journey-envelope-v1.webp" alt="" width={240} height={128} loading="lazy" />
               <span className="help-section-number">Dudas habituales</span>
               <h2 id="help-faq-title">Preguntas frecuentes.</h2>
               <div className="help-faq">
