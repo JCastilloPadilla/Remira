@@ -92,3 +92,13 @@ El bloque inicial ocupa la altura disponible de la ventana, descontando la naveg
 Tech Text cambia su parámetro `speed` a `0.5`; conserva los demás parámetros solicitados.
 
 Se verificó la alineación del borde inferior, el ancho completo y la proporción de la imagen en diez tamaños entre 320×568 y 1920×914 px, además de redimensionar la ventana sin recargar. No se detectaron errores JavaScript ni desbordamiento horizontal. Build y lint completados correctamente; permanece el aviso previo de tamaño del paquete JavaScript.
+
+## Header editorial, transición suave y navegación animada
+
+El header comparte el fondo de papel de la portada. La marca utiliza la tipografía editorial del diseño, una línea cálida que se desvanece hacia los extremos separa la navegación y el acceso al analizador adopta un contorno azul. Los enlaces de sección muestran un subrayado discreto al interactuar; en móvil la navegación se distribuye en dos filas conservando la alineación de la portada.
+
+La transición hacia el footer se extiende entre 420 y 760 px. Sus 21 tonos siguen una curva gradual con pendiente reducida en los extremos, para que el azul claro del contenido se funda con el cielo oscuro de la ilustración sin una unión marcada. El footer conserva su imagen completa y su ancho original.
+
+Los enlaces internos utilizan el desplazamiento suave nativo del navegador, incluido el regreso al inicio. Se activa exclusivamente mientras la landing está montada y se desactiva cuando el usuario prefiere movimiento reducido. No se añadieron dependencias. Se corrigió también el atributo accesible que SplitText generaba sobre un span: el encabezado conserva su texto legible sin una etiqueta ARIA incompatible.
+
+Se comprobó el desplazamiento por posiciones intermedias, la llegada al anclaje y el regreso al inicio, la preferencia de movimiento reducido y la salida al analizador. La revisión automática de accesibilidad no detectó infracciones en escritorio ni móvil. La portada mantiene su ancho, proporción y alineación al borde inferior en doce tamaños, incluido el redimensionamiento sin recargar. Build y lint completados; permanece el aviso previo de tamaño del paquete.

@@ -40,7 +40,9 @@ const repositoryUrl = "https://github.com/JCastilloPadilla/email-threat-detector
 export function LandingPage() {
   useEffect(() => {
     document.title = "Detector de correos · Una segunda mirada a tus mensajes";
+    document.documentElement.classList.add("landing-scroll");
     window.scrollTo({ top: 0, behavior: "instant" });
+    return () => document.documentElement.classList.remove("landing-scroll");
   }, []);
 
   return (

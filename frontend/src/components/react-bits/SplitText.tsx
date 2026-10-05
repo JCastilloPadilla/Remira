@@ -95,6 +95,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       };
       const splitInstance = new GSAPSplitText(el, {
         type: splitType,
+        aria: 'none',
         smartWrap: true,
         autoSplit: splitType === 'lines',
         linesClass: 'split-line',
