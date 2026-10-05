@@ -138,6 +138,7 @@ export function InboxPage() {
             <Link to="/bandeja" aria-current="page">
               Bandeja de Gmail
             </Link>
+            <Link to="/cuenta">Cuenta</Link>
           </nav>
         </div>
       </header>

@@ -474,3 +474,7 @@
     align-items: flex-start;
   }
 }
+
+.inbox-nav nav {
+  flex-wrap: wrap;
+}

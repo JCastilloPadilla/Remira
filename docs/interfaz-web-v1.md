@@ -4,7 +4,7 @@ Fecha: 29 de septiembre de 2026.
 Rama de trabajo: `feature/web-interface-v1`.  
 Actualización: 4 de octubre de 2026.
 
-Estado: landing, login, bandeja, historial y analizador maquetados en React con datos de demostración.
+Estado: landing, login, bandeja, historial, cuenta y analizador maquetados en React con datos de demostración.
 
 ## Propósito
 
@@ -14,7 +14,7 @@ La tecnología ya está acordada: **React + TypeScript + Vite + Tailwind CSS + s
 
 ## Cantidad de pantallas y alcance
 
-El borrador actual tiene **cinco pantallas navegables: landing, login, bandeja, historial y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
+El borrador actual tiene **seis pantallas navegables: landing, login, bandeja, historial, cuenta y analizador**. La ayuda detallada permanece en un diálogo del analizador. El resultado, la carga y los errores son estados del análisis, no páginas adicionales. La ampliación acordada contempla siete pantallas en total, según se implementen las funciones correspondientes.
 
 | Pantalla | Ruta propuesta | Primera versión | Propósito |
 | --- | --- | --- | --- |
@@ -23,7 +23,7 @@ El borrador actual tiene **cinco pantallas navegables: landing, login, bandeja, 
 | Login | `/login` | Maqueta implementada | Presentar el acceso con Google para futuras funciones personales. |
 | Bandeja de Gmail | `/bandeja` | Maqueta implementada | Explorar mensajes ficticios; conexión real pendiente. |
 | Historial | `/historial` | Maqueta implementada | Consultar registros ficticios; almacenamiento real pendiente. |
-| Cuenta y conexiones | `/cuenta` | Fase posterior | Gestionar la cuenta y la conexión con Gmail. |
+| Cuenta y conexiones | `/cuenta` | Maqueta implementada | Consultar acceso y explorar estados ficticios de conexión con Gmail. |
 | Ayuda / cómo funciona | `/como-funciona` | Diálogo por ahora | Explicar uso, privacidad y límites del análisis. |
 
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
@@ -394,3 +394,11 @@ El 4 de octubre se añadió `/historial`, accesible desde la navegación de la b
 Permite buscar por asunto, filtrar por clasificación y por intervalo de fechas inclusivo, restablecer filtros y abrir el detalle en un diálogo. Un intervalo invertido muestra un error. Ver historial vacío oculta los ejemplos sin borrar información real; Mostrar ejemplos los recupera. En celular cada fila se organiza verticalmente con etiquetas. Se conservan el stack, la paleta y la tipografía del proyecto; FadeContent anima el resultado del detalle.
 
 No existe almacenamiento persistente, sesión real, exportación ni eliminación de registros. El cuerpo se presenta como texto. Recargar o abandonar reinicia los filtros y la selección. Build y lint se verificaron; la revisión visual y de interacciones en navegador queda pendiente por falta de herramientas de navegador en esta sesión.
+
+## Avance implementado — cuenta y conexiones
+
+Ruta `/cuenta`, accesible desde la navegación de la bandeja y el historial. Separa acceso a la cuenta y autorización de Gmail. El estado inicial muestra visitante sin sesión y Gmail sin conectar. Ver inicio de sesión enlaza a `/login`; Conectar Gmail explica en un diálogo que la integración está pendiente.
+
+Mostrar conexión ficticia presenta una identidad `.example` y autorización explícitamente simulada. Permite abrir la bandeja ficticia o Desconectar ejemplo, con confirmación y opción de cancelar. El cambio se anuncia mediante un estado accesible y solo modifica memoria local. Recargar o abandonar la página reinicia la maqueta. No hay OAuth, credenciales, revocación real, edición de perfil ni cierre de sesión ficticio.
+
+Se mantienen React, TypeScript, shadcn/ui, FadeContent de React Bits y la dirección visual existente. En celular las áreas se apilan y las acciones se adaptan al ancho. Build y lint verificados; revisión visual e interacción en navegador pendientes por falta de herramientas de navegador en esta sesión.

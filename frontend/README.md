@@ -1,6 +1,6 @@
 # Frontend del detector de correos
 
-Landing de presentación, login, bandeja de Gmail, historial y pantalla **Analizar correo**, creadas con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits. React Router gestiona la navegación.
+Landing de presentación, login, bandeja de Gmail, historial, cuenta y pantalla **Analizar correo**, creadas con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits. React Router gestiona la navegación.
 
 ## Ejecutar
 
@@ -27,6 +27,7 @@ npm run lint
 - `/login`: maqueta de acceso con Google y entrada al analizador sin cuenta.
 - `/bandeja`: bandeja ficticia con búsqueda, filtros, detalle y análisis de los dos ejemplos.
 - `/historial`: registros ficticios con búsqueda, clasificación, intervalo de fechas y detalle en un diálogo.
+- `/cuenta`: acceso a la cuenta y conexión de Gmail, con estados ficticios y confirmación para restablecer el ejemplo.
 - Las rutas desconocidas redirigen al inicio.
 
 Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las rutas del frontend directamente. Vite ya permite recargar `/analizar` durante el desarrollo.
@@ -49,13 +50,14 @@ Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las ru
 
 **Flask y el modelo todavía no están conectados.** Solo los ejemplos exactos tienen una respuesta preparada. Cualquier otro texto presenta un aviso de integración pendiente; no se intenta clasificarlo mediante reglas. No hay almacenamiento persistente ni llamadas a una API.
 
-La ayuda detallada del analizador está en un diálogo. La landing incluye una explicación general del flujo. El login es una maqueta: el botón de Google muestra un aviso y no inicia OAuth, crea sesiones ni lee correos. La bandeja de Gmail es una maqueta con dos mensajes ficticios; no lee correos reales. El historial es una maqueta independiente y no guarda los análisis de otras pantallas. La integración de Gmail, el almacenamiento del historial y la cuenta siguen pendientes.
+La ayuda detallada del analizador está en un diálogo. La landing incluye una explicación general del flujo. El login es una maqueta: el botón de Google muestra un aviso y no inicia OAuth, crea sesiones ni lee correos. La bandeja de Gmail es una maqueta con dos mensajes ficticios; no lee correos reales. El historial es una maqueta independiente y no guarda los análisis de otras pantallas. La integración de Gmail, el almacenamiento del historial y la gestión real de cuenta y permisos siguen pendientes.
 
 ## Organización
 
 - `src/App.tsx`: rutas de la aplicación.
 - `src/features/landing/`: página de presentación y sus estilos.
 - `src/features/auth/`: maqueta de login y sus estilos.
+- `src/features/account/`: cuenta y conexiones de demostración y sus estilos.
 - `src/features/history/`: historial ilustrativo y sus estilos.
 - `src/features/inbox/`: bandeja de demostración y sus estilos; reutiliza los ejemplos y el servicio simulado del analizador.
 - `src/features/analysis/`: página de análisis, formulario, resultado y servicio de demostración.
@@ -84,3 +86,7 @@ Las preferencias de movimiento reducido se contemplan en CSS y FadeContent; no s
 ### Verificación del historial
 
 Build y lint correctos. Falta revisar visualmente `/historial` e interactuar con sus filtros y diálogo en navegador; las revisiones de navegador indicadas arriba corresponden a las pantallas previas. El aviso de Vite sobre tamaño del paquete sigue presente.
+
+### Verificación de cuenta y conexiones
+
+Build y lint correctos. La revisión visual y de interacción en navegador de `/cuenta` queda pendiente. El cambio de conexión ficticia solo modifica memoria local; no inicia peticiones externas ni concede o revoca permisos reales.

@@ -402,3 +402,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+.history-nav nav {
+  flex-wrap: wrap;
+}

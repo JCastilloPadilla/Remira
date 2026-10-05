@@ -1,0 +1,333 @@
+.account-page {
+  min-height: 100dvh;
+  background: #f3f6fa;
+}
+.account-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 88px;
+}
+.account-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 650;
+}
+.account-brand-caption {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #52627a;
+}
+.account-nav nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 12px;
+  color: #52627a;
+}
+.account-nav [aria-current] {
+  color: #2457c5;
+  font-weight: 600;
+}
+.account-main {
+  padding-block: 44px 32px;
+}
+.account-heading h1 {
+  margin-top: 16px;
+  font-size: 34px;
+  font-weight: 650;
+  letter-spacing: -1px;
+}
+.account-heading > p {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #52627a;
+}
+.account-demo-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-block: 28px;
+  padding: 16px 20px;
+  border: 1px solid #d7dfeb;
+  border-radius: 10px;
+  color: #52627a;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.account-demo-note svg {
+  flex-shrink: 0;
+  color: #2457c5;
+}
+.account-demo-note strong {
+  color: #172b4d;
+  font-weight: 600;
+}
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+.account-section {
+  background: #fff;
+  border: 1px solid #d7dfeb;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.account-section + .account-section {
+  margin-top: 24px;
+}
+.account-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px;
+  border-bottom: 1px solid #d7dfeb;
+}
+.account-section-heading > [data-slot="badge"] {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 400;
+}
+.account-section-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  color: #2457c5;
+  background: #edf2fa;
+}
+.account-section-heading h2 {
+  font-size: 15px;
+  font-weight: 650;
+}
+.account-section-heading p {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #52627a;
+}
+.account-access-body,
+.account-connection-body {
+  padding: 26px 24px;
+}
+.account-access-body h3,
+.account-connection-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+.account-access-body > p,
+.account-connection-body > p {
+  max-width: 540px;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #52627a;
+}
+.account-access-body > button,
+.account-access-body > a {
+  margin-top: 20px;
+  height: 38px;
+  font-size: 12px;
+}
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.account-actions > button,
+.account-actions > a {
+  height: 38px;
+  font-size: 12px;
+}
+.account-disconnect {
+  color: #a12637;
+}
+.account-example-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.account-example-identity > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: #edf2fa;
+  border-radius: 50%;
+  color: #6880a1;
+}
+.account-example-identity strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.account-example-identity p {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #52627a;
+}
+.account-connection-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 22px;
+  padding-block: 18px;
+  border-block: 1px solid #d7dfeb;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.account-connection-data dt {
+  color: #52627a;
+}
+.account-connection-data dd {
+  margin-top: 5px;
+}
+.account-explanation {
+  padding: 24px 0;
+}
+.account-explanation > svg {
+  color: #6880a1;
+}
+.account-explanation h2 {
+  margin-top: 18px;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.account-explanation ol {
+  margin-top: 28px;
+}
+.account-explanation li {
+  display: flex;
+  gap: 14px;
+  padding-block: 20px;
+  border-top: 1px solid #d7dfeb;
+}
+.account-explanation li > span {
+  font-size: 11px;
+  color: #6880a1;
+  padding-top: 2px;
+}
+.account-explanation h3 {
+  font-size: 13px;
+  font-weight: 600;
+}
+.account-explanation li p,
+.account-privacy-note p {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #52627a;
+}
+.account-privacy-note {
+  display: flex;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid #d7dfeb;
+}
+.account-privacy-note svg {
+  flex-shrink: 0;
+  color: #6880a1;
+  margin-top: 3px;
+}
+.account-privacy-note p {
+  margin-top: 0;
+  font-size: 11px;
+}
+.account-status {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #52627a;
+}
+.account-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 24px;
+  font-size: 11px;
+  color: #52627a;
+}
+.account-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 1023px) {
+  .account-nav {
+    flex-wrap: wrap;
+    padding-block: 18px;
+    gap: 20px;
+  }
+  .account-layout {
+    gap: 24px;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  }
+  .account-section-heading {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 767px) {
+  .account-nav nav {
+    width: 100%;
+    gap: 16px;
+    font-size: 11px;
+  }
+  .account-main {
+    padding-top: 28px;
+  }
+  .account-heading h1 {
+    font-size: 28px;
+    line-height: 1.4;
+  }
+  .account-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-demo-note {
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .account-demo-note svg {
+    margin-top: 3px;
+  }
+  .account-section-heading {
+    padding: 20px 16px;
+  }
+  .account-section-heading > div {
+    flex: 1;
+    min-width: 0;
+  }
+  .account-section-heading > [data-slot="badge"] {
+    margin-left: 56px;
+  }
+  .account-access-body,
+  .account-connection-body {
+    padding: 24px 16px;
+  }
+  .account-connection-data {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .account-explanation {
+    padding-top: 8px;
+  }
+  .account-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

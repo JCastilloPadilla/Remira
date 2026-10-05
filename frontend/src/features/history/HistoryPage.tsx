@@ -97,6 +97,7 @@ export function HistoryPage() {
             <Link to="/historial" aria-current="page">
               Historial
             </Link>
+            <Link to="/cuenta">Cuenta</Link>
           </nav>
         </div>
       </header>
