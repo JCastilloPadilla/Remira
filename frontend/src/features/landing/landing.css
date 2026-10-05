@@ -4,51 +4,33 @@
   --landing-blue: #2457c5;
   --landing-muted: #53647a;
   --landing-night: #0f2f56;
-  --landing-header-height: 89px;
+  --landing-header-height: 88px;
   background: var(--landing-paper);
   color: var(--landing-ink);
 }
 .landing-page .site-header {
   background: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0;
 }
 .landing-nav {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 64px);
   min-height: 88px;
 }
-.landing-nav::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #b6a78560 20%, #b6a78560 80%, transparent);
+.landing-page .landing-nav {
+  width: fit-content;
+  max-width: calc(100% - 48px);
 }
 .landing-brand {
   display: flex;
   align-items: center;
-  gap: 13px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 23px;
-  line-height: 1.1;
-  font-weight: 400;
-  letter-spacing: -0.4px;
+  gap: 10px;
 }
 .landing-page .brand-mark { background: transparent; }
+.landing-brand .brand-mark { width: 34px; height: 34px; }
 .landing-brand .remira-wordmark { font-size: 32px; }
-.landing-brand-caption {
-  display: block;
-  margin-top: 3px;
-  font-size: 11px;
-  font-family: var(--font-sans);
-  line-height: 1.5;
-  font-weight: 400;
-  letter-spacing: 0;
-  color: var(--landing-muted);
-}
 .landing-nav-links {
   display: flex;
   align-items: center;
@@ -72,7 +54,6 @@
 }
 .landing-nav-links > a[href^="#"]:hover::after,
 .landing-nav-links > a[href^="#"]:focus-visible::after { transform: scaleX(1); }
-.landing-login-link { border-left: 1px solid #b6a78560; padding-left: 24px; }
 .landing-nav-links a:hover { color: var(--landing-blue); }
 .landing-nav-cta {
   height: 40px;
@@ -353,7 +334,6 @@
 @media (max-width: 1023px) {
   .landing-final-cta { position: relative; top: auto; padding-bottom: 24px; }
   .landing-nav-links { gap: 18px; }
-  .landing-nav-links > a[href^="#"] { display: none; }
   .landing-hero h1 { max-width: 760px; letter-spacing: -2.5px; }
   .landing-steps { gap: 32px; }
   .step-illustration { gap: 16px; }
@@ -367,6 +347,7 @@
   .landing-footer-links nav { max-width: 270px; row-gap: 15px; }
 }
 @media (max-width: 767px) {
+  .landing-nav-links > a[href^="#"] { display: none; }
   .landing-hero-copy { padding-top: 28px; }
   .landing-hero h1 { font-size: clamp(36px, 7vw, 52px); line-height: 1.17; letter-spacing: -1.8px; }
   .landing-lead { max-width: 480px; font-size: 13px; }
@@ -399,15 +380,12 @@
   .landing-tech-effect { height: 220px; }
 }
 @media (max-width: 639px) {
-  .landing-page { --landing-header-height: 115px; }
-  .landing-page .site-header .landing-nav { min-height: 114px; flex-wrap: wrap; padding-block: 8px; gap: 8px; }
+  .landing-page { --landing-header-height: 114px; }
+  .landing-page .site-header .landing-nav { width: calc(100% - 32px); max-width: none; min-height: 114px; flex-wrap: wrap; padding-block: 8px; gap: 8px; }
   .landing-brand .remira-wordmark { font-size: 28px; }
-  .landing-brand-caption { font-size: 10px; }
   .landing-nav-links { width: 100%; justify-content: space-between; }
-  .landing-login-link { border-left: 0; padding-left: 0; }
 }
 @media (max-width: 479px) {
-  .landing-brand { font-size: 21px; }
   .landing-nav-cta { font-size: 11px; height: 36px; padding-inline: 14px; }
   .landing-hero-copy { padding-top: 24px; }
   .landing-hero h1 { font-size: 36px; }
@@ -439,7 +417,7 @@
   .landing-hero-note { display: none; }
 }
 @media (min-width: 768px) and (max-height: 580px) {
-  .landing-page { --landing-header-height: 65px; }
+  .landing-page { --landing-header-height: 64px; }
   .landing-nav { min-height: 64px; }
   .landing-hero-copy { padding-top: 10px; }
   .landing-hero h1 { font-size: 32px; letter-spacing: -1px; }
@@ -450,7 +428,7 @@
   .landing-hero-note { display: none; }
 }
 @media (min-width: 1600px) and (max-height: 850px) {
-  .landing-page { --landing-header-height: 65px; }
+  .landing-page { --landing-header-height: 64px; }
   .landing-nav { min-height: 64px; }
   .landing-hero-copy { padding-top: 10px; }
   .landing-hero h1 { font-size: 48px; }

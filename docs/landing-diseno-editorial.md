@@ -114,3 +114,9 @@ Se revisó la presencia de la identidad y la carga de la tipografía en las siet
 ### Tipografía definitiva de la marca
 
 Por elección del usuario, Fraunces sustituye a Allura para el nombre Remira: peso 600, estilo normal y sin cursiva. Se sirve localmente con `@fontsource/fraunces`, únicamente la variante latina necesaria. La marca utiliza 30 px en general, 32 px en el header de la landing y 28 px en pantallas pequeñas; se conserva Manrope para los textos de la interfaz. Se retiró la dependencia y la importación de Allura.
+
+### Header compacto y centrado
+
+A partir de las referencias del usuario, la landing agrupa marca y navegación en un conjunto compacto centrado sobre el título principal. Se eliminan la línea divisora, el separador del acceso a sesión y el subtítulo de la marca en el header. Remira conserva Fraunces 600, junto al símbolo azul a menor tamaño. En móvil la marca se centra sobre la fila de accesos; los enlaces de sección permanecen visibles desde 768 px.
+
+Se reajusta la altura descontada del header para conservar la ilustración completa y pegada al borde inferior de la primera ventana. Verificado en doce tamaños y al redimensionar; sin desbordamiento horizontal. Se comprobaron los enlaces internos animados, el regreso al inicio, movimiento reducido y la navegación al analizador. Compilación y lint completados; sin infracciones de accesibilidad detectadas en escritorio y móvil.

@@ -53,10 +53,7 @@ export function LandingPage() {
         <div className="page-width landing-nav">
           <Link to="/" className="landing-brand" aria-label="Remira, inicio">
             <BrandMark />
-            <span>
-              <BrandName />
-              <span className="landing-brand-caption">Una segunda mirada a tus mensajes</span>
-            </span>
+            <BrandName />
           </Link>
           <nav aria-label="Navegación principal" className="landing-nav-links">
             <a href="#como-funciona">Cómo funciona</a>
