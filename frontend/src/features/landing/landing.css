@@ -38,6 +38,7 @@
   letter-spacing: -0.4px;
 }
 .landing-page .brand-mark { background: transparent; }
+.landing-brand .remira-wordmark { font-size: 44px; line-height: 0.9; }
 .landing-brand-caption {
   display: block;
   margin-top: 3px;
@@ -341,7 +342,7 @@
 .landing-footer-brand { display: flex; align-items: center; gap: 12px; }
 .landing-footer .brand-mark { border-radius: 10px; background: var(--landing-paper); }
 .landing-footer-brand p { font-size: 14px; font-weight: 650; }
-.landing-footer-brand p > span { display: block; margin-top: 5px; color: #bdcee0; font-size: 11px; font-weight: 400; }
+.landing-footer-brand p > span:not(.remira-wordmark) { display: block; margin-top: 5px; color: #bdcee0; font-size: 11px; font-weight: 400; }
 .landing-footer-links nav { display: flex; align-items: center; flex-wrap: wrap; gap: 25px; font-size: 12px; }
 .landing-footer-links a { display: inline-flex; align-items: center; gap: 5px; }
 .landing-footer a:hover { text-decoration: underline; text-underline-offset: 5px; }
@@ -399,13 +400,14 @@
 }
 @media (max-width: 639px) {
   .landing-page { --landing-header-height: 115px; }
-  .landing-page .site-header .landing-nav { min-height: 114px; flex-wrap: wrap; padding-block: 10px; gap: 8px; }
+  .landing-page .site-header .landing-nav { min-height: 114px; flex-wrap: wrap; padding-block: 8px; gap: 8px; }
+  .landing-brand .remira-wordmark { font-size: 34px; }
+  .landing-brand-caption { font-size: 10px; }
   .landing-nav-links { width: 100%; justify-content: space-between; }
   .landing-login-link { border-left: 0; padding-left: 0; }
 }
 @media (max-width: 479px) {
   .landing-brand { font-size: 21px; }
-  .landing-brand-caption { font-size: 10px; }
   .landing-nav-cta { font-size: 11px; height: 36px; padding-inline: 14px; }
   .landing-hero-copy { padding-top: 24px; }
   .landing-hero h1 { font-size: 36px; }

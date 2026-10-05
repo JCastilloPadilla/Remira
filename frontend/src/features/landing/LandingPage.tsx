@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
 import { Button } from "@/components/ui/button";
 import AnimatedContent from "@/components/react-bits/AnimatedContent";
 import SplitText from "@/components/react-bits/SplitText";
@@ -39,7 +40,7 @@ const repositoryUrl = "https://github.com/JCastilloPadilla/email-threat-detector
 
 export function LandingPage() {
   useEffect(() => {
-    document.title = "Detector de correos · Una segunda mirada a tus mensajes";
+    document.title = "Remira · Una segunda mirada a tus mensajes";
     document.documentElement.classList.add("landing-scroll");
     window.scrollTo({ top: 0, behavior: "instant" });
     return () => document.documentElement.classList.remove("landing-scroll");
@@ -50,10 +51,10 @@ export function LandingPage() {
       <a href="#landing-main" className="skip-link">Ir al contenido</a>
       <header className="site-header">
         <div className="page-width landing-nav">
-          <Link to="/" className="landing-brand" aria-label="Detector de correos, inicio">
+          <Link to="/" className="landing-brand" aria-label="Remira, inicio">
             <BrandMark />
             <span>
-              Detector de correos
+              <BrandName />
               <span className="landing-brand-caption">Una segunda mirada a tus mensajes</span>
             </span>
           </Link>
@@ -226,8 +227,7 @@ export function LandingPage() {
               </div>
               <div className="landing-about-content">
                 <p>
-                  El Sistema inteligente para la detección de correos electrónicos
-                  maliciosos nace como un proyecto académico para explorar la
+                  Remira nace como un proyecto académico para explorar la
                   clasificación de mensajes mediante aprendizaje automático.
                 </p>
                 <p>
@@ -290,7 +290,7 @@ export function LandingPage() {
         <div className="page-width landing-footer-links">
           <div className="landing-footer-brand">
             <BrandMark />
-            <p>Detector de correos<span>Hecho para mirar con más atención.</span></p>
+            <p><BrandName /><span>Hecho para mirar con más atención.</span></p>
           </div>
           <nav aria-label="Navegación del pie de página">
             <Link to="/analizar">Analizador</Link>

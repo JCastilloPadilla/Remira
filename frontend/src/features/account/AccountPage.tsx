@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -39,7 +40,7 @@ export function AccountPage() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    document.title = "Cuenta y conexiones · Detector de correos";
+    document.title = "Cuenta y conexiones · Remira";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -53,11 +54,11 @@ export function AccountPage() {
           <Link
             to="/"
             className="account-brand"
-            aria-label="Detector de correos, inicio"
+            aria-label="Remira, inicio"
           >
             <BrandMark />
             <span>
-              Detector de correos
+              <BrandName />
               <span className="account-brand-caption">
                 Análisis inteligente de mensajes
               </span>
@@ -306,7 +307,7 @@ export function AccountPage() {
         </div>
       </main>
       <footer className="page-width account-footer">
-        <p>Detector de correos · Proyecto académico</p>
+        <p>Remira · Proyecto académico</p>
         <Link to="/">
           Conocer el proyecto <ArrowRight size={13} />
         </Link>

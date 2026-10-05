@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -52,7 +53,7 @@ function AnalysisPage() {
   const busy = analysis.status === "loading";
 
   useEffect(() => {
-    document.title = "Analizar correo · Detector de correos";
+    document.title = "Analizar correo · Remira";
     window.scrollTo({ top: 0, behavior: "instant" });
     return () => requestRef.current?.abort();
   }, []);
@@ -119,11 +120,11 @@ function AnalysisPage() {
           <Link
             to="/"
             className="flex items-center gap-3"
-            aria-label="Detector de correos, inicio"
+            aria-label="Remira, inicio"
           >
             <BrandMark />
             <span className="font-semibold tracking-tight">
-              Detector de correos
+              <BrandName />
               <span className="block text-xs font-normal tracking-normal text-muted-foreground">
                 Análisis inteligente de mensajes
               </span>

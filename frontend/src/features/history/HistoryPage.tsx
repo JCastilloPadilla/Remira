@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -59,7 +60,7 @@ export function HistoryPage() {
       : [];
 
   useEffect(() => {
-    document.title = "Historial de análisis · Detector de correos";
+    document.title = "Historial de análisis · Remira";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -80,11 +81,11 @@ export function HistoryPage() {
           <Link
             to="/"
             className="history-brand"
-            aria-label="Detector de correos, inicio"
+            aria-label="Remira, inicio"
           >
             <BrandMark />
             <span>
-              Detector de correos
+              <BrandName />
               <span className="history-brand-caption">
                 Análisis inteligente de mensajes
               </span>
@@ -299,7 +300,7 @@ export function HistoryPage() {
         </p>
       </main>
       <footer className="page-width history-footer">
-        <p>Detector de correos · Proyecto académico</p>
+        <p>Remira · Proyecto académico</p>
         <Link to="/">
           Conocer el proyecto <ArrowRight size={13} />
         </Link>

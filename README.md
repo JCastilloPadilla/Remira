@@ -1,4 +1,8 @@
-# Sistema inteligente para la detección de correos electrónicos maliciosos
+# Remira
+
+**Una segunda mirada a tus mensajes.**
+
+Sistema inteligente para la detección de correos electrónicos maliciosos.
 
 Proyecto semestral de la materia **Técnicas de Inteligencia Artificial**.
 

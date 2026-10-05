@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -74,7 +75,7 @@ export function InboxPage() {
   });
 
   useEffect(() => {
-    document.title = "Bandeja de Gmail · Detector de correos";
+    document.title = "Bandeja de Gmail · Remira";
     window.scrollTo({ top: 0, behavior: "instant" });
     return () => requestRef.current?.abort();
   }, []);
@@ -121,11 +122,11 @@ export function InboxPage() {
           <Link
             to="/"
             className="inbox-brand"
-            aria-label="Detector de correos, inicio"
+            aria-label="Remira, inicio"
           >
             <BrandMark />
             <span>
-              Detector de correos
+              <BrandName />
               <span className="inbox-brand-caption">
                 Análisis inteligente de mensajes
               </span>
@@ -394,7 +395,7 @@ export function InboxPage() {
         </div>
       </main>
       <footer className="page-width inbox-footer">
-        <p>Detector de correos · Proyecto académico</p>
+        <p>Remira · Proyecto académico</p>
         <Link to="/">
           Conocer el proyecto <ArrowRight size={13} />
         </Link>

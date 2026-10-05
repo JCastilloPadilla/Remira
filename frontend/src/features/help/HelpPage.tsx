@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -50,7 +51,7 @@ const questions = [
 
 export function HelpPage() {
   useEffect(() => {
-    document.title = "Ayuda y cómo funciona · Detector de correos";
+    document.title = "Ayuda y cómo funciona · Remira";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -64,11 +65,11 @@ export function HelpPage() {
           <Link
             to="/"
             className="help-brand"
-            aria-label="Detector de correos, inicio"
+            aria-label="Remira, inicio"
           >
             <BrandMark />
             <span>
-              Detector de correos
+              <BrandName />
               <span className="help-brand-caption">
                 Análisis inteligente de mensajes
               </span>
@@ -272,7 +273,7 @@ export function HelpPage() {
         </div>
       </main>
       <footer className="page-width help-footer">
-        <p>Detector de correos · Proyecto académico</p>
+        <p>Remira · Proyecto académico</p>
         <Link to="/">
           Conocer el proyecto <ArrowRight size={13} />
         </Link>
