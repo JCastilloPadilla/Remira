@@ -285,7 +285,7 @@ Requerirá decidir qué se almacena, durante cuánto tiempo y cómo se elimina. 
 | `ExamplePicker` | Elegir un mensaje ficticio. | shadcn/ui: Dialog y Button. |
 | `AnalysisResult` | Clasificación, confianza y orientación. | shadcn/ui: Badge, Alert y Button. |
 | `ClearConfirmation` | Confirmar que se borra el contenido. | shadcn/ui: AlertDialog. |
-| `HelpPage` | Ayuda, privacidad, limitaciones y preguntas frecuentes. | Texto, detalles nativos, Button y Badge de shadcn/ui. |
+| `HelpPage` | Ayuda, privacidad, limitaciones y preguntas frecuentes. | Guía editorial ilustrada, detalles nativos y Button de shadcn/ui. |
 | `HeaderVisual` | Efecto decorativo aislado del flujo. | Componente gratuito de React Bits. |
 | Servicio de análisis | Petición a Flask y traducción de errores. | TypeScript; sin dependencias visuales. |
 
@@ -412,6 +412,8 @@ Se enlaza desde la navegación de bandeja, historial y cuenta, y desde el pie de
 Build y lint verificados. La revisión visual e interacción en navegador sigue pendiente en esta sesión. El modelo, autenticación, Gmail y almacenamiento permanecen sin conexión con la web; tener las siete pantallas maquetadas no completa esas integraciones.
 
 ## Rediseño de la landing — ilustración editorial
+
+La ruta `/como-funciona` también adopta esta dirección visual. El rediseño de la guía y sus comprobaciones en escritorio y móvil se documentan en [como-funciona-diseno-editorial.md](como-funciona-diseno-editorial.md).
 
 El 4 de octubre se renovó la ruta `/` con ilustraciones originales de correspondencia, paleta azul y crema, títulos editoriales, una muestra de correo y cierre panorámico. Se añadieron SplitText y AnimatedContent originales de React Bits con soporte para movimiento reducido. El diseño y las decisiones se registran en [landing-diseno-editorial.md](landing-diseno-editorial.md). Las demás pantallas conservan su estilo actual para una propagación posterior. Se mantiene visible el estado de demostración y las integraciones pendientes.
 

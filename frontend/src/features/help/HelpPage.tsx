@@ -6,12 +6,11 @@ import {
   ArrowRight,
   ChevronDown,
   CircleHelp,
+  Menu,
   ShieldAlert,
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import FadeContent from "@/components/react-bits/FadeContent";
 import "./help.css";
 
 const sections = [
@@ -21,26 +20,32 @@ const sections = [
   { id: "limites", title: "Límites del análisis" },
   { id: "preguntas", title: "Preguntas frecuentes" },
 ];
+const navigation = [
+  { to: "/", title: "Inicio" },
+  { to: "/bandeja", title: "Bandeja" },
+  { to: "/historial", title: "Historial" },
+  { to: "/cuenta", title: "Cuenta" },
+];
 const questions = [
   {
     question: "¿Necesito iniciar sesión para probar el analizador?",
     answer:
-      "No. Puedes abrir el analizador y cargar los ejemplos sin cuenta. El login está maquetado, pero la autenticación con Google todavía no está conectada.",
+      "No. Puedes abrir el analizador y cargar los ejemplos sin cuenta. En la demostración no se realiza una autenticación real con Google.",
   },
   {
     question: "¿Por qué no obtengo un resultado al pegar mi propio correo?",
     answer:
-      "El modelo aún no está conectado a la web. Solo los dos ejemplos exactos tienen respuestas preparadas. El texto libre muestra un aviso de integración pendiente, sin inventar una clasificación.",
+      "La demostración ofrece resultados preparados para dos ejemplos ficticios. Los mensajes propios no se envían al modelo y no reciben una clasificación.",
   },
   {
     question: "¿Se guardan mis análisis en el historial?",
     answer:
-      "Todavía no. El historial muestra registros ficticios y no recibe los análisis del formulario ni de la bandeja. El almacenamiento real sigue pendiente.",
+      "El historial de la demostración muestra registros ficticios. No guarda los mensajes que introduces ni recibe los análisis del formulario o de la bandeja.",
   },
   {
     question: "¿Conectar Gmail o desconectar el ejemplo modifica mi cuenta?",
     answer:
-      "No. Los botones actuales explican la integración pendiente o cambian un estado ficticio dentro de la maqueta. No se solicitan ni se revocan permisos reales de Google.",
+      "No. La conexión de ejemplo es ficticia. No se solicitan ni se revocan permisos reales de Google, y Remira no accede a tus mensajes de Gmail en esta demostración.",
   },
   {
     question: "¿Qué ocurre si edito el mensaje o recargo la página?",
@@ -52,7 +57,9 @@ const questions = [
 export function HelpPage() {
   useEffect(() => {
     document.title = "Ayuda y cómo funciona · Remira";
+    document.documentElement.classList.add("help-scroll");
     window.scrollTo({ top: 0, behavior: "instant" });
+    return () => document.documentElement.classList.remove("help-scroll");
   }, []);
 
   return (
@@ -68,47 +75,47 @@ export function HelpPage() {
             aria-label="Remira, inicio"
           >
             <BrandMark />
-            <span>
-              <BrandName />
-              <span className="help-brand-caption">
-                Análisis inteligente de mensajes
-              </span>
-            </span>
+            <BrandName />
           </Link>
-          <nav aria-label="Navegación principal">
-            <Link to="/analizar">Analizar correo</Link>
-            <Link to="/bandeja">Bandeja de Gmail</Link>
-            <Link to="/historial">Historial</Link>
-            <Link to="/cuenta">Cuenta</Link>
-            <Link to="/como-funciona" aria-current="page">
-              Ayuda
-            </Link>
+          <nav aria-label="Navegación principal" className="help-desktop-nav">
+            {navigation.map(({ to, title }) => <Link key={to} to={to}>{title}</Link>)}
           </nav>
+          <div className="help-nav-actions">
+            <details className="help-mobile-menu">
+              <summary aria-label="Menú de navegación"><Menu size={21} /></summary>
+              <nav aria-label="Navegación móvil">
+                {navigation.map(({ to, title }) => <Link key={to} to={to}>{title}</Link>)}
+              </nav>
+            </details>
+            <Button render={<Link to="/analizar" />} className="help-nav-cta">Analizar <ArrowRight size={15} /></Button>
+          </div>
         </div>
       </header>
       <main id="help-main" className="page-width help-main">
-        <div className="help-heading">
-          <Badge variant="outline">
-            <CircleHelp size={13} /> Ayuda y cómo funciona
-          </Badge>
-          <FadeContent duration={450}>
-            <h1>
+        <section className="help-hero" aria-labelledby="help-title">
+          <div className="help-heading">
+            <span className="help-eyebrow">Una guía para mirar mejor</span>
+            <h1 id="help-title">
               Una segunda mirada,
               <br />
-              <span>con el contexto necesario.</span>
+              con el contexto necesario.
             </h1>
-          </FadeContent>
-          <p>
-            Aprende a usar la demostración y a interpretar sus resultados sin
-            perder de vista sus límites.
-          </p>
-        </div>
+            <p>
+              Aprende a usar la demostración y a interpretar sus resultados sin
+              perder de vista sus límites.
+            </p>
+            <a href="#primeros-pasos" className="help-text-link">Empieza por aquí <ChevronDown size={16} /></a>
+          </div>
+          <figure className="help-hero-illustration">
+            <img src="/illustrations/correspondence-guide-v1.webp" alt="" width={1448} height={1086} fetchPriority="high" />
+            <figcaption>La mejor pista empieza por leer con atención.</figcaption>
+          </figure>
+        </section>
         <div className="help-demo-note">
           <CircleHelp size={18} />
           <p>
-            <strong>Estás explorando una maqueta.</strong> El modelo, la
-            autenticación, Gmail y el almacenamiento todavía no están conectados
-            a la interfaz.
+            <strong>Prueba con un ejemplo.</strong> La demostración utiliza mensajes y resultados ficticios.
+            No accede a Gmail ni clasifica tus correos personales.
           </p>
         </div>
         <div className="help-layout">
@@ -122,7 +129,7 @@ export function HelpPage() {
           </nav>
           <div className="help-article">
             <section id="primeros-pasos" aria-labelledby="help-steps-title">
-              <span className="help-section-number">01 · Uso</span>
+              <span className="help-section-number">Primeros pasos</span>
               <h2 id="help-steps-title">Del correo al resultado.</h2>
               <ol className="help-steps">
                 <li>
@@ -155,7 +162,7 @@ export function HelpPage() {
               </Button>
             </section>
             <section id="resultados" aria-labelledby="help-results-title">
-              <span className="help-section-number">02 · Interpretación</span>
+              <span className="help-section-number">Interpretación</span>
               <h2 id="help-results-title">Qué significa cada resultado.</h2>
               <div className="help-classification">
                 <ShieldCheck size={23} />
@@ -185,12 +192,12 @@ export function HelpPage() {
               <p>
                 La confianza es la puntuación que devuelve el modelo para su
                 clasificación. No equivale a una probabilidad comprobada de que
-                el correo sea seguro. Los porcentajes visibles en esta maqueta
+                el correo sea seguro. Los porcentajes visibles en la demostración
                 son valores preparados, identificados como demostración.
               </p>
             </section>
             <section id="privacidad" aria-labelledby="help-privacy-title">
-              <span className="help-section-number">03 · Datos y acceso</span>
+              <span className="help-section-number">Datos y acceso</span>
               <h2 id="help-privacy-title">Qué ocurre con tu información.</h2>
               <p>
                 En esta versión, el texto introducido y los estados de
@@ -199,18 +206,15 @@ export function HelpPage() {
                 una pantalla reinicia sus datos.
               </p>
               <p>
-                Cuando conectemos el modelo, el análisis se ejecutará en el
-                equipo que aloje la aplicación. Si accedes desde otro
-                dispositivo, el texto deberá viajar a ese equipo. El tratamiento
-                y la conservación de datos del servicio deberán definirse antes
-                de esa integración.
+                El uso desde otro dispositivo no cambia este comportamiento:
+                el contenido del formulario no se transmite a un servicio de análisis.
               </p>
               <h3 className="help-subtitle">
                 Google y Gmail son pasos separados.
               </h3>
               <p>
-                Iniciar sesión identificará tu cuenta. Leer mensajes de Gmail
-                requerirá una autorización adicional. Actualmente la bandeja, el
+                Identificarse con Google y autorizar la lectura de Gmail son
+                permisos distintos. En la demostración, la bandeja, el
                 historial y la conexión de ejemplo contienen únicamente
                 información ficticia.
               </p>
@@ -219,7 +223,7 @@ export function HelpPage() {
               </Link>
             </section>
             <section id="limites" aria-labelledby="help-limits-title">
-              <span className="help-section-number">04 · Alcance</span>
+              <span className="help-section-number">Alcance</span>
               <h2 id="help-limits-title">Una herramienta de apoyo.</h2>
               <ul className="help-limits">
                 <li>
@@ -248,7 +252,7 @@ export function HelpPage() {
               </p>
             </section>
             <section id="preguntas" aria-labelledby="help-faq-title">
-              <span className="help-section-number">05 · Dudas habituales</span>
+              <span className="help-section-number">Dudas habituales</span>
               <h2 id="help-faq-title">Preguntas frecuentes.</h2>
               <div className="help-faq">
                 {questions.map(({ question, answer }) => (
@@ -262,21 +266,22 @@ export function HelpPage() {
                 ))}
               </div>
             </section>
-            <div className="help-final">
-              <h2>Ya puedes explorar el flujo.</h2>
-              <p>Empieza con un ejemplo y consulta cómo cambia el resultado.</p>
-              <Button render={<Link to="/analizar" />}>
-                Analizar un correo <ArrowRight size={16} />
-              </Button>
-            </div>
           </div>
         </div>
       </main>
-      <footer className="page-width help-footer">
-        <p>Remira · Proyecto académico</p>
-        <Link to="/">
-          Conocer el proyecto <ArrowRight size={13} />
-        </Link>
+      <div className="help-footer-transition" aria-hidden="true" />
+      <footer className="help-footer">
+        <section className="page-width help-final" aria-labelledby="help-final-title">
+          <img src="/illustrations/journey-envelope-v1.webp" alt="" width={240} height={128} loading="lazy" />
+          <h2 id="help-final-title">Ahora, dale otra mirada.</h2>
+          <p>Empieza con un ejemplo y explora el resultado con más contexto.</p>
+          <Button render={<Link to="/analizar" />}>Probar el analizador <ArrowRight size={16} /></Button>
+        </section>
+        <div className="page-width help-footer-bottom">
+          <Link to="/" className="help-brand" aria-label="Remira, inicio"><BrandMark tone="light" /><BrandName /></Link>
+          <p>Una segunda mirada a tus mensajes</p>
+          <a href="#help-main">Volver al inicio ↑</a>
+        </div>
       </footer>
     </div>
   );
