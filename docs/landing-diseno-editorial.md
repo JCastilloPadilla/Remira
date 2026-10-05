@@ -5,7 +5,7 @@ Implementada el 4 de octubre de 2026 en la ruta `/`. Esta revisión aplica la di
 ## Composición y estilo
 
 - Portada centrada con el mensaje «Antes de hacer clic, dale una segunda mirada», acciones principales y un paisaje panorámico de correspondencia.
-- Aviso visible de demostración: la conexión entre la web y el modelo continúa pendiente.
+- Presentación de la landing sin avisos de construcción, con ejemplos identificados como tales. La integración real con el modelo continúa pendiente y se documenta fuera de esta presentación.
 - Recorrido en tres pasos, con motivos de sellos postales y numeración que representa la secuencia real.
 - Ejemplo ficticio de correo y clasificación, separado de la portada para explicar el producto después de presentar su identidad.
 - Contexto académico, alcance del modelo y límites de la clasificación.
@@ -20,7 +20,7 @@ Los estilos se limitan a la landing. Las demás pantallas mantienen su diseño a
 Se incorporaron los componentes originales TypeScript con CSS de [React Bits](https://reactbits.dev/), conservando la licencia existente en `frontend/src/components/react-bits/LICENSE.md`:
 
 - [SplitText](https://reactbits.dev/text-animations/split-text): entrada por palabras del título principal.
-- [AnimatedContent](https://reactbits.dev/animations/animated-content): entrada de la escena y del ejemplo de correo.
+- [AnimatedContent](https://reactbits.dev/animations/animated-content): entrada del ejemplo de correo. La ilustración principal se muestra directamente al abrir la página.
 
 Fuentes fijadas a la revisión `ca44b3f9ee180676a06d7de8ec6bea84cddff85b` del repositorio oficial:
 
@@ -38,7 +38,7 @@ Archivos usados por la web:
 - `frontend/public/illustrations/correspondence-hero-v1.webp`: 2172 × 724 px, 352136 bytes.
 - `frontend/public/illustrations/correspondence-footer-v1.webp`: 2172 × 724 px, 287178 bytes.
 
-Los originales PNG se conservaron en el directorio de imágenes generadas de Codex. Las copias WebP del proyecto utilizan calidad 86, sin alterar la composición. La portada tiene prioridad alta de carga; el footer utiliza carga diferida. Ambas imágenes son decorativas, con dimensiones explícitas y texto alternativo vacío. En móvil, el encuadre de la portada prioriza a la persona que revisa el mensaje.
+Los originales PNG se conservaron en el directorio de imágenes generadas de Codex. Las copias WebP del proyecto utilizan calidad 86, sin alterar la composición. La portada tiene prioridad alta de carga; el footer utiliza carga diferida. Ambas imágenes son decorativas, con dimensiones explícitas y texto alternativo vacío. La portada conserva toda la composición en escritorio y móvil, sin recorte de la imagen.
 
 ### Prompt de portada
 
@@ -57,3 +57,18 @@ Las capturas y herramientas de comprobación son artefactos locales bajo `tmp/la
 Se mantiene el aviso de Vite por un paquete JavaScript superior a 500 kB. La instalación también informa seis avisos de seguridad en dependencias preexistentes de la cadena de herramientas de shadcn; la única dependencia nueva en el lockfile es `@gsap/react`. Su actualización queda fuera de esta revisión visual.
 
 La comprobación automática con axe de reglas WCAG 2 A/AA y 2.1 A/AA no detectó infracciones en escritorio (1440 px) ni móvil (390 px). Se verificó el acceso por teclado al enlace para saltar al contenido y se corrigió el contraste de los números del recorrido. Las otras seis rutas siguen mostrando su encabezado sin errores JavaScript en una comprobación de carga; esto no sustituye la revisión completa de sus interacciones pendientes.
+
+
+## Ajustes de presentación y Tech Text
+
+Se corrigió el recorte de los descendentes del título (la «g» de «segunda») eliminando `overflow: hidden` de SplitText y aumentando el espacio de línea. La portada distribuye el espacio disponible de la ventana entre texto e ilustración y muestra la imagen con `object-fit: contain`. En móvil la composición completa conserva su proporción; en ventanas horizontales de poca altura se utilizan dos columnas.
+
+Los botones de la landing mantienen el azul, con sombra suave y transición de color. Se desactiva el desplazamiento de Base UI al pulsarlos; solo la flecha se desplaza levemente al pasar el cursor. Estas reglas no cambian los botones de las otras pantallas y respetan movimiento reducido.
+
+Las secciones intermedias comparten un fondo continuo de crema a azul claro, que se une gradualmente con el cierre azul oscuro. El footer mueve marca y enlaces debajo del paisaje y reduce el espacio de cielo de su ilustración. La portada sí muestra su imagen completa.
+
+Se retiraron de la landing los banners de construcción, los avisos de conexión pendiente y las llamadas a «demostración». El correo ilustrativo sigue identificado como ejemplo. Esta modificación presenta el diseño final; no añade integración con el modelo, autenticación ni Gmail.
+
+Se incorporaron [TechText.tsx](https://github.com/DavidHDev/react-bits/blob/ca44b3f9ee180676a06d7de8ec6bea84cddff85b/src/ts-default/TextAnimations/TechText/TechText.tsx) y su [CSS original](https://github.com/DavidHDev/react-bits/blob/ca44b3f9ee180676a06d7de8ec6bea84cddff85b/src/ts-default/TextAnimations/TechText/TechText.css), sin dependencias nuevas, bajo la licencia de React Bits ya incluida. El componente aparece en «Mira más allá», junto al correo ilustrativo. La inspección de los trazos responde al cursor; no se activan arrastre, etiquetas de medidas, partículas ni barrido automático. Hay un encabezado equivalente en HTML para accesibilidad. En pantallas táctiles y con movimiento reducido se muestra ese texto estático.
+
+Verificación de la ilustración completa dentro de la vista inicial en 1440×900, 1366×768, 1280×720, 1366×600, 1920×1080, 768×1024, 390×844, 320×568, 844×390 y 1366×500 px, sin desplazamiento horizontal ni errores JavaScript. Se comprobó la reacción de Tech Text al cursor, los botones pulsados sin desplazamiento, la versión táctil y el movimiento reducido, el acceso al analizador y el anclaje al recorrido.

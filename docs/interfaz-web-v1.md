@@ -414,3 +414,5 @@ Build y lint verificados. La revisión visual e interacción en navegador sigue 
 ## Rediseño de la landing — ilustración editorial
 
 El 4 de octubre se renovó la ruta `/` con ilustraciones originales de correspondencia, paleta azul y crema, títulos editoriales, una muestra de correo y cierre panorámico. Se añadieron SplitText y AnimatedContent originales de React Bits con soporte para movimiento reducido. El diseño y las decisiones se registran en [landing-diseno-editorial.md](landing-diseno-editorial.md). Las demás pantallas conservan su estilo actual para una propagación posterior. Se mantiene visible el estado de demostración y las integraciones pendientes.
+
+La revisión posterior corrige el recorte de letras del título, muestra completa la ilustración inicial, suaviza los botones, compacta el footer e introduce un fondo continuo entre las secciones. Tech Text de React Bits acompaña el ejemplo de correo. Se retiraron de la landing los avisos de construcción para revisar su presentación final; las integraciones siguen pendientes. Los detalles están en [landing-diseno-editorial.md](landing-diseno-editorial.md).
