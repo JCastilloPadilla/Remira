@@ -124,3 +124,7 @@ Se reajusta la altura descontada del header para conservar la ilustración compl
 ### Marca y navegación al inicio del footer
 
 El bloque con la marca Remira, enlaces, lema y regreso al inicio se mueve al comienzo del footer, antes de la llamada a analizar y del paisaje. La llamada mantiene su posición sobre el cielo en escritorio, dentro de un contenedor propio, para evitar superponerla a los enlaces. La ilustración continúa completa y de pared a pared. Se revisó el orden y la ausencia de superposiciones y desbordamiento en 1920, 1440, 390 y 320 px; compilación y lint completados correctamente.
+
+### Menos espacio antes del footer
+
+La transición conserva sus 21 tonos y la curva gradual del degradado. Su altura pasa de 420–760 px a 180–320 px; también se reduce el espacio inferior de la sección de alcances a 40 px en escritorio y 32 px en móvil. Así el footer queda más cerca del último contenido sin eliminar el degradado. Se revisaron escritorio y móvil, el mantenimiento de los tonos y la ausencia de desbordamiento horizontal; compilación y lint completados correctamente.

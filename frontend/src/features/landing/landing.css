@@ -303,14 +303,14 @@
 .landing-about-details dt { color: var(--landing-muted); }
 .landing-about-details dd { font-weight: 600; }
 .landing-about-content .landing-text-link { margin-top: 22px; }
-.landing-limits { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding-block: 45px 82px; border-top: 1px solid #132c4d24; }
+.landing-limits { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding-block: 45px 40px; border-top: 1px solid #132c4d24; }
 .limits-heading > svg { margin-bottom: 18px; color: var(--landing-blue); }
 .landing-limits h2 { font-size: 33px; }
 .limits-content { align-self: center; }
 .limits-content p { font-size: 13px; line-height: 1.95; color: var(--landing-muted); }
 .limits-content .landing-text-link { margin-top: 20px; }
 .landing-footer-transition {
-  height: clamp(420px, 42vw, 760px);
+  height: clamp(180px, 18vw, 320px);
   background: linear-gradient(180deg, #b8cbdc 0%, #b7cadb 5%, #b3c7d8 10%, #aec2d4 15%, #a6bbce 20%, #9eb3c7 25%, #93a9bf 30%, #889fb6 35%, #7d94ad 40%, #7089a3 45%, #647d99 50%, #57718f 55%, #4a6685 60%, #3f5b7c 65%, #345173 70%, #29476b 75%, #213f64 80%, #19385e 85%, #14335a 90%, #103057 95%, #0f2f56 100%);
 }
 .landing-final-cta { position: absolute; top: 32px; left: 0; z-index: 1; width: 100%; color: var(--landing-paper); text-align: center; }
@@ -375,7 +375,7 @@
   .landing-preview { padding: 25px; }
   .preview-mail { padding: 24px; }
   .landing-about { padding-block: 62px; }
-  .landing-limits { padding-block: 36px 62px; gap: 25px; }
+  .landing-limits { padding-block: 36px 32px; gap: 25px; }
   .landing-footer-links { flex-direction: column; gap: 20px; }
   .landing-footer-links nav { max-width: none; gap: 22px; }
   .landing-tech-effect { height: 220px; }
