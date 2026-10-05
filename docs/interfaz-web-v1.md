@@ -410,3 +410,7 @@ Ruta `/como-funciona`. Completa las siete pantallas del borrador. Incluye índic
 Se enlaza desde la navegación de bandeja, historial y cuenta, y desde el pie de la landing. El diálogo del analizador conserva la ayuda breve y abre la página completa en una nueva pestaña para mantener el borrador de correo. En celular el índice deja de ser fijo y precede al contenido. El máximo de 512 tokens se verificó en `src/hf_classifier.py`.
 
 Build y lint verificados. La revisión visual e interacción en navegador sigue pendiente en esta sesión. El modelo, autenticación, Gmail y almacenamiento permanecen sin conexión con la web; tener las siete pantallas maquetadas no completa esas integraciones.
+
+## Rediseño de la landing — ilustración editorial
+
+El 4 de octubre se renovó la ruta `/` con ilustraciones originales de correspondencia, paleta azul y crema, títulos editoriales, una muestra de correo y cierre panorámico. Se añadieron SplitText y AnimatedContent originales de React Bits con soporte para movimiento reducido. El diseño y las decisiones se registran en [landing-diseno-editorial.md](landing-diseno-editorial.md). Las demás pantallas conservan su estilo actual para una propagación posterior. Se mantiene visible el estado de demostración y las integraciones pendientes.
