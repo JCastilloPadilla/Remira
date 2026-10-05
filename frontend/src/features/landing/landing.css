@@ -1,4 +1,6 @@
 .landing-page {
+  position: relative;
+  isolation: isolate;
   --landing-paper: #f7f4e9;
   --landing-ink: #132c4d;
   --landing-blue: #2457c5;

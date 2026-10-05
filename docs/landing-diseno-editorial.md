@@ -128,3 +128,28 @@ El bloque con la marca Remira, enlaces, lema y regreso al inicio se mueve al com
 ### Menos espacio antes del footer
 
 La transición conserva sus 21 tonos y la curva gradual del degradado. Su altura pasa de 420–760 px a 180–320 px; también se reduce el espacio inferior de la sección de alcances a 40 px en escritorio y 32 px en móvil. Así el footer queda más cerca del último contenido sin eliminar el degradado. Se revisaron escritorio y móvil, el mantenimiento de los tonos y la ausencia de desbordamiento horizontal; compilación y lint completados correctamente.
+
+## Recorrido de correspondencia al hacer scroll
+
+La landing conecta las ilustraciones con un avión móvil y sobres que descienden por los márgenes. Se conservan intactas las dos ilustraciones originales, incluido el avión de la portada solicitado por el usuario. El avión móvil es una pieza independiente: aparece al empezar a bajar, sigue curvas por el lateral y termina junto a la persona que lee en el paisaje final. Cuatro sobres en escritorio y dos en móvil acompañan el recorrido y aterrizan en distintos puntos de la ilustración del footer.
+
+`CorrespondenceJourney` utiliza GSAP, ScrollTrigger y MotionPathPlugin de la dependencia existente. El avance responde al scroll, con una interpolación suave de 0.6 segundos y una breve entrada inicial de los sobres. No bloquea ni controla el desplazamiento. Los tamaños y las posiciones se calculan a partir de la altura de la página, el espacio real de los márgenes y la posición de las ilustraciones; se recalculan al cambiar el tamaño. Al salir de la landing se limpian observadores y animaciones. Los elementos son decorativos, están excluidos de lectores de pantalla y permiten interactuar con el contenido que queda debajo.
+
+Con movimiento reducido se oculta la capa animada y permanecen las composiciones estáticas originales. No se incorporaron dependencias nuevas.
+
+### Recursos y generación
+
+- `frontend/public/illustrations/journey-plane-v1.webp`: avión independiente, 360×157 px, con transparencia.
+- `frontend/public/illustrations/journey-envelope-v1.webp`: sobre independiente, 240×128 px, con transparencia.
+
+Ambos se generaron con la herramienta integrada de imágenes usando la portada únicamente como referencia de estilo. Se recortaron los márgenes transparentes y se optimizó su tamaño para la web. Los archivos de las ilustraciones originales no se editaron.
+
+Prompt compartido: «Use the referenced image ONLY as a palette and drawing style reference. Do not reproduce or modify the landscape. Generate one isolated illustrated decorative sprite on a genuinely transparent background, no ground, no backdrop, no lettering, no shadow beyond the object, no other objects. Style: fine navy blue ink etching and hand drawn watercolor, warm ivory paper and rich cobalt folds, slightly imperfect professional editorial illustration. Clear silhouette and strong contrast at small sizes. Center the entire object with 10% clear transparent margin.»
+
+Avión: «Subject: one folded paper airplane seen slightly from above, long pointed nose pointing exactly to the right, triangular wings with blue and cream panels, elegant navy folded edges, broad horizontal silhouette. Its nose must point right so it can be rotated along a website scroll path.»
+
+Sobre: «Subject: one closed cream paper mail envelope seen face-on from its back, triangular folded flap outlined in navy ink, tiny cobalt corner detail. Slightly irregular real paper edges with very subtle ink hatching, clean quiet drawing. Horizontal envelope shape. No wax seal, no stamp, no handwriting.»
+
+### Verificación
+
+Se comprobó el recorrido, la llegada de las piezas al paisaje final, su pausa después de detener el scroll y la cantidad de sobres en 1440×900, 768×1024, 390×844 y 320×568 px. Se verificaron movimiento reducido, salida al analizador y regreso a la landing sin errores JavaScript ni capas duplicadas. La revisión de accesibilidad no detectó infracciones en escritorio ni móvil. También se revisó la conservación del ancho y del borde inferior de la portada en doce tamaños. Compilación y lint completados; permanece el aviso previo de tamaño del paquete JavaScript.

@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedContent from "@/components/react-bits/AnimatedContent";
 import SplitText from "@/components/react-bits/SplitText";
 import TechText from "@/components/react-bits/TechText";
+import { CorrespondenceJourney } from "./CorrespondenceJourney";
 import "./landing.css";
 
 const steps = [
@@ -48,6 +49,7 @@ export function LandingPage() {
 
   return (
     <div className="landing-page">
+      <CorrespondenceJourney />
       <a href="#landing-main" className="skip-link">Ir al contenido</a>
       <header className="site-header">
         <div className="page-width landing-nav">
