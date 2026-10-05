@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/manrope";
-@import "@fontsource/allura/latin-400.css";
+@import "@fontsource/fraunces/latin-600.css";
 
 @theme inline {
   --font-sans: "Manrope Variable", system-ui, sans-serif;
@@ -92,12 +92,12 @@
 }
 .remira-wordmark {
   display: block;
-  font-family: "Allura", cursive;
-  font-size: 38px;
-  font-weight: 400;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 30px;
+  font-weight: 600;
   font-style: normal;
-  line-height: 1;
-  letter-spacing: 0;
+  line-height: 1.1;
+  letter-spacing: -0.7px;
 }
 .skip-link {
   position: fixed;

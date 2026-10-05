@@ -110,3 +110,7 @@ El nombre público de la aplicación es **Remira**, elegido por su relación con
 El nombre se presenta con **Allura**, una cursiva de trazo ligero que acompaña las ilustraciones de correspondencia. La fuente se sirve localmente con `@fontsource/allura`, variante latina y peso 400; la navegación y los textos mantienen Manrope. El componente `BrandName` unifica la firma de Remira en los encabezados de las siete pantallas y en el footer de la landing. También se actualizaron los títulos de pestaña, etiquetas de inicio, referencias visibles a la marca, descripción de la web y README.
 
 Se revisó la presencia de la identidad y la carga de la tipografía en las siete rutas, tanto en escritorio como en móvil. La portada conserva la composición completa y su alineación al borde inferior en los doce tamaños utilizados en la revisión anterior.
+
+### Tipografía definitiva de la marca
+
+Por elección del usuario, Fraunces sustituye a Allura para el nombre Remira: peso 600, estilo normal y sin cursiva. Se sirve localmente con `@fontsource/fraunces`, únicamente la variante latina necesaria. La marca utiliza 30 px en general, 32 px en el header de la landing y 28 px en pantallas pequeñas; se conserva Manrope para los textos de la interfaz. Se retiró la dependencia y la importación de Allura.

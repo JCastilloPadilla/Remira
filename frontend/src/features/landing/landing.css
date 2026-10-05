@@ -38,7 +38,7 @@
   letter-spacing: -0.4px;
 }
 .landing-page .brand-mark { background: transparent; }
-.landing-brand .remira-wordmark { font-size: 44px; line-height: 0.9; }
+.landing-brand .remira-wordmark { font-size: 32px; }
 .landing-brand-caption {
   display: block;
   margin-top: 3px;
@@ -401,7 +401,7 @@
 @media (max-width: 639px) {
   .landing-page { --landing-header-height: 115px; }
   .landing-page .site-header .landing-nav { min-height: 114px; flex-wrap: wrap; padding-block: 8px; gap: 8px; }
-  .landing-brand .remira-wordmark { font-size: 34px; }
+  .landing-brand .remira-wordmark { font-size: 28px; }
   .landing-brand-caption { font-size: 10px; }
   .landing-nav-links { width: 100%; justify-content: space-between; }
   .landing-login-link { border-left: 0; padding-left: 0; }
