@@ -329,16 +329,24 @@ export function LandingPage() {
               </Button>
             </div>
           </section>
-          <img
-            className="landing-footer-art"
-            src="/illustrations/correspondence-footer-v1.webp"
-            alt=""
-            aria-hidden="true"
-            width={2172}
-            height={724}
-            loading="lazy"
-            decoding="async"
-          />
+          <picture className="landing-footer-picture">
+            <source
+              media="(max-width: 767px) and (orientation: portrait)"
+              srcSet="/illustrations/correspondence-footer-mobile-v1.webp"
+              width={1024}
+              height={1536}
+            />
+            <img
+              className="landing-footer-art"
+              src="/illustrations/correspondence-footer-v1.webp"
+              alt=""
+              aria-hidden="true"
+              width={2172}
+              height={724}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
       </footer>
     </div>
