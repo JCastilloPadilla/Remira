@@ -153,3 +153,11 @@ Sobre: «Subject: one closed cream paper mail envelope seen face-on from its bac
 ### Verificación
 
 Se comprobó el recorrido, la llegada de las piezas al paisaje final, su pausa después de detener el scroll y la cantidad de sobres en 1440×900, 768×1024, 390×844 y 320×568 px. Se verificaron movimiento reducido, salida al analizador y regreso a la landing sin errores JavaScript ni capas duplicadas. La revisión de accesibilidad no detectó infracciones en escritorio ni móvil. También se revisó la conservación del ancho y del borde inferior de la portada en doce tamaños. Compilación y lint completados; permanece el aviso previo de tamaño del paquete JavaScript.
+
+## Sustitución del movimiento por fondos estáticos
+
+Esta revisión sustituye el recorrido animado por elección del usuario. Se retiran `CorrespondenceJourney`, sus observadores, el control de scroll y la importación de MotionPathPlugin. Se conservan los dos recursos ilustrados del avión y del sobre.
+
+`CorrespondenceBackdrop` compone dos recorridos punteados con aviones y seis sobres estáticos distribuidos en los márgenes del fondo de las secciones intermedias. La decoración queda detrás del contenido, sin capturar clics ni formar parte del árbol accesible. No se extiende a la ilustración inicial ni a la del footer. En móvil se utiliza un avión con un recorrido breve y dos sobres ubicados en los espacios libres superiores e inferiores, sin añadir altura a las secciones. Las otras animaciones preexistentes de la interfaz permanecen.
+
+Se comprobó que las piezas mantienen posición y rotación al hacer scroll, que no invaden las ilustraciones ni el área de contenido en escritorio y que no producen desbordamiento horizontal en 1920, 1440, 1366, 768, 390 y 320 px. Se revisaron visualmente el conjunto y la versión móvil. Compilación y lint completados correctamente.

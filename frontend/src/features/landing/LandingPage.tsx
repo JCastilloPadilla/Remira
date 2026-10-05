@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedContent from "@/components/react-bits/AnimatedContent";
 import SplitText from "@/components/react-bits/SplitText";
 import TechText from "@/components/react-bits/TechText";
-import { CorrespondenceJourney } from "./CorrespondenceJourney";
+import { CorrespondenceBackdrop } from "./CorrespondenceBackdrop";
 import "./landing.css";
 
 const steps = [
@@ -49,7 +49,6 @@ export function LandingPage() {
 
   return (
     <div className="landing-page">
-      <CorrespondenceJourney />
       <a href="#landing-main" className="skip-link">Ir al contenido</a>
       <header className="site-header">
         <div className="page-width landing-nav">
@@ -110,6 +109,7 @@ export function LandingPage() {
         </div>
 
         <div className="landing-story">
+          <CorrespondenceBackdrop />
           <section id="como-funciona" className="page-width landing-process" aria-labelledby="process-title">
             <div className="landing-section-heading">
               <div>

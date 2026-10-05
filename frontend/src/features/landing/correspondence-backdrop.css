@@ -1,0 +1,71 @@
+.correspondence-backdrop {
+  --backdrop-gutter: calc((100vw - min(1200px, calc(100vw - 64px))) / 2);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: clip;
+  pointer-events: none;
+}
+.backdrop-flight {
+  position: absolute;
+  width: clamp(24px, calc(var(--backdrop-gutter) * 0.72), 160px);
+  height: clamp(280px, 26vw, 420px);
+}
+.backdrop-flight--right {
+  top: 7%;
+  right: calc(var(--backdrop-gutter) / 2);
+  transform: translateX(50%);
+}
+.backdrop-flight--left {
+  top: 54%;
+  left: calc(var(--backdrop-gutter) / 2);
+  transform: translateX(-50%);
+}
+.backdrop-flight svg { display: block; width: 100%; height: 100%; }
+.backdrop-flight path { stroke: #667f9d; stroke-width: 1; stroke-dasharray: 5 7; opacity: 0.45; }
+.backdrop-flight--left svg { transform: scaleX(-1); }
+.backdrop-plane {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: clamp(26px, calc(var(--backdrop-gutter) * 0.75), 100px);
+  height: auto;
+  opacity: 0.7;
+  transform: translate(-50%, 50%) rotate(110deg);
+}
+.backdrop-flight--left .backdrop-plane { transform: translate(-50%, 50%) rotate(65deg); }
+.backdrop-envelope {
+  position: absolute;
+  width: clamp(20px, calc(var(--backdrop-gutter) * 0.44), 64px);
+  height: auto;
+  opacity: 0.68;
+}
+.backdrop-envelope--1 { top: 4%; left: calc(var(--backdrop-gutter) / 2); transform: translateX(-50%) rotate(-18deg); }
+.backdrop-envelope--2 { top: 36%; right: calc(var(--backdrop-gutter) / 2); transform: translateX(50%) rotate(16deg); }
+.backdrop-envelope--3 { top: 43%; left: calc(var(--backdrop-gutter) / 2); transform: translateX(-50%) rotate(12deg); }
+.backdrop-envelope--4 { top: 73%; right: calc(var(--backdrop-gutter) / 2); transform: translateX(50%) rotate(-24deg); }
+.backdrop-envelope--5 { top: 87%; left: calc(var(--backdrop-gutter) / 2); transform: translateX(-50%) rotate(22deg); }
+.backdrop-envelope--6 { top: 95%; right: calc(var(--backdrop-gutter) / 2); transform: translateX(50%) rotate(-12deg); }
+@media (max-width: 767px) {
+  .backdrop-flight--left,
+  .backdrop-flight svg,
+  .backdrop-envelope--2,
+  .backdrop-envelope--3,
+  .backdrop-envelope--4,
+  .backdrop-envelope--5 { display: none; }
+  .backdrop-flight--right { top: 16px; right: 24px; width: 130px; height: 28px; transform: none; }
+  .backdrop-flight--right::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 80px;
+    height: 24px;
+    border-top: 1px dashed #667f9d70;
+    border-radius: 50%;
+    transform: rotate(-8deg);
+  }
+  .backdrop-plane { left: auto; right: 0; bottom: 0; width: 50px; transform: rotate(-12deg); }
+  .backdrop-envelope--1 { top: 20px; left: 24px; width: 34px; transform: rotate(-18deg); }
+  .backdrop-envelope--6 { top: auto; bottom: 7px; left: 36px; right: auto; width: 30px; transform: rotate(12deg); }
+}

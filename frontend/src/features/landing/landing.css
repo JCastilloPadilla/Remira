@@ -1,6 +1,4 @@
 .landing-page {
-  position: relative;
-  isolation: isolate;
   --landing-paper: #f7f4e9;
   --landing-ink: #132c4d;
   --landing-blue: #2457c5;
@@ -159,8 +157,11 @@
 }
 .landing-hero-note svg { flex-shrink: 0; }
 .landing-story {
+  position: relative;
+  isolation: isolate;
   background: linear-gradient(180deg, var(--landing-paper) 0%, #e9edf1 24%, #d6e3ee 58%, #b8cbdc 100%);
 }
+.landing-story > section { position: relative; z-index: 1; }
 .landing-process { padding-block: 96px 88px; scroll-margin-top: 32px; }
 .landing-section-heading {
   display: flex;
