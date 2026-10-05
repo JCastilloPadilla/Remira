@@ -99,4 +99,4 @@ Build y lint correctos. Se contrastó el límite de tokens con el clasificador l
 
 ## Identidad visual
 
-El símbolo Segunda mirada se sirve desde `public/brand/logo-segunda-mirada-v1.png`. `src/components/BrandMark.tsx` lo comparte entre los siete encabezados; `index.html` lo usa como favicon e icono de acceso directo. Es un PNG con transparencia, generado para el proyecto. Concepto y prompts en [docs/logo-propuesta-v1.md](../docs/logo-propuesta-v1.md). Revisión visual en navegador pendiente.
+El símbolo de Remira, «la segunda hoja», se sirve desde `public/brand/logo-remira-segunda-hoja-v2.png`. `src/components/BrandMark.tsx` lo comparte entre los siete encabezados y el footer. `index.html` usa variantes para favicon y acceso directo. Concepto, archivos y prompt en [docs/logo-remira-v2.md](../docs/logo-remira-v2.md). Revisado en escritorio y móvil.
