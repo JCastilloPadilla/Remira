@@ -10,7 +10,7 @@ Se retiran la insignia de título, la descripción secundaria de la marca, el av
 
 - Header integrado con marca, enlaces a las pantallas existentes y acceso al analizador. En móvil se usa un menú nativo y controles de 44 px.
 - Introducción ilustrada con enlace al inicio de la guía.
-- Índice fijo en escritorio; en móvil pasa a una cuadrícula de enlaces antes del artículo.
+- Índice ilustrado al inicio, sin posición fija: cinco accesos en una fila en escritorio y dos columnas en móvil, con el último centrado.
 - Cinco secciones: primeros pasos, interpretación del resultado, privacidad y conexiones, límites del análisis y preguntas frecuentes.
 - Resultados presentados como sellos de tinta verde y granate, acordes con el sello de la carta en la landing. La confianza se explica como puntuación del modelo, sin presentarla como garantía.
 - Preguntas con `details` y `summary`, accesibles con teclado.
@@ -32,7 +32,7 @@ Se revisaron 1440, 1024, 768, 390 y 320 px de ancho: carga de ilustración, ause
 
 El usuario pidió más vida y carisma después de la introducción. `HelpBackdrop` incorpora cinco sobres y dos recorridos estáticos del avión, con un jardín de correspondencia en el margen derecho. La decoración se ubica detrás de las secciones, con opacidad reducida, sin capturar clics ni formar parte del árbol accesible. En móvil se reduce su intensidad y se mantienen los motivos visibles junto al texto. No se añaden animaciones de scroll.
 
-El índice de escritorio incluye una ilustración a color con una pequeña nota editorial; se omite esa pieza en pantallas de poca altura para mantener la navegación utilizable. Privacidad recibe una ilustración propia de cartas atadas con una cinta azul. Preguntas frecuentes incorpora un pequeño sobre. El menú se sitúa sobre el contenido para conservar sus enlaces disponibles.
+Privacidad recibe una ilustración propia de cartas atadas con una cinta azul. Preguntas frecuentes incorpora un pequeño sobre. El menú se sitúa sobre el contenido para conservar sus enlaces disponibles. El jardín permanece como decoración del fondo y también identifica el acceso a preguntas frecuentes en el índice.
 
 Dos recursos generados con la herramienta integrada de imágenes, usando `correspondence-guide-v1.webp` como referencia de estilo:
 
@@ -46,3 +46,11 @@ Jardín: «Portrait 2:3 decorative margin vignette: a little rocky garden at the
 Carta: «Landscape 4:3 small chapter illustration: two ivory letters neatly tied with a cobalt ribbon and a tiny plain gold wax seal, an open blue envelope behind, a small dark-blue fountain pen beside them and one delicate olive sprig. Clear readable correspondence silhouette, graceful hand-drawn shapes, slightly irregular paper edges. No wooden desk and no magnifying glass. Intended as a miniature vignette beside the privacy chapter of a website guide. The ribbon holds the papers closed, not a padlock or shield.»
 
 Se repitieron las comprobaciones de los cinco anchos, navegación y preguntas con teclado, accesibilidad en escritorio y móvil y movimiento reducido. Se comprobó que las imágenes cargan, que el fondo conserva su posición al hacer scroll y que el menú móvil permite navegar a Cuenta. Capturas de resultados y privacidad revisadas en 1440 y 390 px. Compilación y lint completados correctamente.
+
+## Índice ilustrado al inicio
+
+Se sustituye el índice lateral que acompañaba el scroll por una entrada titulada «Elige por dónde empezar». Cada acceso reutiliza una ilustración del proyecto: sobre, escritorio con lupa, cartas atadas, avión y jardín. Los enlaces conservan el desplazamiento suave hacia los cinco capítulos, respetando la preferencia de movimiento reducido.
+
+El artículo pasa a una columna centrada de hasta 760 px para facilitar la lectura. El índice queda en el flujo normal de la página, sin barra flotante ni panel lateral. En móvil se distribuye en dos columnas y el quinto acceso se centra debajo.
+
+Verificación: compilación y lint correctos; navegación, preguntas con teclado y ausencia de desbordamiento comprobadas en 1440, 1024, 768, 390 y 320 px. Accesibilidad sin infracciones detectadas en 1440 y 390 px. Se inspeccionaron capturas del índice en escritorio y móvil y se verificó que sus cinco imágenes cargan y que el bloque se desplaza junto al contenido.

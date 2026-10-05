@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
+  ArrowDownRight,
   ChevronDown,
   CircleHelp,
   Menu,
@@ -15,11 +16,11 @@ import { HelpBackdrop } from "./HelpBackdrop";
 import "./help.css";
 
 const sections = [
-  { id: "primeros-pasos", title: "Primeros pasos" },
-  { id: "resultados", title: "Entender el resultado" },
-  { id: "privacidad", title: "Privacidad y conexiones" },
-  { id: "limites", title: "Límites del análisis" },
-  { id: "preguntas", title: "Preguntas frecuentes" },
+  { id: "primeros-pasos", title: "Primeros pasos", image: "journey-envelope-v1", width: 240, height: 128 },
+  { id: "resultados", title: "Entender el resultado", image: "correspondence-guide-v1", width: 1448, height: 1086 },
+  { id: "privacidad", title: "Privacidad y conexiones", image: "guide-private-letter-v1", width: 500, height: 375 },
+  { id: "limites", title: "Límites del análisis", image: "journey-plane-v1", width: 360, height: 157 },
+  { id: "preguntas", title: "Preguntas frecuentes", image: "guide-garden-v1", width: 600, height: 900 },
 ];
 const navigation = [
   { to: "/", title: "Inicio" },
@@ -122,15 +123,14 @@ export function HelpPage() {
         </div>
         <div className="help-layout">
           <nav className="help-contents" aria-label="En esta página">
-            <span>En esta página</span>
-            {sections.map((section) => (
-              <a key={section.id} href={`#${section.id}`}>
-                {section.title}
-              </a>
-            ))}
-            <div className="help-margin-note" aria-hidden="true">
-              <img src="/illustrations/guide-garden-v1.webp" alt="" width={600} height={900} loading="lazy" />
-              <p>Leer despacio también<br />es una forma de cuidarte.</p>
+            <h2>Elige por dónde empezar.</h2>
+            <div className="help-index-list">
+              {sections.map((section) => (
+                <a key={section.id} href={`#${section.id}`}>
+                  <img src={`/illustrations/${section.image}.webp`} alt="" width={section.width} height={section.height} loading="lazy" />
+                  <span>{section.title} <ArrowDownRight size={15} aria-hidden="true" /></span>
+                </a>
+              ))}
             </div>
           </nav>
           <div className="help-article">
