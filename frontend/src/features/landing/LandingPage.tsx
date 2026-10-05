@@ -265,25 +265,6 @@ export function LandingPage() {
 
       <div className="landing-footer-transition" aria-hidden="true" />
       <footer className="landing-footer">
-        <section className="landing-final-cta" aria-labelledby="try-title">
-          <div className="page-width landing-final-copy">
-            <h2 id="try-title">Dale una segunda mirada.</h2>
-            <p>Empieza con un correo de ejemplo y conoce el recorrido.</p>
-            <Button size="lg" render={<Link to="/analizar" />} className="landing-final-button">
-              Probar el analizador <ArrowRight size={17} />
-            </Button>
-          </div>
-        </section>
-        <img
-          className="landing-footer-art"
-          src="/illustrations/correspondence-footer-v1.webp"
-          alt=""
-          aria-hidden="true"
-          width={2172}
-          height={724}
-          loading="lazy"
-          decoding="async"
-        />
         <div className="page-width landing-footer-links">
           <div className="landing-footer-brand">
             <BrandMark />
@@ -299,6 +280,27 @@ export function LandingPage() {
         <div className="page-width landing-footer-bottom">
           <p>Una segunda mirada a tus mensajes</p>
           <a href="#landing-main">Volver al inicio ↑</a>
+        </div>
+        <div className="landing-footer-scene">
+          <section className="landing-final-cta" aria-labelledby="try-title">
+            <div className="page-width landing-final-copy">
+              <h2 id="try-title">Dale una segunda mirada.</h2>
+              <p>Empieza con un correo de ejemplo y conoce el recorrido.</p>
+              <Button size="lg" render={<Link to="/analizar" />} className="landing-final-button">
+                Probar el analizador <ArrowRight size={17} />
+              </Button>
+            </div>
+          </section>
+          <img
+            className="landing-footer-art"
+            src="/illustrations/correspondence-footer-v1.webp"
+            alt=""
+            aria-hidden="true"
+            width={2172}
+            height={724}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </footer>
     </div>

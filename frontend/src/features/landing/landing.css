@@ -319,6 +319,7 @@
 .landing-final-button { margin-top: 18px; padding-inline: 24px; height: 42px; border-radius: 999px; background: var(--landing-paper); color: var(--landing-night); font-size: 13px; }
 .landing-final-button:hover { background: #e6dfc9; }
 .landing-footer { position: relative; background: var(--landing-night); color: var(--landing-paper); }
+.landing-footer-scene { position: relative; }
 .landing-footer-links { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding-top: 18px; }
 .landing-footer-brand { display: flex; align-items: center; gap: 12px; }
 .landing-footer .brand-mark { border-radius: 10px; background: var(--landing-paper); }

@@ -120,3 +120,7 @@ Por elección del usuario, Fraunces sustituye a Allura para el nombre Remira: pe
 A partir de las referencias del usuario, la landing agrupa marca y navegación en un conjunto compacto centrado sobre el título principal. Se eliminan la línea divisora, el separador del acceso a sesión y el subtítulo de la marca en el header. Remira conserva Fraunces 600, junto al símbolo azul a menor tamaño. En móvil la marca se centra sobre la fila de accesos; los enlaces de sección permanecen visibles desde 768 px.
 
 Se reajusta la altura descontada del header para conservar la ilustración completa y pegada al borde inferior de la primera ventana. Verificado en doce tamaños y al redimensionar; sin desbordamiento horizontal. Se comprobaron los enlaces internos animados, el regreso al inicio, movimiento reducido y la navegación al analizador. Compilación y lint completados; sin infracciones de accesibilidad detectadas en escritorio y móvil.
+
+### Marca y navegación al inicio del footer
+
+El bloque con la marca Remira, enlaces, lema y regreso al inicio se mueve al comienzo del footer, antes de la llamada a analizar y del paisaje. La llamada mantiene su posición sobre el cielo en escritorio, dentro de un contenedor propio, para evitar superponerla a los enlaces. La ilustración continúa completa y de pared a pared. Se revisó el orden y la ausencia de superposiciones y desbordamiento en 1920, 1440, 390 y 320 px; compilación y lint completados correctamente.
