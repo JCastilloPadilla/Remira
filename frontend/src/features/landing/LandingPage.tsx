@@ -54,7 +54,7 @@ export function LandingPage() {
         <defs>
           {/* Match each image's paper to #f7f8f6 while anchoring the navy ink tone. */}
           <filter id="remira-paper-desktop" colorInterpolationFilters="sRGB">
-            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1.02 0 0 -0.003451  0 0 1.076433 0 -0.023079  0 0 0 1 0" />
+            <feColorMatrix type="matrix" values="1.00885 0 0 0 -0.000659  0 1.004926 0 0 -0.00085  0 0 1.018072 0 -0.005457  0 0 0 1 0" />
           </filter>
           <filter id="remira-paper-mobile" colorInterpolationFilters="sRGB">
             <feColorMatrix type="matrix" values="0.987013 0 0 0 0.000968  0 1 0 0 0  0 0 1.05625 0 -0.016985  0 0 0 1 0" />
@@ -131,7 +131,7 @@ export function LandingPage() {
                 height={1536}
               />
               <img
-                src="/illustrations/correspondence-hero-v1.webp"
+                src="/illustrations/correspondence-hero-v2.webp"
                 alt=""
                 aria-hidden="true"
                 width={2172}

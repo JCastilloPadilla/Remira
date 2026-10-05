@@ -148,7 +148,6 @@
   width: 100%;
   height: auto;
   filter: url("#remira-paper-desktop");
-  mask-image: linear-gradient(to bottom, #000 calc(100% - clamp(16px, 1.5vw, 32px)), transparent);
 }
 .landing-hero-note {
   display: flex;
@@ -440,7 +439,7 @@
   .landing-hero-actions .landing-primary-action { min-height: 44px; }
   .landing-hero-art { position: absolute; inset: 0; margin-top: 0; overflow: clip; }
   .landing-hero-art picture { position: absolute; bottom: 0; width: 100%; }
-  .landing-hero-art img { filter: url("#remira-paper-mobile"); mask-image: none; }
+  .landing-hero-art img { filter: url("#remira-paper-mobile"); }
   .landing-hero-art::before { content: ""; position: absolute; inset: 0 0 auto; height: 15%; background: linear-gradient(var(--landing-paper), transparent); }
   .landing-process, .landing-demo-section, .landing-about { padding-block: 56px; }
   .landing-tech-stage { border-radius: 10px; }
