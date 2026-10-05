@@ -131,28 +131,38 @@ export function LandingPage() {
           </section>
 
           <section className="landing-demo-section" aria-labelledby="demo-title">
+            <div className="page-width landing-tech-stage">
+              <h2 id="demo-title" className="landing-tech-heading">
+                <span className="landing-tech-fallback">Mira más allá.</span>
+                <span className="landing-tech-effect" aria-hidden="true">
+                  <TechText
+                    text="Mira más allá."
+                    fontFamily=""
+                    fontSize={150}
+                    fontWeight={600}
+                    letterSpacing={-0.05}
+                    color="#ffffff"
+                    accentColor="#ffffff"
+                    reach={200}
+                    softness={0.7}
+                    reveal="letter"
+                    lineStyle="dashed"
+                    dashLength={4}
+                    dashGap={2}
+                    strokeWidth={1.5}
+                    speed={1}
+                    specks={15}
+                    selection
+                    labels
+                    draggable
+                    sweep
+                  />
+                </span>
+              </h2>
+            </div>
             <div className="page-width landing-demo-grid">
               <div className="landing-demo-copy">
                 <span className="landing-section-label">Una pausa antes del clic</span>
-                <h2 id="demo-title" className="landing-tech-heading">
-                  <span className="landing-tech-fallback">Mira más allá.</span>
-                  <span className="landing-tech-effect" aria-hidden="true">
-                    <TechText
-                      text="Mira más allá."
-                      fontFamily='"Manrope Variable", sans-serif'
-                      fontSize={66}
-                      fontWeight={600}
-                      color="#132c4d"
-                      accentColor="#2457c5"
-                      reach={110}
-                      reveal="area"
-                      specks={0}
-                      labels={false}
-                      draggable={false}
-                      sweep={false}
-                    />
-                  </span>
-                </h2>
                 <p>
                   Lo urgente no siempre es lo que parece. Un remitente familiar,
                   una petición inesperada, un plazo demasiado corto.
@@ -252,9 +262,12 @@ export function LandingPage() {
             </div>
           </section>
         </div>
+      </main>
+
+      <div className="landing-footer-transition" aria-hidden="true" />
+      <footer className="landing-footer">
         <section className="landing-final-cta" aria-labelledby="try-title">
           <div className="page-width landing-final-copy">
-            <span className="landing-section-label">El siguiente mensaje puede esperar un momento</span>
             <h2 id="try-title">Dale una segunda mirada.</h2>
             <p>Empieza con un correo de ejemplo y conoce el recorrido.</p>
             <Button size="lg" render={<Link to="/analizar" />} className="landing-final-button">
@@ -262,9 +275,6 @@ export function LandingPage() {
             </Button>
           </div>
         </section>
-      </main>
-
-      <footer className="landing-footer">
         <img
           className="landing-footer-art"
           src="/illustrations/correspondence-footer-v1.webp"
