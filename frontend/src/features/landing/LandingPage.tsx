@@ -6,6 +6,7 @@ import {
   ChevronDown,
   FileText,
   Mail,
+  Menu,
   ScanLine,
   ShieldAlert,
   ShieldCheck,
@@ -64,6 +65,23 @@ export function LandingPage() {
               Abrir analizador <ArrowUpRight size={15} />
             </Button>
           </nav>
+          <div className="landing-mobile-actions">
+            <details className="landing-mobile-menu">
+              <summary aria-label="Menú de navegación"><Menu size={21} /></summary>
+              <nav aria-label="Navegación móvil" onClick={(event) => {
+                if ((event.target as HTMLElement).closest("a")) {
+                  event.currentTarget.closest("details")?.removeAttribute("open");
+                }
+              }}>
+                <a href="#como-funciona">Cómo funciona</a>
+                <a href="#acerca">El proyecto</a>
+                <Link to="/login">Iniciar sesión</Link>
+              </nav>
+            </details>
+            <Button render={<Link to="/analizar" />} className="landing-nav-cta">
+              Analizar <ArrowUpRight size={15} />
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -94,14 +112,22 @@ export function LandingPage() {
             </div>
           </div>
           <div className="landing-hero-art">
-            <img
-              src="/illustrations/correspondence-hero-v1.webp"
-              alt=""
-              aria-hidden="true"
-              width={2172}
-              height={724}
-              fetchPriority="high"
-            />
+            <picture>
+              <source
+                media="(max-width: 767px) and (orientation: portrait)"
+                srcSet="/illustrations/correspondence-hero-mobile-v1.webp"
+                width={1024}
+                height={1536}
+              />
+              <img
+                src="/illustrations/correspondence-hero-v1.webp"
+                alt=""
+                aria-hidden="true"
+                width={2172}
+                height={724}
+                fetchPriority="high"
+              />
+            </picture>
           </div>
         </section>
         <div className="landing-hero-note">

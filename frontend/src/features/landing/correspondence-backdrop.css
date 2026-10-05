@@ -47,25 +47,16 @@
 .backdrop-envelope--5 { top: 87%; left: calc(var(--backdrop-gutter) / 2); transform: translateX(-50%) rotate(22deg); }
 .backdrop-envelope--6 { top: 95%; right: calc(var(--backdrop-gutter) / 2); transform: translateX(50%) rotate(-12deg); }
 @media (max-width: 767px) {
-  .backdrop-flight--left,
-  .backdrop-flight svg,
-  .backdrop-envelope--2,
-  .backdrop-envelope--3,
-  .backdrop-envelope--4,
-  .backdrop-envelope--5 { display: none; }
-  .backdrop-flight--right { top: 16px; right: 24px; width: 130px; height: 28px; transform: none; }
-  .backdrop-flight--right::before {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 80px;
-    height: 24px;
-    border-top: 1px dashed #667f9d70;
-    border-radius: 50%;
-    transform: rotate(-8deg);
-  }
-  .backdrop-plane { left: auto; right: 0; bottom: 0; width: 50px; transform: rotate(-12deg); }
-  .backdrop-envelope--1 { top: 20px; left: 24px; width: 34px; transform: rotate(-18deg); }
-  .backdrop-envelope--6 { top: auto; bottom: 7px; left: 36px; right: auto; width: 30px; transform: rotate(12deg); }
+  .backdrop-flight { width: 170px; height: 590px; }
+  .backdrop-flight--right { top: 3%; right: -18px; transform: none; }
+  .backdrop-flight--left { top: 72%; left: -18px; transform: none; }
+  .backdrop-flight path { opacity: 0.24; stroke-dasharray: 4 8; }
+  .backdrop-plane { width: 98px; opacity: 0.28; }
+  .backdrop-envelope { width: clamp(84px, 25vw, 120px); opacity: 0.15; }
+  .backdrop-envelope--1 { top: 12%; left: -14px; transform: rotate(-18deg); }
+  .backdrop-envelope--2 { top: 29%; right: -8px; transform: rotate(16deg); }
+  .backdrop-envelope--3 { top: 44%; left: -16px; transform: rotate(12deg); }
+  .backdrop-envelope--4 { top: 64%; right: -12px; transform: rotate(-24deg); }
+  .backdrop-envelope--5 { top: 82%; left: -10px; transform: rotate(22deg); }
+  .backdrop-envelope--6 { top: auto; bottom: 32px; right: -12px; transform: rotate(-12deg); }
 }

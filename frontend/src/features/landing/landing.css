@@ -13,12 +13,14 @@
   border-bottom: 0;
 }
 .landing-nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(24px, 4vw, 64px);
   min-height: 88px;
 }
+.landing-mobile-actions { display: none; }
 .landing-page .landing-nav {
   width: fit-content;
   max-width: calc(100% - 48px);
@@ -367,7 +369,7 @@
   .step-stamp { width: 68px; height: 78px; flex-shrink: 0; }
   .step-stamp svg { width: 37px; }
   .landing-steps h3 { margin-top: 8px; font-size: 16px; }
-  .landing-steps p { max-width: none; margin-top: 8px; font-size: 12px; }
+  .landing-steps p { max-width: none; margin-top: 8px; font-size: 13px; line-height: 1.8; }
   .landing-demo-section { padding-block: 62px; }
   .landing-demo-grid,
   .landing-about-grid,
@@ -382,10 +384,20 @@
   .landing-tech-effect { height: 220px; }
 }
 @media (max-width: 639px) {
-  .landing-page { --landing-header-height: 114px; }
-  .landing-page .site-header .landing-nav { width: calc(100% - 32px); max-width: none; min-height: 114px; flex-wrap: wrap; padding-block: 8px; gap: 8px; }
+  .landing-page { --landing-header-height: 72px; }
+  .landing-page .site-header .landing-nav { width: calc(100% - 32px); max-width: none; min-height: 72px; flex-wrap: nowrap; justify-content: space-between; padding-block: 10px; gap: 12px; }
   .landing-brand .remira-wordmark { font-size: 28px; }
-  .landing-nav-links { width: 100%; justify-content: space-between; }
+  .landing-brand { gap: 7px; }
+  .landing-brand .brand-mark { width: 29px; height: 29px; }
+  .landing-nav-links { display: none; }
+  .landing-mobile-actions { display: flex; align-items: center; gap: 8px; }
+  .landing-mobile-menu summary { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; list-style: none; border-radius: 50%; }
+  .landing-mobile-menu summary::-webkit-details-marker { display: none; }
+  .landing-mobile-menu[open] summary { background: #132c4d0b; }
+  .landing-mobile-menu summary:focus-visible { outline: 2px solid var(--landing-blue); outline-offset: 2px; }
+  .landing-mobile-menu nav { position: absolute; top: calc(100% - 4px); right: 0; z-index: 5; display: grid; min-width: 200px; padding: 8px; border: 1px solid #132c4d20; border-radius: 12px; background: var(--landing-paper); box-shadow: 0 10px 24px #132c4d14; }
+  .landing-mobile-menu nav a { display: flex; align-items: center; min-height: 44px; padding: 10px 14px; font-size: 13px; }
+  .landing-mobile-actions .landing-nav-cta { height: 44px; font-size: 12px; padding-inline: 14px; color: var(--landing-blue); }
 }
 @media (max-width: 479px) {
   .landing-nav-cta { font-size: 11px; height: 36px; padding-inline: 14px; }
@@ -414,6 +426,28 @@
   .landing-hero-actions { margin-top: 12px; gap: 12px; }
   .landing-primary-action { min-height: 38px; }
   .landing-hero-note { display: none; }
+}
+@media (max-width: 767px) and (orientation: portrait) {
+  .landing-hero { min-height: calc(100svh - var(--landing-header-height)); }
+  .landing-hero-copy { padding-top: clamp(16px, 3svh, 30px); padding-bottom: 36px; margin-bottom: 0; }
+  .landing-hero h1 { max-width: 520px; font-size: clamp(32px, 8.8vw, 48px); letter-spacing: -1.4px; }
+  .landing-lead { max-width: 420px; font-size: 13px; line-height: 1.8; }
+  .landing-hero-actions { flex-direction: column; gap: 16px; margin-top: 20px; }
+  .landing-hero-actions .landing-primary-action { min-height: 44px; }
+  .landing-hero-art { position: absolute; inset: 0; margin-top: 0; overflow: clip; }
+  .landing-hero-art picture { position: absolute; bottom: 0; width: 100%; }
+  .landing-hero-art::before { content: ""; position: absolute; inset: 0 0 auto; height: 15%; background: linear-gradient(var(--landing-paper), transparent); }
+  .landing-process, .landing-demo-section, .landing-about { padding-block: 56px; }
+  .landing-tech-stage { border-radius: 10px; }
+  .landing-tech-effect { height: 180px; }
+  .landing-final-cta { padding-top: 24px; }
+  .landing-footer-links nav a { min-height: 44px; }
+}
+@media (max-width: 479px) and (max-height: 650px) and (orientation: portrait) {
+  .landing-hero-copy { padding-top: 10px; padding-bottom: 20px; }
+  .landing-hero h1 { font-size: 30px; }
+  .landing-lead { font-size: 12px; line-height: 1.65; }
+  .landing-hero-actions { gap: 12px; margin-top: 14px; }
 }
 @media (min-width: 768px) and (max-height: 580px) {
   .landing-page { --landing-header-height: 64px; }
