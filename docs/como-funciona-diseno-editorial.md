@@ -10,7 +10,7 @@ Se retiran la insignia de título, la descripción secundaria de la marca, el av
 
 - Header integrado con marca, enlaces a las pantallas existentes y acceso al analizador. En móvil se usa un menú nativo y controles de 44 px.
 - Introducción ilustrada con enlace al inicio de la guía.
-- Índice ilustrado al inicio, sin posición fija: cinco accesos en una fila en escritorio y dos columnas en móvil, con el último centrado.
+- Lectura continua con cinco capítulos numerados del 01 al 05; la portada conserva el enlace «Empieza por aquí» al primer capítulo.
 - Cinco secciones: primeros pasos, interpretación del resultado, privacidad y conexiones, límites del análisis y preguntas frecuentes.
 - Resultados presentados como sellos de tinta verde y granate, acordes con el sello de la carta en la landing. La confianza se explica como puntuación del modelo, sin presentarla como garantía.
 - Preguntas con `details` y `summary`, accesibles con teclado.
@@ -103,7 +103,15 @@ Las preguntas mantienen `details` y `summary`. En navegadores compatibles, `::de
 
 Se comprobaron la igualdad del footer entre las dos rutas, imágenes responsivas, animación intermedia al abrir y cerrar preguntas, foco y hover del índice, acceso al proyecto, ausencia de errores JavaScript y accesibilidad en escritorio y móvil. Compilación y lint correctos.
 
-## Índice ilustrado al inicio
+## Lectura continua con capítulos numerados
+
+Se adopta la alternativa elegida por el usuario: se retira «Elige por dónde empezar» y la galería de accesos. El aviso breve de demostración conduce directamente al artículo centrado. Los cinco capítulos muestran un número editorial del 01 al 05 junto a su etiqueta, sin añadir paneles ni navegación adicional. La portada mantiene «Empieza por aquí» con scroll suave al primer capítulo.
+
+Se eliminan la lista de datos del índice, el icono asociado, el contenedor de distribución y sus estilos, incluidos estados de movimiento y reglas móviles. Se conservan los fondos ilustrados, la portada, el footer compartido y el comportamiento estable de las preguntas.
+
+Verificación en 1440, 390 y 320 px: orden de capítulos, ausencia de desbordamiento, enlace de la portada, preguntas con teclado y posición estable. Accesibilidad revisada en escritorio y móvil. Build y lint correctos.
+
+## Índice ilustrado anterior (sustituido)
 
 Se sustituye el índice lateral que acompañaba el scroll por una entrada titulada «Elige por dónde empezar». Cada acceso reutiliza una ilustración del proyecto: sobre, escritorio con lupa, cartas atadas, avión y jardín. Los enlaces conservan el desplazamiento suave hacia los cinco capítulos, respetando la preferencia de movimiento reducido.
 
