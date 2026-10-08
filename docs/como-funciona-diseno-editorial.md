@@ -81,6 +81,18 @@ Prompt móvil: «Generate a mobile 1024x1536 portrait recomposition of this exac
 
 Se revisaron capturas en 1440×900, 1900×780, 390×900, 320×568 y 844×390 px, comprobando imagen completa, ancho total, recurso responsivo y lectura sin ilustraciones encimadas. Las comprobaciones de navegación, preguntas con teclado, movimiento reducido y accesibilidad de la guía pasaron. Build y lint correctos.
 
+## Portada dentro del viewport y preguntas estables
+
+Se sustituye la panorámica 2:1 por `frontend/public/illustrations/guide-panorama-v3.webp`, 2170×725 px (aproximadamente 347 KiB), generada con la herramienta integrada de imágenes. La nueva composición ancha permite mostrar la escena de lado a lado dentro de la primera pantalla, con el texto central y el pie orgánico intactos. La altura de la portada corresponde al viewport visible menos el header. En pantallas con poca altura se compacta el texto y se ocultan el antetítulo y la leyenda inferior para conservar espacio y legibilidad. El contenedor de imagen puede omitir margen vacío superior cuando es necesario; no deforma la escena.
+
+Prompt: «Recompose supplied Remira reading atelier hero into VERY WIDE 3:1 panorama 2172x724. Retain subject style: low stone letter shelves under arcades left, fully visible cypress and foliage, reader under low blue awning on far right, foreground desks with open letters, brass magnifier, blue ribbons, fountain pens, distant hills. Navy ink etching cobalt watercolor tiny gold, neutral paper #f7f8f6. Critical website layout: broad central x25%-75% empty paper from y0% to y65% for live HTML title/paragraph/button. Central hills/table sit below y65%. Left and right scenes frame center and keep their treetops/roofs entirely WITHIN canvas, all tree tips BELOW y12%, never cut by top edge. Top 10% entire width flat neutral paper. Small paper airplane at far right away from text. Bottom edge organic irregular leaves rocks strokes into blank neutral paper, no straight border, no fog or blurred mask. Complete scene not crop/stretch of reference. Wide shallow panorama that fits first desktop viewport at full wall-to-wall width. No text logos badges.»
+
+Se reprodujo un reajuste automático del scroll de entre 50 y 148 px al abrir preguntas, causado por el anclaje de desplazamiento del navegador durante la transición de altura. `overflow-anchor: none` en la página evita ese reajuste: la pregunta conserva su posición y el contenido siguiente se desplaza hacia abajo. No se añade scroll programático a las preguntas.
+
+El índice permanece pendiente de elección. Alternativas propuestas: lectura continua con capítulos numerados (recomendada), dos accesos breves en la portada a explicación y preguntas, o enlaces de siguiente capítulo al finalizar cada bloque.
+
+Verificación de la portada en escritorio, teléfono pequeño y horizontal; comprobación de posición y scroll antes y después de abrir preguntas en 1900, 1440, 390 y 320 px de ancho. Compilación y lint correctos.
+
 ## Movimiento y footer compartido
 
 `IllustratedFooter` reúne el footer de la landing y de esta guía: marca blanca, navegación, llamada al analizador y paisaje nocturno, con las mismas imágenes de escritorio y móvil. Sus estilos se extraen a `illustrated-footer.css` para mantener una única implementación. La transición previa conserva el color final de cada página. Los enlaces al proyecto y al inicio apuntan al destino correspondiente; la landing reconoce el ancla del proyecto al llegar desde la guía.

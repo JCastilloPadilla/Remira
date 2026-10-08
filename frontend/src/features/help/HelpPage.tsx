@@ -122,7 +122,7 @@ export function HelpPage() {
           <figure className="help-hero-illustration">
             <picture>
               <source media="(max-width: 767px) and (orientation: portrait)" srcSet="/illustrations/guide-panorama-mobile-v2.webp" width={1024} height={1536} />
-              <img src="/illustrations/guide-panorama-v2.webp" alt="" width={1774} height={887} fetchPriority="high" />
+              <img src="/illustrations/guide-panorama-v3.webp" alt="" width={2170} height={725} fetchPriority="high" />
             </picture>
             <figcaption>La mejor pista empieza por leer con atención.</figcaption>
           </figure>
