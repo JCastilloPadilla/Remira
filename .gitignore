@@ -15,6 +15,7 @@ models/*
 instance/*.db
 instance/*-journal
 tmp/
+.worktrees/
 
 # Frontend: dependencias y compilación local.
 node_modules/
