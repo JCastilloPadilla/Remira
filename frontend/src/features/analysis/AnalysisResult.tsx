@@ -23,12 +23,12 @@ export function AnalysisResult({
     const malicious = state.result.label === "malicious";
     const Icon = malicious ? ShieldAlert : ShieldCheck;
     return (
-      <FadeContent duration={400} className="flex flex-1 flex-col p-7">
+      <FadeContent duration={400} className="analysis-verdict">
         <div
           className={
             malicious
-              ? "verdict-icon verdict-danger"
-              : "verdict-icon verdict-safe"
+              ? "analysis-stamp analysis-stamp-danger"
+              : "analysis-stamp analysis-stamp-safe"
           }
         >
           <Icon size={32} strokeWidth={1.5} />
@@ -37,23 +37,25 @@ export function AnalysisResult({
           <p className="mt-6 text-xs font-medium text-muted-foreground">
             Resultado simulado
           </p>
-          <h3 className="mt-2 text-2xl font-semibold tracking-tight">
+          <h3 className="analysis-verdict-title">
             {malicious
               ? "Potencialmente malicioso"
               : "Clasificado como legítimo"}
           </h3>
         </div>
-        <div className="confidence-block">
+        <div className="analysis-confidence-block">
           <div className="flex items-center justify-between gap-3 text-sm">
-            <span>Confianza del modelo</span>
+            <span>Confianza del ejemplo</span>
             <strong className="text-xl">
               {Math.round(state.result.confidence * 100)} %
             </strong>
           </div>
-          <div className="confidence-track" aria-hidden="true">
+          <div className="analysis-confidence-track" aria-hidden="true">
             <div
               className={
-                malicious ? "confidence-fill danger" : "confidence-fill safe"
+                malicious
+                  ? "analysis-confidence-fill danger"
+                  : "analysis-confidence-fill safe"
               }
               style={{ width: `${state.result.confidence * 100}%` }}
             />
@@ -80,16 +82,24 @@ export function AnalysisResult({
   const edited = state.status === "edited";
   const Icon = loading ? LoaderCircle : error ? CircleAlert : ScanLine;
   return (
-    <div className="empty-result flex flex-1 flex-col items-center justify-center px-7 py-12 text-center">
-      <div className={`empty-result-icon ${error ? "error-icon" : ""}`}>
-        <Icon
-          size={32}
-          strokeWidth={1.3}
-          className={loading ? "motion-safe:animate-spin" : ""}
+    <div className="analysis-empty-result">
+      {state.status === "idle" ? (
+        <img
+          className="analysis-awaiting-art"
+          src="/illustrations/analyzer-letter-v1.webp"
+          width="768" height="512" alt=""
         />
-      </div>
+      ) : (
+        <div className={`analysis-state-icon ${error ? "analysis-state-error" : ""}`}>
+          <Icon
+            size={32}
+            strokeWidth={1.3}
+            className={loading ? "motion-safe:animate-spin" : ""}
+          />
+        </div>
+      )}
       <div role={error ? "alert" : "status"} aria-live="polite">
-        <h3 className="mt-6 text-base font-semibold">
+        <h3 className="analysis-state-title">
           {loading
             ? "Analizando correo…"
             : error
@@ -98,7 +108,7 @@ export function AnalysisResult({
                 ? "El correo cambió"
                 : "Tu resultado aparecerá aquí"}
         </h3>
-        <p className="mt-3 max-w-64 text-sm leading-7 text-muted-foreground">
+        <p className="mt-3 max-w-80 text-sm leading-7 text-muted-foreground">
           {loading
             ? "Estamos preparando el resultado de demostración."
             : error

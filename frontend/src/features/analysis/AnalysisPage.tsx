@@ -2,16 +2,8 @@ import { BrandMark } from "@/components/BrandMark";
 import { BrandName } from "@/components/BrandName";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowUpRight,
-  Check,
-  CircleHelp,
-  FlaskConical,
-  LockKeyhole,
-  Mail,
-} from "lucide-react";
+import { Menu, CircleHelp, LockKeyhole, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -39,6 +31,18 @@ import {
   type EmailDraft,
 } from "@/features/analysis/demo";
 
+import SplitText from "@/components/react-bits/SplitText";
+import { IllustratedFooter } from "@/components/IllustratedFooter";
+import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
+import "./analysis.css";
+
+const navigation = [
+  { to: "/", title: "Inicio" },
+  { to: "/bandeja", title: "Bandeja" },
+  { to: "/historial", title: "Historial" },
+  { to: "/cuenta", title: "Cuenta" },
+];
+
 const emptyDraft: EmailDraft = { subject: "", body: "" };
 
 function AnalysisPage() {
@@ -57,6 +61,23 @@ function AnalysisPage() {
     window.scrollTo({ top: 0, behavior: "instant" });
     return () => requestRef.current?.abort();
   }, []);
+
+  useEffect(() => {
+    if (
+      (analysis.status !== "success" && analysis.status !== "error") ||
+      !window.matchMedia("(max-width: 1023px)").matches
+    ) return;
+
+    const frame = requestAnimationFrame(() => {
+      resultRef.current?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+        block: "start",
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [analysis.status]);
 
   function updateDraft(next: EmailDraft) {
     setDraft(next);
@@ -100,49 +121,31 @@ function AnalysisPage() {
             : "No pudimos completar la demostración.",
       });
     }
-    if (window.matchMedia("(max-width: 1023px)").matches) {
-      resultRef.current?.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "instant"
-          : "smooth",
-        block: "start",
-      });
-    }
   }
 
   return (
-    <div className="min-h-dvh">
+    <div className="analysis-page">
       <a className="skip-link" href="#main">
         Ir al contenido
       </a>
-      <header className="site-header">
-        <div className="page-width flex min-h-20 items-center justify-between gap-4">
-          <Link
-            to="/"
-            className="flex items-center gap-3"
-            aria-label="Remira, inicio"
-          >
+      <header className="analysis-header">
+        <div className="page-width analysis-header-inner">
+          <Link to="/" className="analysis-brand" aria-label="Remira, inicio">
             <BrandMark />
-            <span className="font-semibold tracking-tight">
-              <BrandName />
-              <span className="block text-xs font-normal tracking-normal text-muted-foreground">
-                Análisis inteligente de mensajes
-              </span>
-            </span>
+            <BrandName />
           </Link>
-          <div className="flex items-center gap-3 sm:gap-6">
-            <span
-              className="hidden text-sm font-semibold text-primary sm:block"
-              aria-current="page"
-            >
-              Analizar correo
-            </span>
+          <nav className="analysis-desktop-nav" aria-label="Navegación principal">
+            {navigation.map((item) => (
+              <Link key={item.to} to={item.to}>{item.title}</Link>
+            ))}
+          </nav>
+          <div className="analysis-header-actions">
             <Dialog>
               <DialogTrigger render={<Button variant="ghost" size="sm" />}>
                 <CircleHelp size={16} />
                 <span>Cómo funciona</span>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="analysis-dialog">
                 <DialogHeader>
                   <DialogTitle>Una segunda mirada a tu correo</DialogTitle>
                   <DialogDescription>
@@ -155,18 +158,17 @@ function AnalysisPage() {
                     <strong className="text-foreground">
                       Esta versión es una demostración.
                     </strong>{" "}
-                    Los ejemplos tienen respuestas simuladas; todavía no se
-                    envía texto a Flask ni se ejecuta el modelo.
+                    Los ejemplos tienen respuestas simuladas. Tus propios
+                    correos no se envían al modelo ni reciben una clasificación.
                   </p>
                   <p>
-                    Cuando esté conectado, el modelo procesará el texto en el
-                    equipo que ejecuta la aplicación. No inspeccionará adjuntos
-                    ni verificará la reputación de los enlaces.
+                    El análisis se centra en el texto del mensaje. No incluye
+                    la inspección de adjuntos ni la verificación de la reputación
+                    de los enlaces.
                   </p>
                   <p>
                     La confianza del modelo no garantiza seguridad. El
-                    clasificador puede equivocarse y recortar mensajes que
-                    superen 512 tokens.
+                    clasificador puede equivocarse y recortar mensajes largos.
                   </p>
                   <p>
                     El contenido de este borrador permanece en memoria durante
@@ -183,127 +185,112 @@ function AnalysisPage() {
                 </div>
               </DialogContent>
             </Dialog>
+            <details className="analysis-mobile-nav">
+              <summary aria-label="Abrir navegación">
+                <Menu size={22} />
+              </summary>
+              <nav aria-label="Navegación móvil">
+                {navigation.map((item) => (
+                  <Link key={item.to} to={item.to}>{item.title}</Link>
+                ))}
+              </nav>
+            </details>
           </div>
         </div>
       </header>
 
-      <main id="main" className="page-width pb-12 pt-8 sm:pt-12">
-        <section className="intro-banner" aria-labelledby="page-title">
-          <div className="relative z-10 max-w-xl">
-            <Badge className="intro-badge" variant="outline">
-              <FlaskConical size={13} /> Primera versión · Demostración
-            </Badge>
-            <h1
-              id="page-title"
-              className="mt-5 text-3xl font-semibold leading-tight tracking-tight sm:text-[2.75rem]"
-            >
-              Antes de hacer clic,
-              <br />
-              dale una segunda mirada.
-            </h1>
-            <p className="mt-4 max-w-md text-sm leading-7 text-blue-100 sm:text-base">
-              Revisa el contenido de un correo y consulta si el modelo lo
-              clasifica como legítimo o potencialmente malicioso.
-            </p>
-          </div>
-          <div className="mail-illustration" aria-hidden="true">
-            <div className="mail-sheet">
-              <div className="mail-sheet-dot" />
-              <div className="mail-line long" />
-              <div className="mail-line" />
-              <div className="mail-line short" />
-            </div>
-            <div className="mail-envelope">
-              <Mail size={72} strokeWidth={0.9} />
-            </div>
-            <span className="mail-check">
-              <Check size={24} strokeWidth={2} />
-            </span>
-          </div>
-        </section>
-
-        <div className="demo-notice">
-          <FlaskConical size={16} className="shrink-0" />
-          <p>
-            <strong>Vista de demostración.</strong> El modelo todavía no está
-            conectado. Usa un ejemplo para explorar el resultado.
-          </p>
-        </div>
-
-        <div className="analysis-grid">
-          <section className="workspace-panel" aria-labelledby="form-title">
-            <div className="panel-heading">
-              <div>
-                <h2 id="form-title">Analiza un correo</h2>
-                <p>Pega el mensaje que quieres revisar.</p>
-              </div>
-              <span className="panel-icon">
-                <Mail size={20} strokeWidth={1.5} />
-              </span>
-            </div>
-            <EmailForm
-              draft={draft}
-              onChange={updateDraft}
-              onSubmit={analyze}
-              busy={busy}
-              validation={validation}
-              subjectRef={subjectRef}
-              examples={examples}
-              onExample={requestReplacement}
-              onClear={() => requestReplacement(emptyDraft)}
-            />
-          </section>
-          <section
-            ref={resultRef}
-            className="workspace-panel result-panel scroll-mt-6"
-            aria-labelledby="result-title"
-          >
-            <div className="panel-heading">
-              <div>
-                <h2 id="result-title">Resultado del análisis</h2>
-                <p>Una orientación para tu siguiente paso.</p>
-              </div>
-              <Badge variant="outline" className="text-xs">
-                Demostración
-              </Badge>
-            </div>
-            <AnalysisResult
-              state={analysis}
-              onRetry={analyze}
-              onReset={() => requestReplacement(emptyDraft)}
-            />
-            <div className="result-note">
-              <CircleHelp size={15} className="mt-0.5 shrink-0" />
-              <p>
-                La clasificación es una ayuda para revisar el mensaje. No
-                sustituye la verificación del remitente.
+      <main id="main" className="analysis-stage">
+        <CorrespondenceBackdrop />
+        <div className="page-width analysis-content">
+          <section className="analysis-intro" aria-labelledby="page-title">
+            <div>
+              <p className="analysis-eyebrow">La mesa de revisión</p>
+              <h1 id="page-title">
+                <SplitText
+                  text="Dale otra mirada a ese correo."
+                  tag="span"
+                  textAlign="left"
+                  splitType="words"
+                  delay={45}
+                  duration={0.7}
+                  rootMargin="0px"
+                />
+              </h1>
+              <p className="analysis-intro-description">
+                Lee entre líneas, revisa las señales y decide con más contexto.
               </p>
             </div>
+            <img
+              src="/illustrations/guide-private-letter-v1.webp"
+              width="500" height="375" alt=""
+              className="analysis-intro-art"
+            />
           </section>
-        </div>
 
-        <div className="mt-5 flex items-start gap-2 text-xs leading-5 text-muted-foreground">
-          <LockKeyhole size={14} className="mt-0.5 shrink-0" />
-          <p>
-            En esta demostración el texto permanece en tu navegador y no se
-            guarda al recargar.
+          <p className="analysis-demo-note">
+            <CircleHelp size={16} aria-hidden="true" />
+            <span><strong>Prueba con un ejemplo.</strong> Esta demostración ofrece
+              resultados ficticios; tus mensajes no se envían al modelo.</span>
+          </p>
+
+          <div className="analysis-workspace">
+            <section className="analysis-letter" aria-labelledby="form-title">
+              <div className="analysis-panel-heading">
+                <div>
+                  <p className="analysis-eyebrow">01 / El mensaje</p>
+                  <h2 id="form-title">Un correo bajo la lupa.</h2>
+                  <p>Pega el contenido o empieza con un ejemplo.</p>
+                </div>
+                <Mail size={24} strokeWidth={1.3} aria-hidden="true" />
+              </div>
+              <EmailForm
+                draft={draft}
+                onChange={updateDraft}
+                onSubmit={analyze}
+                busy={busy}
+                validation={validation}
+                subjectRef={subjectRef}
+                examples={examples}
+                onExample={requestReplacement}
+                onClear={() => requestReplacement(emptyDraft)}
+              />
+            </section>
+            <section
+              ref={resultRef}
+              className="analysis-reading"
+              aria-labelledby="result-title"
+              aria-busy={busy}
+            >
+              <div className="analysis-panel-heading">
+                <div>
+                  <p className="analysis-eyebrow">02 / La segunda mirada</p>
+                  <h2 id="result-title">Las señales del correo.</h2>
+                </div>
+                <span className="analysis-demo-label">Demostración</span>
+              </div>
+              <AnalysisResult
+                state={analysis}
+                onRetry={analyze}
+                onReset={() => requestReplacement(emptyDraft)}
+              />
+              <p className="analysis-result-note">
+                <CircleHelp size={16} aria-hidden="true" />
+                <span>Una pista útil. Comprueba siempre el remitente antes de actuar.</span>
+              </p>
+            </section>
+          </div>
+          <p className="analysis-privacy">
+            <LockKeyhole size={15} aria-hidden="true" />
+            <span>El borrador permanece en tu navegador. No se guarda y
+              desaparece al recargar o salir de esta página.</span>
           </p>
         </div>
-        <footer className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t pt-6 text-xs text-muted-foreground">
-          <p>Proyecto académico · Técnicas de Inteligencia Artificial</p>
-          <a
-            href="https://github.com/JCastilloPadilla/email-threat-detector"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-primary"
-          >
-            Acerca del proyecto <ArrowUpRight size={13} />
-          </a>
-        </footer>
       </main>
+      <div className="analysis-footer-transition" aria-hidden="true" />
+      <IllustratedFooter topHref="#main" />
 
       <AlertDialog open={confirmationOpen} onOpenChange={setConfirmationOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="analysis-dialog">
           <AlertDialogHeader>
             <AlertDialogTitle>¿Reemplazar el contenido?</AlertDialogTitle>
             <AlertDialogDescription>

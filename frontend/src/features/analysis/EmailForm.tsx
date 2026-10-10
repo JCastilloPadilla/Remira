@@ -40,7 +40,7 @@ export function EmailForm({
   const [examplesOpen, setExamplesOpen] = useState(false);
   return (
     <form
-      className="flex flex-1 flex-col gap-6 p-6 sm:p-7"
+      className="analysis-email-form"
       noValidate
       onSubmit={(event) => {
         event.preventDefault();
@@ -83,7 +83,7 @@ export function EmailForm({
             }
             aria-invalid={Boolean(validation)}
             aria-describedby={validation ? "body-error" : "body-hint"}
-            className="min-h-64 flex-1 resize-y px-4 py-3 text-sm leading-7"
+            className="analysis-message-input"
           />
           <p
             id={validation ? "body-error" : "body-hint"}
@@ -113,7 +113,7 @@ export function EmailForm({
               <FileText size={15} />
               Cargar ejemplo
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="analysis-dialog">
               <DialogHeader>
                 <DialogTitle>Prueba con un ejemplo</DialogTitle>
                 <DialogDescription>
@@ -126,7 +126,7 @@ export function EmailForm({
                   <button
                     type="button"
                     key={example.name}
-                    className="example-option"
+                    className="analysis-example-option"
                     onClick={() => {
                       setExamplesOpen(false);
                       onExample({
