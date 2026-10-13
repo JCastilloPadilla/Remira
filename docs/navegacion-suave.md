@@ -29,6 +29,11 @@ de otra página sigue iniciándola arriba, y los enlaces externos mantienen su
 comportamiento. Los enlaces internos conservan su hash, destinos y navegación
 nativa; no se interceptan mediante un controlador global de clics.
 
+El enlace compartido «Volver al inicio» apunta al fragmento vacío `#` para subir
+al inicio real del documento (scroll 0) y dejar visible el encabezado en las
+siete páginas. Las anclas al contenido se mantienen para las acciones que van
+al analizador o a una sección concreta.
+
 ## Verificación
 
 Compilación y lint. Navegador real a 1440 y 390 px en las siete rutas, con y sin

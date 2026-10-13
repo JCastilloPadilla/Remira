@@ -25,7 +25,7 @@ export function IllustratedFooter({ topHref, projectHref = "/#acerca" }: { topHr
       </div>
       <div className="page-width landing-footer-bottom">
         <p>Una segunda mirada a tus mensajes</p>
-        <a href={topHref}>Volver al inicio ↑</a>
+        <a href="#">Volver al inicio ↑</a>
       </div>
       <div className="landing-footer-scene">
         <section className="landing-final-cta" aria-labelledby="footer-try-title">
