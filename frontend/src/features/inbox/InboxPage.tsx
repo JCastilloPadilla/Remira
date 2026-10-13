@@ -1,11 +1,9 @@
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
+import { SiteHeader } from "@/components/SiteHeader";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
-  Menu,
   LoaderCircle,
   Mail,
   ScanLine,
@@ -33,14 +31,6 @@ import {
   type AnalysisState,
 } from "@/features/analysis/demo";
 import "./inbox.css";
-
-const navigation = [
-  { to: "/", title: "Inicio" },
-  { to: "/bandeja", title: "Bandeja" },
-  { to: "/historial", title: "Historial" },
-  { to: "/cuenta", title: "Cuenta" },
-  { to: "/como-funciona", title: "Ayuda" },
-];
 
 const messages = examples.map((example, index) => ({
   ...example,
@@ -135,32 +125,7 @@ export function InboxPage() {
       <a href="#inbox-main" className="skip-link">
         Ir al contenido
       </a>
-      <header className="inbox-header">
-        <div className="page-width inbox-nav">
-          <Link to="/" className="inbox-brand" aria-label="Remira, inicio">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <nav className="inbox-desktop-nav" aria-label="Navegación principal">
-            {navigation.map(({ to, title }) => (
-              <Link key={to} to={to} aria-current={to === "/bandeja" ? "page" : undefined}>{title}</Link>
-            ))}
-          </nav>
-          <div className="inbox-nav-actions">
-            <Button variant="outline" render={<Link to="/analizar" />}>
-              Analizar <ArrowRight size={16} />
-            </Button>
-            <details className="inbox-mobile-nav">
-              <summary aria-label="Abrir navegación"><Menu size={22} /></summary>
-              <nav aria-label="Navegación móvil">
-                {navigation.map(({ to, title }) => (
-                  <Link key={to} to={to} aria-current={to === "/bandeja" ? "page" : undefined}>{title}</Link>
-                ))}
-              </nav>
-            </details>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
       <main id="inbox-main" className="inbox-main">
         <CorrespondenceBackdrop />
         <div className="page-width inbox-content">

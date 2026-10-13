@@ -1,0 +1,43 @@
+.remira-header { position:relative; z-index:10; color:#132f50; background:transparent; }
+.remira-header-inner { display:flex; align-items:center; justify-content:center; gap:36px; min-height:88px; }
+.remira-header-brand { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.remira-header-brand .brand-mark { width:34px; height:34px; border-radius:0; background:transparent; }
+.remira-header-brand .remira-wordmark { font-size:32px; }
+.remira-desktop-nav { display:flex; align-items:center; gap:24px; font-size:12px; }
+.remira-desktop-nav a { position:relative; display:inline-flex; align-items:center; min-height:44px; white-space:nowrap; transition:color 180ms; }
+.remira-desktop-nav a::after { content:""; position:absolute; inset:auto 0 6px; height:1px; background:#9c7a43; transform:scaleX(0); transform-origin:left; transition:transform 220ms ease; }
+.remira-desktop-nav a:hover, .remira-desktop-nav a:focus-visible { color:#2457c5; }
+.remira-desktop-nav a:hover::after, .remira-desktop-nav a:focus-visible::after, .remira-desktop-nav a[aria-current="page"]::after { transform:scaleX(1); }
+.remira-desktop-nav a[aria-current="page"] { color:#2457c5; font-weight:600; }
+.remira-desktop-nav .remira-nav-access { padding-inline:18px; border:1px solid #afc0d8; border-radius:999px; margin-left:4px; }
+.remira-desktop-nav .remira-nav-access::after { left:18px; right:18px; }
+.remira-mobile-menu { display:none; position:relative; }
+.remira-mobile-menu summary { display:flex; align-items:center; justify-content:flex-end; gap:12px; min-height:48px; cursor:pointer; list-style:none; }
+.remira-mobile-menu summary::-webkit-details-marker { display:none; }
+.remira-mobile-menu summary:focus-visible { outline:3px solid #2457c5; outline-offset:4px; border-radius:4px; }
+.remira-current-page { display:grid; gap:2px; font-size:12px; font-weight:600; text-align:right; }
+.remira-current-page small { font-size:10px; font-weight:400; color:#506a84; }
+.remira-menu-close { display:none; }
+.remira-mobile-menu[open] .remira-menu-icon { display:none; }
+.remira-mobile-menu[open] .remira-menu-close { display:block; }
+.remira-mobile-menu nav { position:absolute; top:58px; right:0; width:260px; max-width:calc(100vw - 32px); display:grid; padding:10px 16px; border:1px solid #c4d0db; border-radius:4px 4px 16px 4px; background:#f7f8f6; box-shadow:0 12px 30px #132f5014; animation:remira-menu-in 180ms ease-out; }
+.remira-mobile-menu nav a { position:relative; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; font-size:13px; }
+.remira-mobile-menu nav a span { position:relative; padding-block:10px; }
+.remira-mobile-menu nav a span::after { content:""; position:absolute; inset:auto 0 5px; height:1px; background:#9c7a43; transform:scaleX(0); transform-origin:left; transition:transform 220ms ease; }
+.remira-mobile-menu nav a[aria-current="page"] span::after, .remira-mobile-menu nav a:hover span::after, .remira-mobile-menu nav a:focus-visible span::after { transform:scaleX(1); }
+.remira-mobile-menu nav a[aria-current="page"] { color:#2457c5; font-weight:600; }
+.remira-mobile-menu nav a small { color:#506a84; font-size:10px; font-weight:400; }
+.remira-mobile-menu nav a:last-child { border-top:1px solid #c7d4dc; margin-top:4px; padding-top:4px; }
+@keyframes remira-menu-in { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
+@media (max-width:1100px) {
+  .remira-header-inner { gap:24px; }
+  .remira-desktop-nav { gap:18px; }
+}
+@media (max-width:959px) {
+  .remira-header-inner { justify-content:space-between; gap:12px; }
+  .remira-desktop-nav { display:none; }
+  .remira-mobile-menu { display:block; }
+  .remira-header-brand { gap:8px; }
+  .remira-header-brand .brand-mark { width:28px; height:30px; }
+  .remira-header-brand .remira-wordmark { font-size:28px; }
+}

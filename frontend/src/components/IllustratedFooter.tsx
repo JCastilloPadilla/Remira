@@ -19,7 +19,7 @@ export function IllustratedFooter({ topHref, projectHref = "/#acerca" }: { topHr
         <nav aria-label="Navegación del pie de página">
           {onAnalyzer ? <a href={topHref}>Analizador</a> : <Link to="/analizar">Analizador</Link>}
           {projectHref.startsWith("#") ? <a href={projectHref}>El proyecto</a> : <Link to={projectHref}>El proyecto</Link>}
-          {onHelp ? <a href={topHref}>Ayuda</a> : <Link to="/como-funciona">Ayuda</Link>}
+          {onHelp ? <a href={topHref}>Cómo funciona</a> : <Link to="/como-funciona">Cómo funciona</Link>}
           <a href="https://github.com/JCastilloPadilla/email-threat-detector" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>
         </nav>
       </div>

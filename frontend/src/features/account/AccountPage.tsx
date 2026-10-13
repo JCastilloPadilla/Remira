@@ -1,10 +1,8 @@
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
+import { SiteHeader } from "@/components/SiteHeader";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Menu,
   Link2,
   Mail,
   ShieldCheck,
@@ -38,14 +36,6 @@ import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdro
 import FadeContent from "@/components/react-bits/FadeContent";
 import "./account.css";
 
-const navigation = [
-  { to: "/", title: "Inicio" },
-  { to: "/bandeja", title: "Bandeja" },
-  { to: "/historial", title: "Historial" },
-  { to: "/cuenta", title: "Cuenta" },
-  { to: "/como-funciona", title: "Ayuda" },
-];
-
 export function AccountPage() {
   const [connectedExample, setConnectedExample] = useState(false);
   const [notice, setNotice] = useState("");
@@ -60,38 +50,7 @@ export function AccountPage() {
       <a href="#account-main" className="skip-link">
         Ir al contenido
       </a>
-      <header className="account-header">
-        <div className="page-width account-nav">
-          <Link to="/" className="account-brand" aria-label="Remira, inicio">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <nav className="account-desktop-nav" aria-label="Navegación principal">
-            {navigation.map(({ to, title }) => (
-              <Link key={to} to={to} aria-current={to === "/cuenta" ? "page" : undefined}>
-                {title}
-              </Link>
-            ))}
-          </nav>
-          <div className="account-nav-actions">
-            <Button variant="outline" render={<Link to="/analizar" />}>
-              Analizar <ArrowRight size={16} />
-            </Button>
-            <details className="account-mobile-nav">
-              <summary aria-label="Abrir navegación">
-                <Menu size={22} />
-              </summary>
-              <nav aria-label="Navegación móvil">
-                {navigation.map(({ to, title }) => (
-                  <Link key={to} to={to} aria-current={to === "/cuenta" ? "page" : undefined}>
-                    {title}
-                  </Link>
-                ))}
-              </nav>
-            </details>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
       <main id="account-main" className="account-main">
         <CorrespondenceBackdrop />
         <div className="page-width account-content">

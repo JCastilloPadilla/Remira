@@ -1,14 +1,12 @@
+import { SiteHeader } from "@/components/SiteHeader";
 import SplitText from "@/components/react-bits/SplitText";
 import { IllustratedFooter } from "@/components/IllustratedFooter";
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
   CircleHelp,
-  Menu,
   ShieldAlert,
   ShieldCheck,
 } from "lucide-react";
@@ -16,37 +14,26 @@ import { Button } from "@/components/ui/button";
 import { HelpBackdrop } from "./HelpBackdrop";
 import "./help.css";
 
-const navigation = [
-  { to: "/", title: "Inicio" },
-  { to: "/bandeja", title: "Bandeja" },
-  { to: "/historial", title: "Historial" },
-  { to: "/cuenta", title: "Cuenta" },
-];
 const questions = [
   {
     question: "¿Necesito iniciar sesión para probar el analizador?",
-    answer:
-      "No. Puedes abrir el analizador y cargar los ejemplos sin cuenta. En la demostración no se realiza una autenticación real con Google.",
+    answer: "No. Puedes abrir el analizador y cargar los ejemplos sin cuenta. En la demostración no se realiza una autenticación real con Google.",
   },
   {
     question: "¿Por qué no obtengo un resultado al pegar mi propio correo?",
-    answer:
-      "La demostración ofrece resultados preparados para dos ejemplos ficticios. Los mensajes propios no se envían al modelo y no reciben una clasificación.",
+    answer: "La demostración ofrece resultados preparados para dos ejemplos ficticios. Los mensajes propios no se envían al modelo y no reciben una clasificación.",
   },
   {
     question: "¿Se guardan mis análisis en el historial?",
-    answer:
-      "El historial de la demostración muestra registros ficticios. No guarda los mensajes que introduces ni recibe los análisis del formulario o de la bandeja.",
+    answer: "El historial de la demostración muestra registros ficticios. No guarda los mensajes que introduces ni recibe los análisis del formulario o de la bandeja.",
   },
   {
     question: "¿Conectar Gmail o desconectar el ejemplo modifica mi cuenta?",
-    answer:
-      "No. La conexión de ejemplo es ficticia. No se solicitan ni se revocan permisos reales de Google, y Remira no accede a tus mensajes de Gmail en esta demostración.",
+    answer: "No. La conexión de ejemplo es ficticia. No se solicitan ni se revocan permisos reales de Google, y Remira no accede a tus mensajes de Gmail en esta demostración.",
   },
   {
     question: "¿Qué ocurre si edito el mensaje o recargo la página?",
-    answer:
-      "Editar el correo invalida su resultado anterior. Recargar o abandonar el analizador reinicia el borrador. Abrir y cerrar su ayuda breve conserva lo escrito; el enlace a esta página abre una pestaña nueva para mantener ese borrador.",
+    answer: "Editar el correo invalida su resultado anterior. Recargar o abandonar el analizador reinicia el borrador. Abrir y cerrar su ayuda breve conserva lo escrito; el enlace a esta página abre una pestaña nueva para mantener ese borrador.",
   },
 ];
 
@@ -72,30 +59,7 @@ export function HelpPage() {
       <a href="#help-main" className="skip-link">
         Ir al contenido
       </a>
-      <header className="site-header">
-        <div className="page-width help-nav">
-          <Link
-            to="/"
-            className="help-brand"
-            aria-label="Remira, inicio"
-          >
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <nav aria-label="Navegación principal" className="help-desktop-nav">
-            {navigation.map(({ to, title }) => <Link key={to} to={to}>{title}</Link>)}
-          </nav>
-          <div className="help-nav-actions">
-            <details className="help-mobile-menu">
-              <summary aria-label="Menú de navegación"><Menu size={21} /></summary>
-              <nav aria-label="Navegación móvil">
-                {navigation.map(({ to, title }) => <Link key={to} to={to}>{title}</Link>)}
-              </nav>
-            </details>
-            <Button render={<Link to="/analizar" />} className="help-nav-cta">Analizar <ArrowRight size={15} /></Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
       <main id="help-main" className="help-main">
         <section className="help-hero" aria-labelledby="help-title">
           <div className="page-width help-heading">

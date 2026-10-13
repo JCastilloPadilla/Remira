@@ -1,22 +1,6 @@
 .account-page { min-height:100dvh; color:#132f50; background:#f7f8f6; }
-.account-nav { display:flex; align-items:center; justify-content:center; gap:36px; min-height:100px; }
-.account-brand { display:flex; align-items:center; gap:12px; }
-.account-brand .brand-mark { width:34px; height:38px; background:transparent; border-radius:0; }
-.account-desktop-nav { display:flex; gap:24px; font-size:12px; }
-.account-desktop-nav a { padding-block:14px; transition:color 180ms; }
-.account-nav [aria-current] { color:#2457c5; text-decoration:underline; text-underline-offset:7px; }
-.account-nav a:hover { color:#2457c5; }
-.account-nav-actions { display:flex; align-items:center; gap:8px; }
 .account-page button, .account-page [data-slot="button"], .account-dialog button, .account-dialog [data-slot="button"] { min-height:44px; border-radius:999px; translate:none; transition:background-color 180ms, color 180ms, border-color 180ms; }
 .account-page .bg-primary:hover, .account-dialog .bg-primary:hover { background:#194aaf; }
-.account-nav-actions > a { border-color:#afc0d8; background:transparent; padding-inline:20px; font-size:12px; }
-.account-mobile-nav { display:none; position:relative; }
-.account-mobile-nav summary { display:grid; place-items:center; width:44px; height:44px; cursor:pointer; list-style:none; }
-.account-mobile-nav summary::-webkit-details-marker { display:none; }
-.account-mobile-nav summary:focus-visible { outline:3px solid #2457c5; outline-offset:3px; }
-.account-mobile-nav nav { position:absolute; right:0; top:52px; z-index:5; display:grid; width:180px; padding:10px; background:#f7f8f6; border:1px solid #c4d0db; border-radius:12px; box-shadow:0 12px 30px #132f5014; }
-.account-mobile-nav nav a { padding:14px; font-size:14px; border-radius:6px; }
-.account-mobile-nav nav a:hover { background:#e4ecf2; }
 .account-main { position:relative; isolation:isolate; padding:40px 0 56px; background:linear-gradient(180deg,#f7f8f6 0%,#f2f5f5 40%,#e5edf2 100%); }
 .account-main > .correspondence-backdrop { opacity:.45; }
 .account-content { position:relative; z-index:1; }
@@ -72,8 +56,6 @@
 .account-dialog [data-slot="dialog-title"], .account-dialog [data-slot="alert-dialog-title"] { font:400 24px/1.3 Georgia,serif; }
 .account-footer-transition { height:150px; background:linear-gradient(180deg,#e5edf2 0%,#d9e4ed 12%,#c6d6e4 24%,#afc4d7 36%,#90acc6 48%,#6c8aaa 60%,#476a8e 72%,#2a4e73 84%,#173a60 94%,#0f2f56 100%); }
 @media (max-width:1023px) {
-  .account-nav { gap:24px; }
-  .account-desktop-nav { gap:18px; }
   .account-layout { gap:32px; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); }
   .account-section-heading { display:grid; grid-template-columns:42px minmax(0,1fr); padding-inline:24px; }
   .account-section-heading > [data-slot="badge"] { grid-column:2; justify-self:start; }
@@ -81,13 +63,6 @@
   .account-explanation h2 { font-size:29px; }
 }
 @media (max-width:767px) {
-  .account-nav { min-height:86px; justify-content:space-between; gap:12px; }
-  .account-desktop-nav { display:none; }
-  .account-mobile-nav { display:block; }
-  .account-brand { gap:8px; }
-  .account-brand .brand-mark { width:26px; height:30px; }
-  .account-brand .remira-wordmark { font-size:26px; }
-  .account-nav-actions > a { padding-inline:14px; font-size:11px; }
   .account-main { padding-top:20px; padding-bottom:32px; }
   .account-heading { padding-inline:4px; }
   .account-heading h1 { font-size:clamp(36px,8vw,48px); }

@@ -1,9 +1,4 @@
 .login-page { min-height:100dvh; background:#f7f8f6; color:#132f50; }
-.login-nav { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:100px; }
-.login-brand { display:flex; align-items:center; gap:12px; }
-.login-brand .brand-mark { width:34px; height:38px; background:transparent; border-radius:0; }
-.login-back { display:inline-flex; align-items:center; gap:8px; min-height:44px; font-size:12px; color:#506a84; }
-.login-back:hover { color:#2457c5; }
 .login-main { position:relative; isolation:isolate; padding:40px 0 56px; background:linear-gradient(180deg,#f7f8f6 0%,#f2f5f5 40%,#e5edf2 100%); }
 .login-main > .correspondence-backdrop { opacity:.45; }
 .login-layout { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:96px; align-items:center; }
@@ -46,11 +41,6 @@
   .login-access h2 { font-size:32px; }
 }
 @media (max-width:767px) {
-  .login-nav { min-height:86px; gap:16px; }
-  .login-brand { gap:8px; }
-  .login-brand .brand-mark { width:26px; height:30px; }
-  .login-brand .remira-wordmark { font-size:26px; }
-  .login-back { font-size:11px; gap:5px; }
   .login-main { padding-top:20px; padding-bottom:32px; }
   .login-layout { grid-template-columns:minmax(0,1fr); gap:24px; max-width:540px; }
   .login-intro { padding-inline:4px; }

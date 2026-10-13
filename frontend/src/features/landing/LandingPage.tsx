@@ -1,3 +1,4 @@
+import { SiteHeader } from "@/components/SiteHeader";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -6,14 +7,11 @@ import {
   ChevronDown,
   FileText,
   Mail,
-  Menu,
   ScanLine,
   ShieldAlert,
   ShieldCheck,
 } from "lucide-react";
 import { IllustratedFooter } from "@/components/IllustratedFooter";
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
 import { Button } from "@/components/ui/button";
 import AnimatedContent from "@/components/react-bits/AnimatedContent";
 import SplitText from "@/components/react-bits/SplitText";
@@ -64,39 +62,7 @@ export function LandingPage() {
         </defs>
       </svg>
       <a href="#landing-main" className="skip-link">Ir al contenido</a>
-      <header className="site-header">
-        <div className="page-width landing-nav">
-          <Link to="/" className="landing-brand" aria-label="Remira, inicio">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <nav aria-label="Navegación principal" className="landing-nav-links">
-            <a href="#como-funciona">Cómo funciona</a>
-            <a href="#acerca">El proyecto</a>
-            <Link to="/login" className="landing-login-link">Iniciar sesión</Link>
-            <Button render={<Link to="/analizar" />} className="landing-nav-cta">
-              Abrir analizador <ArrowUpRight size={15} />
-            </Button>
-          </nav>
-          <div className="landing-mobile-actions">
-            <details className="landing-mobile-menu">
-              <summary aria-label="Menú de navegación"><Menu size={21} /></summary>
-              <nav aria-label="Navegación móvil" onClick={(event) => {
-                if ((event.target as HTMLElement).closest("a")) {
-                  event.currentTarget.closest("details")?.removeAttribute("open");
-                }
-              }}>
-                <a href="#como-funciona">Cómo funciona</a>
-                <a href="#acerca">El proyecto</a>
-                <Link to="/login">Iniciar sesión</Link>
-              </nav>
-            </details>
-            <Button render={<Link to="/analizar" />} className="landing-nav-cta">
-              Analizar <ArrowUpRight size={15} />
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="landing-main">
         <section className="landing-hero" aria-labelledby="landing-title">

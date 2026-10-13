@@ -50,6 +50,9 @@ El desplazamiento entre secciones se unifica para las siete páginas. Véase
 [Navegación suave](navegacion-suave.md), con revisión de footers, anclas y
 comportamiento móvil, respetando la preferencia de movimiento reducido.
 
+Las siete páginas comparten ahora un único encabezado y los mismos destinos,
+con indicador de página actual. Véase [Navegación compartida](navegacion-compartida.md).
+
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
 ## Alternativas consideradas

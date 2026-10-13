@@ -1,5 +1,4 @@
 .help-page { --help-paper:#f7f8f6; --help-ink:#132c4d; --help-muted:#53647a; --help-blue:#2457c5; min-height:100dvh; color:var(--help-ink); background:linear-gradient(180deg,var(--help-paper) 0%,var(--help-paper) 18%,#e9edf1 55%,#d6e3ee 85%,#d6e3ee 100%); }
-.help-page .site-header { background:transparent; border-bottom:0; }
 .help-page { position: relative; isolation: isolate; overflow-anchor:none; }
 .help-color-filters { position:absolute; pointer-events:none; }
 .help-page > header, .help-page > main, .help-footer-transition, .help-page > .landing-footer { position: relative; z-index: 1; }
@@ -21,16 +20,6 @@
 .help-chapter-illustration { float: right; width: 165px; height: auto; margin: 0 0 20px 28px; }
 .help-article section { display: flow-root; }
 .help-question-envelope { float: right; width: 72px; height: auto; margin: 0 4px 16px 20px; transform: rotate(-12deg); }
-.help-nav .brand-mark { background:transparent; width:34px; height:34px; }
-.help-nav { position:relative; display:flex; align-items:center; justify-content:center; gap:44px; min-height:88px; }
-.help-brand { display:flex; align-items:center; gap:10px; }
-.help-brand .remira-wordmark { font-size:32px; }
-.help-desktop-nav { display:flex; align-items:center; gap:24px; font-size:12px; }
-.help-desktop-nav a { padding-block:12px; }
-.help-nav-actions { display:flex; align-items:center; gap:8px; }
-.help-nav-cta { border:1px solid #2457c560; border-radius:999px; background:transparent; color:var(--help-blue); min-height:44px; padding-inline:20px; font-size:12px; }
-.help-nav-cta:hover { background:#2457c50a; }
-.help-mobile-menu { display:none; }
 .help-main { padding:0; }
 .help-hero { position:relative; display:grid; grid-template-columns:minmax(0,1fr); align-items:start; height:calc(100svh - 88px); background:var(--help-paper); }
 .help-heading { grid-area:1 / 1; position:relative; z-index:1; text-align:center; padding-top:clamp(24px,4svh,42px); }
@@ -46,7 +35,6 @@
 .help-demo-note { display:flex; align-items:flex-start; gap:12px; padding-block:22px; margin-block:40px 64px; border-block:1px solid #132c4d24; font-size:12px; line-height:1.9; color:var(--help-muted); }
 .help-demo-note svg { flex-shrink:0; margin-top:2px; color:var(--help-blue); }
 .help-demo-note strong { color:var(--help-ink); font-weight:600; }
-.help-desktop-nav a:hover { color: var(--help-blue); }
 .help-article { width: min(100%, 760px); margin-inline: auto; min-width: 0; }
 .help-article section { padding-bottom:52px; margin-bottom:52px; border-bottom:1px solid #132c4d24; scroll-margin-top:28px; }
 .help-article section:last-child { margin-bottom:0; border-bottom:0; }
@@ -86,10 +74,7 @@
   .help-faq details[open]::details-content { height:auto; opacity:1; }
 }
 .help-footer-transition { height:clamp(100px,12vw,170px); background:linear-gradient(#d6e3ee,#c2d2e1 15%,#9cb2c9 35%,#6582a0 55%,#355676 75%,#19395d 90%,#0f2f56); }
-@media (max-width:1023px) {
-  .help-nav { gap:28px; }
-  .help-desktop-nav { gap:18px; }
-}
+
 @media (max-width:767px) {
   .help-background-garden { top: 46%; right: -65px; width: 235px; opacity: 0.12; }
   .help-background-envelope { width: 110px; opacity: 0.12; }
@@ -100,19 +85,6 @@
   .help-flight img { opacity: 0.24; width: 80px; }
   .help-chapter-illustration { float: none; width: 135px; margin: 0 0 20px auto; }
   .help-question-envelope { width: 55px; }
-  .help-nav { justify-content:space-between; min-height:72px; }
-  .help-desktop-nav { display:none; }
-  .help-mobile-menu { display:block; }
-  .help-mobile-menu summary { display:grid; place-items:center; width:44px; height:44px; cursor:pointer; list-style:none; border-radius:50%; }
-  .help-mobile-menu summary::-webkit-details-marker { display:none; }
-  .help-mobile-menu[open] summary { background:#132c4d0b; }
-  .help-mobile-menu summary:focus-visible { outline:2px solid var(--help-blue); }
-  .help-mobile-menu nav { position:absolute; right:0; top:calc(100% - 4px); z-index:2; display:grid; min-width:180px; padding:8px; background:var(--help-paper); border:1px solid #132c4d20; border-radius:12px; box-shadow:0 10px 24px #132c4d14; }
-  .help-mobile-menu nav a { display:flex; align-items:center; padding:10px 14px; min-height:44px; font-size:13px; }
-  .help-nav-cta { padding-inline:14px; }
-  .help-brand { gap:7px; }
-  .help-brand .remira-wordmark { font-size:28px; }
-  .help-nav .brand-mark { width:29px; height:29px; }
   .help-hero { height:calc(100svh - 72px); }
   .help-hero-illustration picture { max-height:calc(100svh - 112px); }
   .help-heading h1 { font-size:clamp(36px,8vw,48px); letter-spacing:-1.4px; }
@@ -126,10 +98,7 @@
   .help-classification { gap:10px; }
   .help-classification h3 { padding:8px 10px; font-size:12px; }
 }
-@media (max-width:639px) {
-  .help-page .site-header .help-nav { flex-wrap:nowrap; padding-block:10px; gap:12px; }
-  .help-page .site-header .help-nav-actions { width:auto; }
-}
+
 @media (max-width:767px) and (orientation:portrait) {
   .help-hero-illustration img { filter:url("#help-paper-mobile"); }
 }

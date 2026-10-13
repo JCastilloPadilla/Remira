@@ -4,22 +4,7 @@
   color: var(--analysis-ink);
   background: var(--analysis-paper);
 }
-.analysis-header-inner { display: flex; align-items: center; justify-content: center; gap: 42px; min-height: 100px; }
-.analysis-brand { display: flex; align-items: center; gap: 12px; }
-.analysis-brand .brand-mark { width: 34px; height: 38px; background: transparent; border-radius: 0; }
-.analysis-desktop-nav { display: flex; gap: 28px; font-size: 12px; }
-.analysis-desktop-nav a { padding-block: 14px; transition: color 180ms; }
-.analysis-desktop-nav a:hover { color: #2457c5; }
-.analysis-header-actions { display: flex; align-items: center; gap: 12px; }
 .analysis-page button, .analysis-dialog button { min-height: 44px; border-radius: 999px; translate: none; transition: background-color 180ms, border-color 180ms, color 180ms; }
-.analysis-header-actions button { border: 1px solid #afc0d8; padding-inline: 18px; font-weight: 500; }
-.analysis-mobile-nav { display: none; position: relative; }
-.analysis-mobile-nav summary { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; list-style: none; }
-.analysis-mobile-nav summary::-webkit-details-marker { display: none; }
-.analysis-mobile-nav summary:focus-visible { outline: 3px solid #2457c5; outline-offset: 3px; }
-.analysis-mobile-nav nav { position: absolute; right: 0; top: 52px; z-index: 10; display: grid; width: 180px; padding: 10px; background: var(--analysis-paper); border: 1px solid #c4d0db; border-radius: 12px; box-shadow: 0 12px 30px #132f5014; }
-.analysis-mobile-nav nav a { padding: 14px; font-size: 14px; border-radius: 6px; }
-.analysis-mobile-nav nav a:hover { background: #e4ecf2; }
 .analysis-stage { position: relative; isolation: isolate; padding: 28px 0 56px; background: linear-gradient(180deg, #f7f8f6 0%, #f2f5f5 40%, #e5edf2 100%); }
 .analysis-stage > .correspondence-backdrop { opacity: .5; }
 .analysis-content { position: relative; z-index: 1; }
@@ -76,22 +61,12 @@
 .analysis-example-option:hover { background: #e9f0f4; border-color: #2457c5; }
 .analysis-footer-transition { height: 150px; background: linear-gradient(180deg, #e5edf2 0%, #d9e4ed 12%, #c6d6e4 24%, #afc4d7 36%, #90acc6 48%, #6c8aaa 60%, #476a8e 72%, #2a4e73 84%, #173a60 94%, #0f2f56 100%); }
 @media (max-width: 1023px) {
-  .analysis-header-inner { gap: 28px; }
   .analysis-workspace { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .analysis-reading { padding: 0 24px; }
   .analysis-empty-result { min-height: 340px; }
   .analysis-intro-art { width: 150px; }
 }
 @media (max-width: 767px) {
-  .analysis-header-inner { min-height: 86px; justify-content: space-between; gap: 12px; }
-  .analysis-desktop-nav { display: none; }
-  .analysis-mobile-nav { display: block; }
-  .analysis-header-actions { gap: 4px; }
-  .analysis-header-actions button { padding-inline: 12px; font-size: 11px; }
-  .analysis-header-actions button svg { display: none; }
-  .analysis-brand { gap: 8px; }
-  .analysis-brand .remira-wordmark { font-size: 26px; }
-  .analysis-brand .brand-mark { width: 26px; height: 30px; }
   .analysis-stage { padding-top: 20px; padding-bottom: 32px; }
   .analysis-intro { padding: 0 4px 20px; }
   .analysis-intro h1 { font-size: clamp(36px, 8vw, 48px); max-width: 490px; }

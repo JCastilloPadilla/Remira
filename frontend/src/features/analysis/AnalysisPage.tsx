@@ -1,8 +1,7 @@
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
+import { SiteHeader } from "@/components/SiteHeader";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, CircleHelp, LockKeyhole, Mail } from "lucide-react";
+import { CircleHelp, LockKeyhole, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -35,13 +34,6 @@ import SplitText from "@/components/react-bits/SplitText";
 import { IllustratedFooter } from "@/components/IllustratedFooter";
 import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
 import "./analysis.css";
-
-const navigation = [
-  { to: "/", title: "Inicio" },
-  { to: "/bandeja", title: "Bandeja" },
-  { to: "/historial", title: "Historial" },
-  { to: "/cuenta", title: "Cuenta" },
-];
 
 const emptyDraft: EmailDraft = { subject: "", body: "" };
 
@@ -128,22 +120,32 @@ function AnalysisPage() {
       <a className="skip-link" href="#main">
         Ir al contenido
       </a>
-      <header className="analysis-header">
-        <div className="page-width analysis-header-inner">
-          <Link to="/" className="analysis-brand" aria-label="Remira, inicio">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <nav className="analysis-desktop-nav" aria-label="Navegación principal">
-            {navigation.map((item) => (
-              <Link key={item.to} to={item.to}>{item.title}</Link>
-            ))}
-          </nav>
-          <div className="analysis-header-actions">
+      <SiteHeader />
+
+      <main id="main" className="analysis-stage">
+        <CorrespondenceBackdrop />
+        <div className="page-width analysis-content">
+          <section className="analysis-intro" aria-labelledby="page-title">
+            <div>
+              <p className="analysis-eyebrow">La mesa de revisión</p>
+              <h1 id="page-title">
+                <SplitText
+                  text="Dale otra mirada a ese correo."
+                  tag="span"
+                  textAlign="left"
+                  splitType="words"
+                  delay={45}
+                  duration={0.7}
+                  rootMargin="0px"
+                />
+              </h1>
+              <p className="analysis-intro-description">
+                Lee entre líneas, revisa las señales y decide con más contexto.
+              </p>
             <Dialog>
               <DialogTrigger render={<Button variant="ghost" size="sm" />}>
                 <CircleHelp size={16} />
-                <span>Cómo funciona</span>
+                <span>Ayuda rápida</span>
               </DialogTrigger>
               <DialogContent className="analysis-dialog">
                 <DialogHeader>
@@ -185,40 +187,6 @@ function AnalysisPage() {
                 </div>
               </DialogContent>
             </Dialog>
-            <details className="analysis-mobile-nav">
-              <summary aria-label="Abrir navegación">
-                <Menu size={22} />
-              </summary>
-              <nav aria-label="Navegación móvil">
-                {navigation.map((item) => (
-                  <Link key={item.to} to={item.to}>{item.title}</Link>
-                ))}
-              </nav>
-            </details>
-          </div>
-        </div>
-      </header>
-
-      <main id="main" className="analysis-stage">
-        <CorrespondenceBackdrop />
-        <div className="page-width analysis-content">
-          <section className="analysis-intro" aria-labelledby="page-title">
-            <div>
-              <p className="analysis-eyebrow">La mesa de revisión</p>
-              <h1 id="page-title">
-                <SplitText
-                  text="Dale otra mirada a ese correo."
-                  tag="span"
-                  textAlign="left"
-                  splitType="words"
-                  delay={45}
-                  duration={0.7}
-                  rootMargin="0px"
-                />
-              </h1>
-              <p className="analysis-intro-description">
-                Lee entre líneas, revisa las señales y decide con más contexto.
-              </p>
             </div>
             <img
               src="/illustrations/guide-private-letter-v1.webp"

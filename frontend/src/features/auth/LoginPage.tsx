@@ -1,8 +1,7 @@
+import { SiteHeader } from "@/components/SiteHeader";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, CircleHelp, ShieldCheck } from "lucide-react";
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
+import { ArrowRight, CircleHelp, ShieldCheck } from "lucide-react";
 import { IllustratedFooter } from "@/components/IllustratedFooter";
 import SplitText from "@/components/react-bits/SplitText";
 import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
@@ -20,17 +19,7 @@ export function LoginPage() {
   return (
     <div className="login-page">
       <a href="#login-main" className="skip-link">Ir al contenido</a>
-      <header className="login-header">
-        <div className="page-width login-nav">
-          <Link to="/" className="login-brand" aria-label="Remira, inicio">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <Link to="/" className="login-back">
-            <ArrowLeft size={15} /> Volver al inicio
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="login-main" className="login-main">
         <CorrespondenceBackdrop />
