@@ -40,6 +40,9 @@
   --primary: #2457c5;
   color-scheme: light;
 }
+html {
+  scroll-behavior: smooth;
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;

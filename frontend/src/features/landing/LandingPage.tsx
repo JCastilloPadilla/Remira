@@ -44,12 +44,10 @@ const repositoryUrl = "https://github.com/JCastilloPadilla/email-threat-detector
 export function LandingPage() {
   useEffect(() => {
     document.title = "Remira · Una segunda mirada a tus mensajes";
-    document.documentElement.classList.add("landing-scroll");
     const section = ["#acerca", "#como-funciona"].includes(window.location.hash)
       ? document.getElementById(window.location.hash.slice(1)) : null;
     if (section) section.scrollIntoView({ behavior: "instant" });
     else window.scrollTo({ top: 0, behavior: "instant" });
-    return () => document.documentElement.classList.remove("landing-scroll");
   }, []);
 
   return (

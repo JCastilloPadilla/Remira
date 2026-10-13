@@ -443,14 +443,11 @@
   .landing-hero-art { margin-top: -200px; }
   .landing-hero-note { display: none; }
 }
-html.landing-scroll { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
-  html.landing-scroll { scroll-behavior: auto; }
   .landing-tech-effect { display: none; }
   .landing-tech-fallback { position: static; display: block; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal; padding: 45px 24px; text-align: center; font-size: clamp(32px, 6vw, 64px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .landing-page *, .landing-page *::before, .landing-page *::after { scroll-behavior: auto; }
   .landing-page [data-slot="button"], .landing-page [data-slot="button"] svg { transition: none; }
   .landing-page [data-slot="button"]:hover svg { transform: none; }
 }

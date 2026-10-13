@@ -86,7 +86,6 @@
   .help-faq details[open]::details-content { height:auto; opacity:1; }
 }
 .help-footer-transition { height:clamp(100px,12vw,170px); background:linear-gradient(#d6e3ee,#c2d2e1 15%,#9cb2c9 35%,#6582a0 55%,#355676 75%,#19395d 90%,#0f2f56); }
-html.help-scroll { scroll-behavior:smooth; }
 @media (max-width:1023px) {
   .help-nav { gap:28px; }
   .help-desktop-nav { gap:18px; }
@@ -151,6 +150,5 @@ html.help-scroll { scroll-behavior:smooth; }
   .help-hero-illustration picture { max-height:calc(100svh - 88px); }
 }
 @media (prefers-reduced-motion:reduce) {
-  html.help-scroll { scroll-behavior:auto; }
   .help-page [data-slot="button"],.help-faq summary svg,.help-faq details::details-content { transition:none; }
 }

@@ -53,9 +53,7 @@ const questions = [
 export function HelpPage() {
   useEffect(() => {
     document.title = "Ayuda y cómo funciona · Remira";
-    document.documentElement.classList.add("help-scroll");
     window.scrollTo({ top: 0, behavior: "instant" });
-    return () => document.documentElement.classList.remove("help-scroll");
   }, []);
 
   return (

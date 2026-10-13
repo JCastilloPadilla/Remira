@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { BrandMark } from "./BrandMark";
 import { BrandName } from "./BrandName";
@@ -6,6 +6,9 @@ import { Button } from "./ui/button";
 import "./illustrated-footer.css";
 
 export function IllustratedFooter({ topHref, projectHref = "/#acerca" }: { topHref: string; projectHref?: string }) {
+  const { pathname } = useLocation();
+  const onAnalyzer = pathname === "/analizar";
+  const onHelp = pathname === "/como-funciona";
   return (
     <footer className="landing-footer">
       <div className="page-width landing-footer-links">
@@ -14,9 +17,9 @@ export function IllustratedFooter({ topHref, projectHref = "/#acerca" }: { topHr
           <p><BrandName /><span>Hecho para mirar con más atención.</span></p>
         </div>
         <nav aria-label="Navegación del pie de página">
-          <Link to="/analizar">Analizador</Link>
+          {onAnalyzer ? <a href={topHref}>Analizador</a> : <Link to="/analizar">Analizador</Link>}
           {projectHref.startsWith("#") ? <a href={projectHref}>El proyecto</a> : <Link to={projectHref}>El proyecto</Link>}
-          <Link to="/como-funciona">Ayuda</Link>
+          {onHelp ? <a href={topHref}>Ayuda</a> : <Link to="/como-funciona">Ayuda</Link>}
           <a href="https://github.com/JCastilloPadilla/email-threat-detector" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a>
         </nav>
       </div>
@@ -29,7 +32,7 @@ export function IllustratedFooter({ topHref, projectHref = "/#acerca" }: { topHr
           <div className="page-width landing-final-copy">
             <h2 id="footer-try-title">Dale una segunda mirada.</h2>
             <p>Empieza con un correo de ejemplo y conoce el recorrido.</p>
-            <Button size="lg" render={<Link to="/analizar" />} className="landing-final-button">
+            <Button size="lg" render={onAnalyzer ? <a href={topHref} /> : <Link to="/analizar" />} className="landing-final-button">
               Probar el analizador <ArrowRight size={17} />
             </Button>
           </div>
