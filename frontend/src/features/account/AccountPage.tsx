@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  CircleHelp,
+  Menu,
   Link2,
   Mail,
   ShieldCheck,
@@ -32,8 +32,19 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import SplitText from "@/components/react-bits/SplitText";
+import { IllustratedFooter } from "@/components/IllustratedFooter";
+import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
 import FadeContent from "@/components/react-bits/FadeContent";
 import "./account.css";
+
+const navigation = [
+  { to: "/", title: "Inicio" },
+  { to: "/bandeja", title: "Bandeja" },
+  { to: "/historial", title: "Historial" },
+  { to: "/cuenta", title: "Cuenta" },
+  { to: "/como-funciona", title: "Ayuda" },
+];
 
 export function AccountPage() {
   const [connectedExample, setConnectedExample] = useState(false);
@@ -49,54 +60,72 @@ export function AccountPage() {
       <a href="#account-main" className="skip-link">
         Ir al contenido
       </a>
-      <header className="site-header">
+      <header className="account-header">
         <div className="page-width account-nav">
-          <Link
-            to="/"
-            className="account-brand"
-            aria-label="Remira, inicio"
-          >
+          <Link to="/" className="account-brand" aria-label="Remira, inicio">
             <BrandMark />
-            <span>
-              <BrandName />
-              <span className="account-brand-caption">
-                Análisis inteligente de mensajes
-              </span>
-            </span>
+            <BrandName />
           </Link>
-          <nav aria-label="Navegación principal">
-            <Link to="/analizar">Analizar correo</Link>
-            <Link to="/bandeja">Bandeja de Gmail</Link>
-            <Link to="/historial">Historial</Link>
-            <Link to="/cuenta" aria-current="page">
-              Cuenta
-            </Link>
-            <Link to="/como-funciona">Ayuda</Link>
+          <nav className="account-desktop-nav" aria-label="Navegación principal">
+            {navigation.map(({ to, title }) => (
+              <Link key={to} to={to} aria-current={to === "/cuenta" ? "page" : undefined}>
+                {title}
+              </Link>
+            ))}
           </nav>
+          <div className="account-nav-actions">
+            <Button variant="outline" render={<Link to="/analizar" />}>
+              Analizar <ArrowRight size={16} />
+            </Button>
+            <details className="account-mobile-nav">
+              <summary aria-label="Abrir navegación">
+                <Menu size={22} />
+              </summary>
+              <nav aria-label="Navegación móvil">
+                {navigation.map(({ to, title }) => (
+                  <Link key={to} to={to} aria-current={to === "/cuenta" ? "page" : undefined}>
+                    {title}
+                  </Link>
+                ))}
+              </nav>
+            </details>
+          </div>
         </div>
       </header>
-      <main id="account-main" className="page-width account-main">
+      <main id="account-main" className="account-main">
+        <CorrespondenceBackdrop />
+        <div className="page-width account-content">
         <div className="account-heading">
-          <Badge variant="outline">Demostración</Badge>
-          <h1>Tu cuenta. Tus conexiones.</h1>
+          <p className="account-eyebrow">Cuenta y conexiones</p>
+          <h1>
+            <SplitText
+              text="Tu correo, con tus reglas."
+              tag="span"
+              textAlign="left"
+              splitType="words"
+              delay={45}
+              duration={0.7}
+              rootMargin="0px"
+            />
+          </h1>
           <p>
-            Un lugar para consultar el acceso al proyecto y la conexión de tu
-            correo.
+            Tu identidad y el acceso a tus mensajes, en un mismo lugar.
+            Cada permiso es una decisión tuya.
           </p>
         </div>
         <div className="account-demo-note">
           <ShieldCheck size={18} />
           <p>
-            <strong>No hay una sesión ni una conexión real.</strong> Esta
-            pantalla muestra el flujo previsto; no solicita permisos ni modifica
-            tu cuenta de Google.
+            <strong>No hay una sesión ni una conexión real.</strong> Puedes
+            explorar los estados de ejemplo sin conceder permisos
+            ni modificar tu cuenta de Google.
           </p>
         </div>
 
         <div className="account-layout">
           <div className="account-settings">
             <section
-              className="account-section"
+              className="account-section account-access"
               aria-labelledby="account-access-title"
             >
               <div className="account-section-heading">
@@ -105,15 +134,15 @@ export function AccountPage() {
                 </span>
                 <div>
                   <h2 id="account-access-title">Acceso a la cuenta</h2>
-                  <p>La identidad con la que entrarás al proyecto.</p>
+                  <p>Tu identidad al entrar en Remira.</p>
                 </div>
                 <Badge variant="outline">Sin sesión</Badge>
               </div>
               <div className="account-access-body">
                 <h3>Continúas como visitante.</h3>
                 <p>
-                  Puedes explorar el análisis manual sin cuenta. El acceso con
-                  Google estará disponible al integrar la autenticación.
+                  Puedes probar los ejemplos del analizador sin cuenta.
+                  El inicio de sesión con Google es una demostración.
                 </p>
                 <Button render={<Link to="/login" />}>
                   Ver inicio de sesión <ArrowRight size={16} />
@@ -122,7 +151,7 @@ export function AccountPage() {
             </section>
 
             <section
-              className="account-section"
+              className="account-section account-gmail"
               aria-labelledby="account-gmail-title"
             >
               <div className="account-section-heading">
@@ -183,13 +212,13 @@ export function AccountPage() {
                           >
                             <Unplug size={15} /> Desconectar ejemplo
                           </AlertDialogTrigger>
-                          <AlertDialogContent>
+                          <AlertDialogContent className="account-dialog">
                             <AlertDialogHeader>
                               <AlertDialogTitle>
                                 ¿Restablecer la conexión de ejemplo?
                               </AlertDialogTitle>
                               <AlertDialogDescription>
-                                La maqueta volverá al estado Sin conectar. No se
+                                La conexión de ejemplo volverá al estado Sin conectar. No se
                                 revocan permisos ni se borra información de una
                                 cuenta real.
                               </AlertDialogDescription>
@@ -215,30 +244,28 @@ export function AccountPage() {
                     <>
                       <h3>Tu correo todavía no está conectado.</h3>
                       <p>
-                        La conexión permitirá consultar mensajes desde la
-                        bandeja cuando integremos Gmail. Iniciar sesión no dará
-                        acceso automático a tus correos.
+                        Iniciar sesión y dar acceso a Gmail son decisiones separadas.
+                        Explora una conexión de ejemplo para conocer el recorrido.
                       </p>
                       <div className="account-actions">
                         <Dialog>
                           <DialogTrigger render={<Button />}>
                             <Link2 size={16} /> Conectar Gmail
                           </DialogTrigger>
-                          <DialogContent>
+                          <DialogContent className="account-dialog">
                             <DialogHeader>
                               <DialogTitle>
-                                La conexión con Gmail está pendiente
+                                Conectar el correo es una decisión tuya
                               </DialogTitle>
                               <DialogDescription>
-                                Esta versión no inicia OAuth ni solicita acceso
+                                Esta demostración no solicita permisos ni accede
                                 a tus correos.
                               </DialogDescription>
                             </DialogHeader>
                             <p className="text-sm leading-7 text-muted-foreground">
-                              En el flujo previsto, primero iniciarás sesión y
-                              después autorizarás la conexión con Gmail. Por
-                              ahora puedes explorar una conexión ficticia desde
-                              esta pantalla.
+                              El inicio de sesión y la autorización de Gmail son pasos
+                              separados. Puedes explorar una conexión ficticia
+                              desde esta pantalla, sin dar acceso a tu cuenta.
                             </p>
                             <Button render={<Link to="/login" />}>
                               Ver inicio de sesión <ArrowRight size={16} />
@@ -271,7 +298,11 @@ export function AccountPage() {
             className="account-explanation"
             aria-labelledby="account-permissions-title"
           >
-            <CircleHelp size={24} strokeWidth={1.5} />
+            <img
+              className="account-permissions-art"
+              src="/illustrations/account-correspondence-v1.webp"
+              width="768" height="512" alt=""
+            />
             <h2 id="account-permissions-title">Dos decisiones distintas.</h2>
             <ol>
               <li>
@@ -279,8 +310,8 @@ export function AccountPage() {
                 <div>
                   <h3>Iniciar sesión</h3>
                   <p>
-                    Identifica tu cuenta para las funciones personales del
-                    proyecto.
+                    Identifica tu cuenta para las funciones personales de
+                    Remira.
                   </p>
                 </div>
               </li>
@@ -299,19 +330,16 @@ export function AccountPage() {
               <ShieldCheck size={19} />
               <p>
                 Los ejemplos viven en memoria del navegador. Recargar o salir
-                reinicia esta pantalla. La autenticación y la gestión de
-                permisos reales siguen pendientes.
+                reinicia esta pantalla. No se guardan datos ni se conceden
+                permisos a una cuenta real.
               </p>
             </div>
           </aside>
         </div>
+        </div>
       </main>
-      <footer className="page-width account-footer">
-        <p>Remira · Proyecto académico</p>
-        <Link to="/">
-          Conocer el proyecto <ArrowRight size={13} />
-        </Link>
-      </footer>
+      <div className="account-footer-transition" aria-hidden="true" />
+      <IllustratedFooter topHref="#account-main" />
     </div>
   );
 }

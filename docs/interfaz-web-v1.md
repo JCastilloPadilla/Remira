@@ -30,6 +30,10 @@ El analizador recibió el rediseño editorial de Remira el 10 de octubre de 2026
 Composición, ilustración, adaptación móvil y verificaciones se documentan en
 [Analizador: la mesa de revisión](analizador-diseno-editorial.md).
 
+Cuenta y conexiones adopta el mismo lenguaje visual desde el 13 de octubre de
+2026. Véase [su diseño editorial](cuenta-diseno-editorial.md), con ilustración,
+footer compartido y adaptación para teléfono y escritorio.
+
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
 ## Alternativas consideradas
