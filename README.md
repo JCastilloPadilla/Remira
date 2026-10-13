@@ -94,7 +94,7 @@ Se dará especial atención a los falsos negativos: correos realmente maliciosos
 
 ## Estado actual
 
-El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. En `feature/web-interface-v1` están maquetadas la landing del proyecto, la pantalla de login, la bandeja ficticia, el historial ilustrativo, cuenta y conexiones, ayuda y la pantalla React de análisis manual, con ejemplos y respuestas simuladas. Todavía no se han implementado Flask, IMAP, OAuth ni la recepción automática de correos.
+El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. La interfaz de Remira también está integrada en `dev`: landing, inicio de sesión, bandeja ficticia, historial ilustrativo, cuenta y conexiones, ayuda y análisis manual. Las siete pantallas comparten diseño editorial y navegación, se adaptan a escritorio y móvil y utilizan ejemplos y respuestas simuladas. La rama `feature/web-interface-v1` se integró conservando su historial. Todavía no se han implementado Flask, IMAP, OAuth ni la recepción automática de correos.
 
 La primera evaluación reproducible con una muestra estratificada de 100 correos
 obtuvo F1-score de 0.8829. El detalle, incluidos los falsos positivos y falsos
