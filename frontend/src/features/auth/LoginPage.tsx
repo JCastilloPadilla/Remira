@@ -1,17 +1,12 @@
-import { BrandMark } from "@/components/BrandMark";
-import { BrandName } from "@/components/BrandName";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CircleHelp,
-  Mail,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CircleHelp, ShieldCheck } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
+import { BrandName } from "@/components/BrandName";
+import { IllustratedFooter } from "@/components/IllustratedFooter";
+import SplitText from "@/components/react-bits/SplitText";
+import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import FadeContent from "@/components/react-bits/FadeContent";
 import "./login.css";
 
 export function LoginPage() {
@@ -24,23 +19,12 @@ export function LoginPage() {
 
   return (
     <div className="login-page">
-      <a href="#login-main" className="skip-link">
-        Ir al contenido
-      </a>
-      <header className="site-header">
+      <a href="#login-main" className="skip-link">Ir al contenido</a>
+      <header className="login-header">
         <div className="page-width login-nav">
-          <Link
-            to="/"
-            className="login-brand"
-            aria-label="Remira, inicio"
-          >
+          <Link to="/" className="login-brand" aria-label="Remira, inicio">
             <BrandMark />
-            <span>
-              <BrandName />
-              <span className="login-brand-caption">
-                Análisis inteligente de mensajes
-              </span>
-            </span>
+            <BrandName />
           </Link>
           <Link to="/" className="login-back">
             <ArrowLeft size={15} /> Volver al inicio
@@ -48,121 +32,93 @@ export function LoginPage() {
         </div>
       </header>
 
-      <main id="login-main" className="page-width login-layout">
-        <section className="login-intro" aria-labelledby="login-intro-title">
-          <Badge variant="outline" className="login-project-badge">
-            Tu espacio de revisión
-          </Badge>
-          <FadeContent duration={550}>
-            <h2 id="login-intro-title">
-              Una segunda mirada.
-              <br />
-              <span>Un mismo lugar.</span>
-            </h2>
-          </FadeContent>
-          <p className="login-intro-copy">
-            Estamos preparando un espacio para revisar tus mensajes y volver a
-            tus análisis cuando lo necesites.
-          </p>
-          <div className="login-planned">
-            <span className="login-eyebrow">Lo que viene</span>
-            <div className="login-planned-row">
-              <Mail size={21} strokeWidth={1.5} />
-              <div>
-                <h2>Tu bandeja, conectada</h2>
-                <p>
-                  Consulta y analiza mensajes de Gmail cuando autorices la
-                  conexión.
-                </p>
-              </div>
-            </div>
-            <div className="login-planned-row">
-              <ShieldCheck size={21} strokeWidth={1.5} />
-              <div>
-                <h2>Análisis para consultar después</h2>
-                <p>
-                  Un historial asociado a tu cuenta para retomar las revisiones.
-                </p>
-              </div>
-            </div>
-            <p className="login-planned-note">
-              Estas funciones forman parte de una etapa posterior del proyecto.
+      <main id="login-main" className="login-main">
+        <CorrespondenceBackdrop />
+        <div className="page-width login-layout">
+          <section className="login-intro" aria-labelledby="login-intro-title">
+            <p className="login-eyebrow">Un lugar para volver a mirar</p>
+            <h1 id="login-intro-title">
+              <SplitText
+                text="Tu espacio para mirar mejor."
+                tag="span"
+                textAlign="left"
+                splitType="words"
+                delay={45}
+                duration={0.7}
+                rootMargin="0px"
+              />
+            </h1>
+            <p className="login-intro-copy">
+              Entra a tu ritmo. También puedes empezar con un correo de ejemplo,
+              sin crear una cuenta.
             </p>
-          </div>
-        </section>
+            <img
+              className="login-welcome-art"
+              src="/illustrations/login-welcome-v1.webp"
+              width="768" height="512" alt=""
+            />
+          </section>
 
-        <section className="login-access" aria-labelledby="login-title">
-          <div className="login-access-heading">
-            <span className="login-access-mark">
-              <ShieldCheck size={28} strokeWidth={1.5} />
-            </span>
-            <Badge variant="outline">Maqueta</Badge>
-          </div>
-          <h1 id="login-title">Iniciar sesión</h1>
-          <p className="login-access-copy">
-            Usaremos tu cuenta de Google para acceder a las funciones personales
-            del proyecto.
-          </p>
-          <Button
-            size="lg"
-            className="login-google"
-            onClick={() => setShowNotice(true)}
-            aria-describedby="login-auth-note"
-          >
-            <span className="login-google-letter" aria-hidden="true">
-              G
-            </span>{" "}
-            Continuar con Google
-          </Button>
-          <p id="login-auth-note" className="login-auth-note">
-            Inicio de sesión de demostración. Todavía no está conectado con
-            Google.
-          </p>
-          {showNotice && (
-            <div className="login-notice" role="status">
-              <CircleHelp size={18} />
+          <section className="login-access" aria-labelledby="login-title">
+            <div className="login-access-heading">
+              <span className="login-access-mark" aria-hidden="true">
+                <ShieldCheck size={26} strokeWidth={1.4} />
+              </span>
+              <span className="login-demo-label">Demostración</span>
+            </div>
+            <h2 id="login-title">Bienvenido a Remira.</h2>
+            <p className="login-access-copy">
+              Elige cómo quieres empezar.
+            </p>
+            <Button
+              size="lg"
+              className="login-google"
+              onClick={() => setShowNotice(true)}
+              aria-describedby="login-auth-note"
+            >
+              <span className="login-google-letter" aria-hidden="true">G</span>
+              Continuar con Google
+            </Button>
+            <p id="login-auth-note" className="login-auth-note">
+              Acceso de demostración. No se inicia una sesión real con Google.
+            </p>
+            {showNotice && (
+              <div className="login-notice" role="status">
+                <CircleHelp size={18} aria-hidden="true" />
+                <p>
+                  Esta demostración no autentica tu cuenta ni solicita permisos.
+                  Puedes explorar el analizador con la opción sin cuenta.
+                </p>
+              </div>
+            )}
+            <div className="login-divider"><span />o empieza sin cuenta<span /></div>
+            <Button
+              variant="outline"
+              size="lg"
+              render={<Link to="/analizar" />}
+              className="login-guest"
+            >
+              Continuar sin cuenta <ArrowRight size={16} />
+            </Button>
+            <p className="login-guest-note">
+              Prueba los ejemplos del analizador sin iniciar sesión.
+            </p>
+            <Link to="/bandeja" className="login-inbox-link">
+              Explorar la bandeja de demostración <ArrowRight size={14} />
+            </Link>
+            <div className="login-permissions">
+              <ShieldCheck size={19} strokeWidth={1.5} aria-hidden="true" />
               <p>
-                El acceso con Google estará disponible cuando integremos la
-                autenticación. Mientras tanto, puedes explorar el analizador sin
-                cuenta.
+                <strong>Tu identidad y tu correo, por separado.</strong>
+                Iniciar sesión no autoriza la lectura de mensajes. La conexión
+                con Gmail requiere un permiso adicional.
               </p>
             </div>
-          )}
-          <div className="login-divider">
-            <span />o prueba la herramienta
-            <span />
-          </div>
-          <Button
-            variant="outline"
-            size="lg"
-            render={<Link to="/analizar" />}
-            className="login-guest"
-          >
-            Continuar sin cuenta <ArrowRight size={16} />
-          </Button>
-          <p className="login-guest-note">
-            Puedes probar los ejemplos del analizador sin iniciar sesión.
-          </p>
-          <Link to="/bandeja" className="login-inbox-link">
-            Explorar la bandeja de demostración <ArrowRight size={14} />
-          </Link>
-          <div className="login-permissions">
-            <ShieldCheck size={19} strokeWidth={1.5} />
-            <p>
-              <strong>Tu cuenta y tu bandeja son pasos distintos.</strong>{" "}
-              Iniciar sesión no dará acceso a tus correos. La conexión con Gmail
-              requerirá una autorización adicional.
-            </p>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
-
-      <footer className="page-width login-footer">
-        <p>Remira · Proyecto académico</p>
-        <Link to="/">
-          Conocer el proyecto <ArrowRight size={13} />
-        </Link>
-      </footer>
+      <div className="login-footer-transition" aria-hidden="true" />
+      <IllustratedFooter topHref="#login-main" />
     </div>
   );
 }

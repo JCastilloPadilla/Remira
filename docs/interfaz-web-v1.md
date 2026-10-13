@@ -41,6 +41,11 @@ Historial adopta el diseño editorial el 13 de octubre de 2026. Véase
 [Historial: el registro de tus miradas](historial-diseno-editorial.md), con
 tabla adaptable, filtros, detalles, ilustración y footer compartido.
 
+Inicio de sesión completa el rediseño de las siete pantallas el 13 de octubre
+de 2026. Véase [Inicio de sesión: una hoja de bienvenida](login-diseno-editorial.md).
+La integración real de modelo, autenticación, Gmail e historial sigue pendiente;
+la renovación visual no modifica ese alcance.
+
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
 ## Alternativas consideradas
