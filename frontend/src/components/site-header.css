@@ -9,8 +9,10 @@
 .remira-desktop-nav a:hover, .remira-desktop-nav a:focus-visible { color:#2457c5; }
 .remira-desktop-nav a:hover::after, .remira-desktop-nav a:focus-visible::after, .remira-desktop-nav a[aria-current="page"]::after { transform:scaleX(1); }
 .remira-desktop-nav a[aria-current="page"] { color:#2457c5; font-weight:600; }
-.remira-desktop-nav .remira-nav-access { padding-inline:18px; border:1px solid #afc0d8; border-radius:999px; margin-left:4px; }
-.remira-desktop-nav .remira-nav-access::after { left:18px; right:18px; }
+.remira-desktop-nav .remira-nav-access { padding-inline:18px; border:1px solid #2457c5; border-radius:999px; margin-left:4px; background:#2457c5; color:#fff; }
+.remira-desktop-nav .remira-nav-access::after { display:none; }
+.remira-desktop-nav .remira-nav-access:hover, .remira-desktop-nav .remira-nav-access:focus-visible { background:#194aaf; border-color:#194aaf; color:#fff; }
+.remira-desktop-nav .remira-nav-access[aria-current="page"] { color:#fff; }
 .remira-mobile-menu { display:none; position:relative; }
 .remira-mobile-menu summary { display:flex; align-items:center; justify-content:flex-end; gap:12px; min-height:48px; cursor:pointer; list-style:none; }
 .remira-mobile-menu summary::-webkit-details-marker { display:none; }
@@ -27,7 +29,10 @@
 .remira-mobile-menu nav a[aria-current="page"] span::after, .remira-mobile-menu nav a:hover span::after, .remira-mobile-menu nav a:focus-visible span::after { transform:scaleX(1); }
 .remira-mobile-menu nav a[aria-current="page"] { color:#2457c5; font-weight:600; }
 .remira-mobile-menu nav a small { color:#506a84; font-size:10px; font-weight:400; }
-.remira-mobile-menu nav a:last-child { border-top:1px solid #c7d4dc; margin-top:4px; padding-top:4px; }
+.remira-mobile-menu nav a:last-child { margin-top:10px; padding:10px 14px; border-radius:999px; background:#2457c5; color:#fff; }
+.remira-mobile-menu nav a:last-child span::after { display:none; }
+.remira-mobile-menu nav a:last-child small { color:#fff; }
+.remira-mobile-menu nav a:last-child:hover, .remira-mobile-menu nav a:last-child:focus-visible { background:#194aaf; }
 @keyframes remira-menu-in { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
 @media (max-width:1100px) {
   .remira-header-inner { gap:24px; }
