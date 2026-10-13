@@ -37,6 +37,10 @@ footer compartido y adaptación para teléfono y escritorio.
 La bandeja recibió el rediseño el 13 de octubre de 2026. Su composición,
 ilustración y verificaciones están en [Bandeja: una mesa de correspondencia](bandeja-diseno-editorial.md).
 
+Historial adopta el diseño editorial el 13 de octubre de 2026. Véase
+[Historial: el registro de tus miradas](historial-diseno-editorial.md), con
+tabla adaptable, filtros, detalles, ilustración y footer compartido.
+
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
 ## Alternativas consideradas

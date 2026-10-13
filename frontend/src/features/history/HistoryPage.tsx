@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   History,
+  Menu,
   Search,
   ShieldAlert,
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -19,9 +19,19 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import FadeContent from "@/components/react-bits/FadeContent";
+import SplitText from "@/components/react-bits/SplitText";
+import { IllustratedFooter } from "@/components/IllustratedFooter";
+import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
 import { examples } from "@/features/analysis/demo";
 import "./history.css";
+
+const navigation = [
+  { to: "/", title: "Inicio" },
+  { to: "/bandeja", title: "Bandeja" },
+  { to: "/historial", title: "Historial" },
+  { to: "/cuenta", title: "Cuenta" },
+  { to: "/como-funciona", title: "Ayuda" },
+];
 
 const records = examples.map((example, id) => ({
   ...example,
@@ -76,49 +86,51 @@ export function HistoryPage() {
       <a href="#history-main" className="skip-link">
         Ir al contenido
       </a>
-      <header className="site-header">
+      <header className="history-header">
         <div className="page-width history-nav">
-          <Link
-            to="/"
-            className="history-brand"
-            aria-label="Remira, inicio"
-          >
+          <Link to="/" className="history-brand" aria-label="Remira, inicio">
             <BrandMark />
-            <span>
-              <BrandName />
-              <span className="history-brand-caption">
-                Análisis inteligente de mensajes
-              </span>
-            </span>
+            <BrandName />
           </Link>
-          <nav aria-label="Navegación principal">
-            <Link to="/analizar">Analizar correo</Link>
-            <Link to="/bandeja">Bandeja de Gmail</Link>
-            <Link to="/historial" aria-current="page">
-              Historial
-            </Link>
-            <Link to="/cuenta">Cuenta</Link>
-            <Link to="/como-funciona">Ayuda</Link>
+          <nav className="history-desktop-nav" aria-label="Navegación principal">
+            {navigation.map(({ to, title }) => (
+              <Link key={to} to={to} aria-current={to === "/historial" ? "page" : undefined}>{title}</Link>
+            ))}
           </nav>
+          <div className="history-nav-actions">
+            <Button variant="outline" render={<Link to="/analizar" />}>
+              Analizar <ArrowRight size={16} />
+            </Button>
+            <details className="history-mobile-nav">
+              <summary aria-label="Abrir navegación"><Menu size={22} /></summary>
+              <nav aria-label="Navegación móvil">
+                {navigation.map(({ to, title }) => (
+                  <Link key={to} to={to} aria-current={to === "/historial" ? "page" : undefined}>{title}</Link>
+                ))}
+              </nav>
+            </details>
+          </div>
         </div>
       </header>
-      <main id="history-main" className="page-width history-main">
+      <main id="history-main" className="history-main">
+        <CorrespondenceBackdrop />
+        <div className="page-width history-content">
         <div className="history-heading">
           <div>
-            <Badge variant="outline">Demostración</Badge>
-            <h1>Una revisión que puedes retomar.</h1>
+            <p className="history-eyebrow">El registro de tus miradas</p>
+            <h1>
+              <SplitText text="Una revisión que puedes retomar." tag="span" textAlign="left" splitType="words" delay={45} duration={0.7} rootMargin="0px" />
+            </h1>
             <p>Explora cómo consultarías tus análisis anteriores.</p>
           </div>
-          <Button render={<Link to="/analizar" />} size="lg">
-            Analizar un correo <ArrowRight size={16} />
-          </Button>
+          <img className="history-heading-art" src="/illustrations/history-archive-v1.webp" width="768" height="512" alt="" />
         </div>
         <div className="history-demo-note">
           <History size={18} />
           <p>
             <strong>Historial ilustrativo.</strong> Las fechas, los registros y
-            los resultados son ficticios. Tus análisis actuales todavía no se
-            guardan aquí.
+            los resultados son ficticios. Esta demostración no guarda
+            los análisis que realizas.
           </p>
         </div>
         <section
@@ -269,7 +281,7 @@ export function HistoryPage() {
             </table>
           ) : (
             <div className="history-empty">
-              <History size={36} strokeWidth={1.4} />
+              <img className="history-empty-art" src="/illustrations/history-archive-v1.webp" width="768" height="512" alt="" />
               <h3>
                 {showExamples
                   ? invalidRange
@@ -295,16 +307,13 @@ export function HistoryPage() {
           )}
         </section>
         <p className="history-storage-note">
-          Esta maqueta no almacena correos ni resultados. Recargar o salir de la
+          Esta demostración no almacena correos ni resultados. Recargar o salir de la
           pantalla reinicia los filtros y la selección.
         </p>
+        </div>
       </main>
-      <footer className="page-width history-footer">
-        <p>Remira · Proyecto académico</p>
-        <Link to="/">
-          Conocer el proyecto <ArrowRight size={13} />
-        </Link>
-      </footer>
+      <div className="history-footer-transition" aria-hidden="true" />
+      <IllustratedFooter topHref="#history-main" />
       <Dialog
         open={selectedId !== null}
         onOpenChange={(open) => {
@@ -339,7 +348,7 @@ export function HistoryPage() {
                 <h3>Contenido del ejemplo</h3>
                 <p>{selected.body}</p>
               </div>
-              <FadeContent duration={400} key={selected.id}>
+              <div className="history-result-reveal" key={selected.id}>
                 <div
                   className={`history-detail-result ${selected.result.label}`}
                 >
@@ -354,7 +363,7 @@ export function HistoryPage() {
                     simulado
                   </p>
                 </div>
-              </FadeContent>
+              </div>
               <p className="history-detail-limit">
                 La clasificación puede equivocarse. Los enlaces se muestran como
                 texto; no se abren ni se inspeccionan adjuntos.
