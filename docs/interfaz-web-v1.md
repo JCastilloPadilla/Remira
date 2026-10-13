@@ -34,6 +34,9 @@ Cuenta y conexiones adopta el mismo lenguaje visual desde el 13 de octubre de
 2026. Véase [su diseño editorial](cuenta-diseno-editorial.md), con ilustración,
 footer compartido y adaptación para teléfono y escritorio.
 
+La bandeja recibió el rediseño el 13 de octubre de 2026. Su composición,
+ilustración y verificaciones están en [Bandeja: una mesa de correspondencia](bandeja-diseno-editorial.md).
+
 La landing, el análisis manual y la ayuda serán públicos. El login tiene sentido cuando existan Gmail e historial; no será obligatorio para pegar un correo. El inicio de sesión con Google y la autorización de lectura de Gmail serán pasos separados. Estas funciones requieren backend, autenticación y decisiones de almacenamiento todavía pendientes. No se necesita un dashboard sin información propia ni se mostrarán enlaces activos a funciones inexistentes.
 
 ## Alternativas consideradas

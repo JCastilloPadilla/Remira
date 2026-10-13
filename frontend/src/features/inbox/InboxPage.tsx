@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
-  Inbox,
+  Menu,
   LoaderCircle,
   Mail,
   ScanLine,
@@ -24,13 +24,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import FadeContent from "@/components/react-bits/FadeContent";
+import SplitText from "@/components/react-bits/SplitText";
+import { IllustratedFooter } from "@/components/IllustratedFooter";
+import { CorrespondenceBackdrop } from "@/features/landing/CorrespondenceBackdrop";
 import {
   examples,
   simulateAnalysis,
   type AnalysisState,
 } from "@/features/analysis/demo";
 import "./inbox.css";
+
+const navigation = [
+  { to: "/", title: "Inicio" },
+  { to: "/bandeja", title: "Bandeja" },
+  { to: "/historial", title: "Historial" },
+  { to: "/cuenta", title: "Cuenta" },
+  { to: "/como-funciona", title: "Ayuda" },
+];
 
 const messages = examples.map((example, index) => ({
   ...example,
@@ -81,7 +91,15 @@ export function InboxPage() {
   }, []);
 
   useEffect(() => {
-    if (selectedId !== null) detailRef.current?.focus();
+    if (selectedId === null) return;
+    detailRef.current?.focus({ preventScroll: true });
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      detailRef.current?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant" : "smooth",
+        block: "start",
+      });
+    }
   }, [selectedId]);
 
   async function analyze() {
@@ -117,37 +135,41 @@ export function InboxPage() {
       <a href="#inbox-main" className="skip-link">
         Ir al contenido
       </a>
-      <header className="site-header">
+      <header className="inbox-header">
         <div className="page-width inbox-nav">
-          <Link
-            to="/"
-            className="inbox-brand"
-            aria-label="Remira, inicio"
-          >
+          <Link to="/" className="inbox-brand" aria-label="Remira, inicio">
             <BrandMark />
-            <span>
-              <BrandName />
-              <span className="inbox-brand-caption">
-                Análisis inteligente de mensajes
-              </span>
-            </span>
+            <BrandName />
           </Link>
-          <nav aria-label="Navegación principal">
-            <Link to="/historial">Historial</Link>
-            <Link to="/analizar">Analizar correo</Link>
-            <Link to="/bandeja" aria-current="page">
-              Bandeja de Gmail
-            </Link>
-            <Link to="/cuenta">Cuenta</Link>
-            <Link to="/como-funciona">Ayuda</Link>
+          <nav className="inbox-desktop-nav" aria-label="Navegación principal">
+            {navigation.map(({ to, title }) => (
+              <Link key={to} to={to} aria-current={to === "/bandeja" ? "page" : undefined}>{title}</Link>
+            ))}
           </nav>
+          <div className="inbox-nav-actions">
+            <Button variant="outline" render={<Link to="/analizar" />}>
+              Analizar <ArrowRight size={16} />
+            </Button>
+            <details className="inbox-mobile-nav">
+              <summary aria-label="Abrir navegación"><Menu size={22} /></summary>
+              <nav aria-label="Navegación móvil">
+                {navigation.map(({ to, title }) => (
+                  <Link key={to} to={to} aria-current={to === "/bandeja" ? "page" : undefined}>{title}</Link>
+                ))}
+              </nav>
+            </details>
+          </div>
         </div>
       </header>
-      <main id="inbox-main" className="page-width inbox-main">
+      <main id="inbox-main" className="inbox-main">
+        <CorrespondenceBackdrop />
+        <div className="page-width inbox-content">
         <div className="inbox-heading">
           <div>
-            <Badge variant="outline">Demostración</Badge>
-            <h1>Tu bandeja, bajo otra mirada.</h1>
+            <p className="inbox-eyebrow">La correspondencia</p>
+            <h1>
+              <SplitText text="Cada correo merece otra mirada." tag="span" textAlign="left" splitType="words" delay={45} duration={0.7} rootMargin="0px" />
+            </h1>
             <p>Selecciona un mensaje y explora su clasificación.</p>
           </div>
           <Dialog>
@@ -156,18 +178,18 @@ export function InboxPage() {
             >
               <Mail size={16} /> Conectar Gmail
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="inbox-dialog">
               <DialogHeader>
-                <DialogTitle>La conexión con Gmail está pendiente</DialogTitle>
+                <DialogTitle>Tu correo, con tu permiso</DialogTitle>
                 <DialogDescription>
                   Esta bandeja contiene dos mensajes ficticios. No accede a tu
                   cuenta ni lee correos reales.
                 </DialogDescription>
               </DialogHeader>
               <p className="text-sm leading-7 text-muted-foreground">
-                Cuando integremos Gmail, iniciar sesión y autorizar la lectura
-                de correos serán pasos separados. Por ahora puedes probar los
-                mensajes de demostración.
+                Iniciar sesión y autorizar la lectura de correos son decisiones
+                separadas. Aquí puedes explorar los dos mensajes de ejemplo,
+                sin conceder acceso a tu cuenta.
               </p>
               <Button render={<Link to="/login" />}>
                 Ver la pantalla de acceso <ArrowRight size={16} />
@@ -190,8 +212,13 @@ export function InboxPage() {
             className="inbox-list-panel"
             aria-labelledby="inbox-list-title"
           >
+            <img
+              className="inbox-mobile-art"
+              src="/illustrations/inbox-correspondence-v1.webp"
+              width="768" height="512" alt=""
+            />
             <div className="inbox-list-heading">
-              <h2 id="inbox-list-title">Mensajes de ejemplo</h2>
+              <h2 id="inbox-list-title" tabIndex={-1}>Mensajes de ejemplo</h2>
               <span>
                 {visible.length} de {messages.length}
               </span>
@@ -284,9 +311,15 @@ export function InboxPage() {
                   className="inbox-back-list"
                   onClick={() => {
                     setSelectedId(null);
-                    document
-                      .getElementById("inbox-list-title")
-                      ?.scrollIntoView({ block: "start" });
+                    requestAnimationFrame(() => {
+                      const title = document.getElementById("inbox-list-title");
+                      title?.focus({ preventScroll: true });
+                      title?.scrollIntoView({
+                        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                          ? "instant" : "smooth",
+                        block: "start",
+                      });
+                    });
                   }}
                 >
                   <ArrowLeft size={16} /> Volver a los mensajes
@@ -334,8 +367,8 @@ export function InboxPage() {
                     </Button>
                   </div>
                   {state?.status === "success" ? (
-                    <FadeContent
-                      duration={400}
+                    <div
+                      className="inbox-result-reveal"
                       key={`${selected.id}-${state.result.label}`}
                     >
                       <div
@@ -360,7 +393,7 @@ export function InboxPage() {
                           </p>
                         </div>
                       </div>
-                    </FadeContent>
+                    </div>
                   ) : (
                     <p className="inbox-analysis-status" role="status">
                       {state?.status === "error"
@@ -378,9 +411,11 @@ export function InboxPage() {
               </>
             ) : (
               <div className="inbox-detail-empty">
-                <span>
-                  <Inbox size={38} strokeWidth={1.3} />
-                </span>
+                <img
+                  className="inbox-awaiting-art"
+                  src="/illustrations/inbox-correspondence-v1.webp"
+                  width="768" height="512" alt=""
+                />
                 <h2 id="inbox-detail-title">Empieza por un mensaje.</h2>
                 <p>
                   Selecciona un correo de la lista para leer su contenido y
@@ -393,13 +428,10 @@ export function InboxPage() {
             )}
           </section>
         </div>
+        </div>
       </main>
-      <footer className="page-width inbox-footer">
-        <p>Remira · Proyecto académico</p>
-        <Link to="/">
-          Conocer el proyecto <ArrowRight size={13} />
-        </Link>
-      </footer>
+      <div className="inbox-footer-transition" aria-hidden="true" />
+      <IllustratedFooter topHref="#inbox-main" />
     </div>
   );
 }
