@@ -29,7 +29,7 @@ textarea { resize: vertical; min-height: 110px; }
 .hint { font-size: 11px; color: #53616d; line-height: 1.6; }
 .error, .notice { padding: 12px; margin-top: 16px; background: #f4e9df; border-left: 3px solid #9b4424; overflow-wrap: anywhere; }
 .result { margin-top: 22px; padding: 18px 0 0 14px; border-left: 3px solid #42724c; }
-.result.malicious { border-color: #a34026; }
+.result.malicious, .result.spam { border-color: #a34026; }
 .result h2 { font-family: Georgia, serif; font-size: 23px; font-weight: 400; line-height: 1.15; }
 .result .eyebrow { font-size: 9px; }
 footer { border-top: 1px solid #d8d9d1; margin-top: 24px; padding-top: 16px; }

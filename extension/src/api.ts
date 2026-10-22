@@ -1,7 +1,7 @@
 import type { EmailPreview } from './extract'
 
 export interface Analysis {
-  label: 'legitimate' | 'malicious'
+  label: 'legitimate' | 'malicious' | 'spam' | 'not_spam'
   confidence: number
   max_tokens: number
 }
@@ -28,7 +28,7 @@ export async function analyzeEmail(email: EmailPreview): Promise<Analysis> {
   }
   if (!data || typeof data !== 'object') throw new Error('El servidor no devolvió una respuesta válida.')
   if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : 'No se pudo analizar el correo.')
-  if ((data.label !== 'legitimate' && data.label !== 'malicious') || typeof data.confidence !== 'number'
+  if (!['legitimate', 'malicious', 'spam', 'not_spam'].includes(String(data.label)) || typeof data.confidence !== 'number'
     || !Number.isFinite(data.confidence) || data.confidence < 0 || data.confidence > 1 || data.max_tokens !== 512) {
     throw new Error('El servidor no devolvió una respuesta válida.')
   }

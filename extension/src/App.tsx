@@ -82,8 +82,9 @@ export function App() {
     {error && <p role="alert" className="error">{error}</p>}
     {result && <section role="status" className={`result ${result.label}`}>
       <p className="eyebrow">RESULTADO DEL MODELO LOCAL</p>
-      <h2>{result.label === 'malicious' ? 'Potencialmente malicioso' : 'Clasificado como legítimo'}</h2>
-      <p>Puntuación del modelo: <strong>{(result.confidence * 100).toFixed(1)} %</strong></p>
+      <h2>{{ spam: 'Potencial spam', not_spam: 'No detectado como spam', malicious: 'Potencialmente malicioso', legitimate: 'Clasificado como legítimo' }[result.label]}</h2>
+      {(result.label === 'spam' || result.label === 'not_spam') && <p className="hint">Modelo en español: Tanaos. Detecta spam, que incluye publicidad, engaños y otros mensajes no deseados; no confirma phishing ni garantiza seguridad.</p>}
+      <p>Puntuación del modelo: <strong>{result.confidence > 0.9999 ? '> 99.99' : (result.confidence * 100).toFixed(2)} %</strong></p>
       <p className="hint">Esta puntuación no es una garantía de seguridad. El modelo procesa hasta {result.max_tokens} tokens del inicio del texto; no inspecciona adjuntos ni verifica enlaces.</p>
     </section>}
     <footer>

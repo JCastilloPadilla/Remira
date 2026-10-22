@@ -8,9 +8,9 @@ it('envía solo asunto y cuerpo al servidor loopback y devuelve la clasificació
   vi.stubGlobal('fetch', async (url: string, init: RequestInit) => {
     expect(url).toBe('http://127.0.0.1:8765/api/analyze')
     captured = init
-    return new Response(JSON.stringify({ label: 'malicious', confidence: 0.91, max_tokens: 512 }), { status: 200 })
+    return new Response(JSON.stringify({ label: 'spam', confidence: 0.91, max_tokens: 512 }), { status: 200 })
   })
-  expect((await analyzeEmail({ subject: 'Asunto', body: 'Texto', sender: 'private@example.com' })).label).toBe('malicious')
+  expect((await analyzeEmail({ subject: 'Asunto', body: 'Texto', sender: 'private@example.com' })).label).toBe('spam')
   expect(JSON.parse(String(captured?.body))).toEqual({ subject: 'Asunto', body: 'Texto' })
   expect(captured?.credentials).toBe('omit')
 })

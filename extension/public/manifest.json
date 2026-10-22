@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Remira · Análisis local de correos",
   "description": "Lee el mensaje abierto en Gmail, permite revisar el texto y lo analiza con tu modelo local de Remira.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["http://127.0.0.1/*"],
   "action": {

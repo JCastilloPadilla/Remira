@@ -43,13 +43,15 @@ it('lee solo por acción y exige elegir un mensaje si hay varios visibles', asyn
 
 it('muestra el resultado real y lo descarta al releer otro correo', async () => {
   messages = [messages[0]]
-  vi.stubGlobal('fetch', async () => new Response(JSON.stringify({ label: 'malicious', confidence: 0.91, max_tokens: 512 })))
+  vi.stubGlobal('fetch', async () => new Response(JSON.stringify({ label: 'spam', confidence: 0.99999, max_tokens: 512 })))
   await act(async () => root.render(<App />))
   await click('Leer correo abierto')
   await click('Analizar localmente')
-  expect(container.textContent).toContain('Potencialmente malicioso')
+  expect(container.textContent).toContain('Potencial spam')
+  expect(container.textContent).toContain('> 99.99 %')
+  expect(container.textContent).not.toContain('100.0 %')
   messages = [{ subject: 'Nuevo', body: 'Otro contenido' }]
   await click('Volver a leer')
-  expect(container.textContent).not.toContain('Potencialmente malicioso')
+  expect(container.textContent).not.toContain('Potencial spam')
   expect(container.querySelector('textarea')?.value).toBe('Otro contenido')
 })

@@ -6,12 +6,12 @@ from urllib.request import Request, urlopen
 
 SAMPLES = [
     {
-        'subject': 'Project meeting tomorrow',
-        'body': 'Hi team, our weekly project meeting is tomorrow at 10 AM in room 204. Please bring your progress notes. Thank you, Ana.',
+        'subject': 'Reunión de proyecto',
+        'body': 'Hola equipo, la reunión semanal será mañana a las diez en el salón 204. Por favor traigan sus avances. Saludos, Ana.',
     },
     {
-        'subject': 'URGENT: Your account will be suspended',
-        'body': 'Your account has been locked. You must verify your password and credit card details immediately or your account will be permanently deleted. Visit https://account-verification.example/verify to confirm your information now.',
+        'subject': 'Premio para ti',
+        'body': 'Has ganado un iPhone gratis. Entra ahora y proporciona tu contraseña y tarjeta bancaria para reclamar tu premio.',
     },
 ]
 
@@ -26,7 +26,8 @@ if __name__ == '__main__':
         )
         with urlopen(request, timeout=180) as response:
             result = json.load(response)
-        assert result['label'] in {'legitimate', 'malicious'}
+        assert result['label'] in {'spam', 'not_spam'}
+        assert result['model'] == 'tanaos/tanaos-spam-detection-spanish'
         assert 0 <= result['confidence'] <= 1
         assert result['max_tokens'] == 512
         print(f"Muestra {index}: {result['label']} / {result['confidence']:.4f} / HTTP 200")

@@ -1,7 +1,7 @@
 import unittest
 
 from src.email_data import EmailData
-from src.hf_classifier import PhishingEmailClassifier
+from src.hf_classifier import PhishingEmailClassifier, SpanishSpamClassifier
 
 
 class FakePipeline:
@@ -17,6 +17,26 @@ class FakePipeline:
 
 
 class HuggingFaceClassifierTests(unittest.TestCase):
+    def test_spanish_spam_keeps_its_real_label_and_preserves_case(self):
+        pipeline = FakePipeline({"label": "spam", "score": 0.99999})
+        result = SpanishSpamClassifier(pipeline=pipeline).classify(
+            EmailData(subject="URGENTE", body="  Verifica   tu cuenta ")
+        )
+        self.assertEqual(result.label, "spam")
+        self.assertEqual(result.source_label, "spam")
+        self.assertEqual(pipeline.received_text, "URGENTE Verifica tu cuenta")
+        self.assertEqual(pipeline.received_options, {"truncation": True, "max_length": 512})
+
+    def test_spanish_non_spam_is_not_a_security_verdict(self):
+        result = SpanishSpamClassifier(pipeline=FakePipeline({"label": "not_spam", "score": 0.95})).classify(
+            EmailData(subject="Reunión", body="Mañana a las diez")
+        )
+        self.assertEqual(result.label, "not_spam")
+
+    def test_spanish_model_rejects_old_ambiguous_labels(self):
+        with self.assertRaisesRegex(ValueError, "Etiqueta no soportada"):
+            SpanishSpamClassifier(pipeline=FakePipeline({"label": "LABEL_1", "score": 0.9})).classify(EmailData(body="Texto"))
+
     def test_classifies_a_phishing_label_as_malicious(self):
         pipeline = FakePipeline({"label": "phishing_url", "score": 0.91})
         classifier = PhishingEmailClassifier(pipeline=pipeline)

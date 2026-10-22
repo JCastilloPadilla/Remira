@@ -24,7 +24,7 @@ Hugging Face. Si ya se ejecutó la evaluación del proyecto, normalmente estará
 En un equipo nuevo, descárgalo explícitamente con internet **antes** de analizar:
 
 ```powershell
-.\.venv\Scripts\python.exe -c "from src.hf_classifier import PhishingEmailClassifier; PhishingEmailClassifier()"
+.\.venv\Scripts\python.exe -c "from src.hf_classifier import SpanishSpamClassifier; SpanishSpamClassifier()"
 ```
 
 Esta preparación descarga archivos del modelo; no le envía correos. Después, la
@@ -99,7 +99,7 @@ No comprueba el botón de la barra del navegador ni el DOM de una cuenta Gmail r
 
 - `GET /api/health`: estado del servicio y si el modelo ya está cargado. No carga el modelo.
 - `POST /api/analyze`: JSON `{"subject":"...","body":"..."}`.
-- Éxito: `label`, `confidence`, `source_label`, `model`, `max_tokens` (512).
+- Éxito: `label` (`spam` / `not_spam`), `confidence`, `source_label`, `model`, `max_tokens` (512), `language` (`es`), `task` (`spam_detection`).
 - Error: JSON con `error` y HTTP 400/403/413/415/503 según el caso.
 - Máximo: 5,000 caracteres de asunto, 100,000 de cuerpo y 450,000 bytes por petición.
 - El popup no guarda remitente, URL ni identificadores en el backend; envía solo asunto/cuerpo.
@@ -121,6 +121,14 @@ Vitest en npm 10/11. Las versiones efectivas están fijadas en `package-lock.jso
   Cada equipo debe ejecutar su propio backend.
 
 ## Límites de esta fase
+
+- Desde la versión 0.1.1, la API usa `tanaos/tanaos-spam-detection-spanish`,
+  entrenado para español. Conserva mayúsculas y acentos. Su tarea es filtrar spam,
+  no confirmar phishing: la interfaz muestra **Potencial spam** o **No detectado
+  como spam**. Las puntuaciones mayores a 99.99 % se muestran como `> 99.99 %`
+  para evitar que el redondeo las convierta en 100 %. No están calibradas.
+- Las métricas previas de CEAS_08 pertenecen al modelo anterior en inglés, no al
+  nuevo modelo. Los ejemplos españoles de prueba no constituyen una evaluación formal.
 
 - Adaptador inicial para Gmail web; los selectores pueden requerir mantenimiento.
   Las fixtures DOM no sustituyen comprobar una cuenta real y distintas vistas de Gmail.

@@ -9,13 +9,13 @@ from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest, RequestEntityTooLarge
 
 from src.email_data import EmailData
-from src.hf_classifier import MODEL_NAME, PhishingEmailClassifier
+from src.hf_classifier import SPANISH_MODEL_NAME, SpanishSpamClassifier
 
 
 def create_app(classifier_factory: Callable | None = None) -> Flask:
     app = Flask(__name__)
     app.config['MAX_CONTENT_LENGTH'] = 450_000
-    factory = classifier_factory or (lambda: PhishingEmailClassifier(local_files_only=True))
+    factory = classifier_factory or (lambda: SpanishSpamClassifier(local_files_only=True))
     classifier = None
     inference_lock = Lock()
 
@@ -40,7 +40,7 @@ def create_app(classifier_factory: Callable | None = None) -> Flask:
 
     @app.get('/api/health')
     def health():
-        return jsonify(status='ok', model=MODEL_NAME, model_loaded=classifier is not None, local_only=True)
+        return jsonify(status='ok', model=SPANISH_MODEL_NAME, model_loaded=classifier is not None, local_only=True, task='spam_detection', language='es')
 
     @app.post('/api/analyze')
     def analyze():
@@ -70,7 +70,7 @@ def create_app(classifier_factory: Callable | None = None) -> Flask:
             except Exception:
                 # No incluir el correo ni detalles internos de excepciones en respuestas/logs.
                 return jsonify(error='No se pudo ejecutar el modelo local. Revisa su caché y el entorno Python.'), 503
-        return jsonify(**asdict(result), max_tokens=512, model=MODEL_NAME)
+        return jsonify(**asdict(result), max_tokens=512, model=SPANISH_MODEL_NAME, task='spam_detection', language='es')
 
     return app
 

@@ -129,6 +129,12 @@ explican en [extension/README.md](extension/README.md).
 La interfaz web existente continúa utilizando sus resultados de demostración;
 esta fase conecta únicamente la extensión con la API local.
 
+Desde la versión 0.1.1, la extensión usa **Tanaos en español**, con las etiquetas
+`spam` / `not_spam` y preservando mayúsculas y acentos. Es un filtro de spam, no un
+veredicto específico de phishing. El modelo anterior sigue disponible para su
+evaluación reproducible; sus métricas no corresponden al nuevo modelo.
+Detalle en [docs/modelo-espanol.md](docs/modelo-espanol.md).
+
 1. Ejecutar y documentar la evaluación del modelo preentrenado con CEAS_08.
 2. Revisar errores y métricas, especialmente falsos negativos.
 3. Comparar contra un baseline propio si se requiere justificar la elección del modelo.

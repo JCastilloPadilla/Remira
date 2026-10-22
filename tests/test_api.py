@@ -12,7 +12,7 @@ class RecordingClassifier:
 
     def classify(self, email):
         self.emails.append(email)
-        return ClassificationResult("malicious", 0.91, "phishing_url")
+        return ClassificationResult("spam", 0.91, "spam")
 
 
 @pytest.fixture
@@ -34,7 +34,10 @@ def test_classifies_email_and_reuses_one_model(api):
     for _ in range(2):
         response = client.post('/api/analyze', json={"subject": "Aviso", "body": "Verifica tu cuenta"})
         assert response.status_code == 200
-        assert response.json["label"] == "malicious"
+        assert response.json["label"] == "spam"
+        assert response.json["model"] == "tanaos/tanaos-spam-detection-spanish"
+        assert response.json["task"] == "spam_detection"
+        assert response.json["language"] == "es"
         assert response.json["confidence"] == 0.91
         assert response.json["max_tokens"] == 512
     assert len(loads) == 1
