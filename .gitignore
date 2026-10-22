@@ -20,5 +20,6 @@ tmp/
 # Frontend: dependencias y compilación local.
 node_modules/
 frontend/dist/
+extension/dist/
 *.tsbuildinfo
 .env.local

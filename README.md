@@ -56,7 +56,7 @@ En fases posteriores, la entrada podrá provenir de un formulario web, un archiv
 - **Pandas**: carga, limpieza y exploración del dataset.
 - **Transformers y PyTorch**: descarga y ejecución local del modelo de lenguaje especializado.
 - **Scikit-learn**: muestreo estratificado y métricas de evaluación.
-- **Flask**: backend y futura API `POST /api/analyze`.
+- **Flask**: API local `POST /api/analyze` para la extensión; conexión de la web pendiente.
 - **React y TypeScript**: interfaz web basada en componentes.
 - **Vite**: servidor de desarrollo y compilación del frontend.
 - **Tailwind CSS**: estilos, colores y adaptación a distintos tamaños de pantalla.
@@ -94,7 +94,7 @@ Se dará especial atención a los falsos negativos: correos realmente maliciosos
 
 ## Estado actual
 
-El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. La interfaz de Remira también está integrada en `dev`: landing, inicio de sesión, bandeja ficticia, historial ilustrativo, cuenta y conexiones, ayuda y análisis manual. Las siete pantallas comparten diseño editorial y navegación, se adaptan a escritorio y móvil y utilizan ejemplos y respuestas simuladas. La rama `feature/web-interface-v1` se integró conservando su historial. Todavía no se han implementado Flask, IMAP, OAuth ni la recepción automática de correos.
+El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. La interfaz de Remira también está integrada en `dev`: landing, inicio de sesión, bandeja ficticia, historial ilustrativo, cuenta y conexiones, ayuda y análisis manual. Las siete pantallas comparten diseño editorial y navegación, se adaptan a escritorio y móvil y utilizan ejemplos y respuestas simuladas. La rama `feature/web-interface-v1` se integró conservando su historial. La rama `codex/extension-local-v1` añade Flask y una extensión conectada al modelo local; IMAP, OAuth y la recepción automática de correos siguen pendientes.
 
 La primera evaluación reproducible con una muestra estratificada de 100 correos
 obtuvo F1-score de 0.8829. El detalle, incluidos los falsos positivos y falsos
@@ -113,6 +113,21 @@ Los primeros avances de código están en la rama `feature/foundation-prototype`
 Estos avances incluyen pruebas automatizadas y preparan el flujo de texto que utiliza el clasificador preentrenado.
 
 ## Próximos pasos
+
+### Extensión de navegador — fase 1 local
+
+En la rama `codex/extension-local-v1`, `extension/` contiene una extensión Manifest
+V3 en React y TypeScript que lee el mensaje expandido en Gmail por acción del usuario,
+muestra una vista previa y permite enviarla al modelo Python local. No usa Gmail API
+ni OAuth. Si hay varios mensajes expandidos, exige seleccionar uno.
+
+La API se inicia con `.\.venv\Scripts\python.exe -m src.api` y escucha en
+`http://127.0.0.1:8765`. Usa el modelo de la caché local, sin almacenar correos.
+La instalación descomprimida, la página de correos ficticios y las limitaciones se
+explican en [extension/README.md](extension/README.md).
+
+La interfaz web existente continúa utilizando sus resultados de demostración;
+esta fase conecta únicamente la extensión con la API local.
 
 1. Ejecutar y documentar la evaluación del modelo preentrenado con CEAS_08.
 2. Revisar errores y métricas, especialmente falsos negativos.

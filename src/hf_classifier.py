@@ -30,16 +30,20 @@ class ClassificationResult:
     source_label: str
 
 
-def _load_pipeline() -> Callable:
+def _load_pipeline(local_files_only: bool = False) -> Callable:
     """Carga el modelo solo cuando se necesita clasificar un correo."""
     import torch
-    from transformers import pipeline
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
     device = 0 if torch.cuda.is_available() else -1
     return pipeline(
         "text-classification",
-        model=MODEL_NAME,
-        tokenizer=MODEL_NAME,
+        model=AutoModelForSequenceClassification.from_pretrained(
+            MODEL_NAME, local_files_only=local_files_only
+        ),
+        tokenizer=AutoTokenizer.from_pretrained(
+            MODEL_NAME, local_files_only=local_files_only
+        ),
         device=device,
     )
 
@@ -47,8 +51,8 @@ def _load_pipeline() -> Callable:
 class PhishingEmailClassifier:
     """Adaptador del modelo especializado al dominio del proyecto."""
 
-    def __init__(self, pipeline: Callable | None = None):
-        self._pipeline = pipeline or _load_pipeline()
+    def __init__(self, pipeline: Callable | None = None, *, local_files_only: bool = False):
+        self._pipeline = pipeline or _load_pipeline(local_files_only=local_files_only)
 
     def classify(self, email: EmailData) -> ClassificationResult:
         """Clasifica un correo y devuelve una etiqueta binaria consistente."""
