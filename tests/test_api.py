@@ -73,20 +73,45 @@ def test_accepts_chromium_extension_origin(api):
     assert response.status_code == 200
 
 
+@pytest.mark.parametrize('origin', ['http://127.0.0.1:5173', 'http://localhost:5173'])
+def test_accepts_local_web_app_origin_with_cors(api, origin):
+    client, _, _ = api
+    response = client.post('/api/analyze', json={"body": "text"}, headers={"Origin": origin})
+    assert response.status_code == 200
+    assert response.headers['Access-Control-Allow-Origin'] == origin
+
+
+def test_accepts_preflight_from_local_web_app(api):
+    client, _, _ = api
+    response = client.options(
+        '/api/analyze',
+        headers={
+            'Origin': 'http://127.0.0.1:5173',
+            'Access-Control-Request-Method': 'POST',
+            'Access-Control-Request-Headers': 'content-type',
+        },
+    )
+    assert response.status_code == 200
+    assert response.headers['Access-Control-Allow-Origin'] == 'http://127.0.0.1:5173'
+    assert response.headers['Access-Control-Allow-Methods'] == 'POST, OPTIONS'
+    assert response.headers['Access-Control-Allow-Headers'] == 'Content-Type'
+
+
 def test_rejects_non_loopback_host(api):
     client, _, loads = api
     assert client.post('/api/analyze', json={"body": "text"}, base_url='http://attacker.example').status_code == 403
     assert loads == []
 
 
-def test_model_failure_is_an_error_without_email_or_exception_details():
+def test_model_failure_is_inconclusive_without_email_or_exception_details():
     def unavailable():
         raise RuntimeError('private internal failure')
 
     client = create_app(classifier_factory=unavailable).test_client()
-    response = client.post('/api/analyze', json={"body": "private email"})
-    assert response.status_code == 503
-    assert "error" in response.json
+    response = client.post('/api/analyze', json={"body": "Tu factura está disponible", "sender": "private email"})
+    assert response.status_code == 200
+    assert response.json['label'] == 'unavailable'
+    assert response.json['assessment']['verdict'] == 'inconclusive'
     assert 'private' not in response.get_data(as_text=True)
 
 

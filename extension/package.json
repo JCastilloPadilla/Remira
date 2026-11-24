@@ -1,17 +1,20 @@
 {
   "name": "remira-extension",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/check-ocr.mjs && tsc --noEmit && vite build",
+    "setup:ocr": "node scripts/prepare-ocr.mjs",
     "test": "vitest run",
     "dev": "vite --host 127.0.0.1 --port 5174",
-    "test:browser": "node scripts/smoke-browser.mjs"
+    "test:browser": "node scripts/smoke-browser.mjs",
+    "test:web": "node scripts/smoke-web.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.0",

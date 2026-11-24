@@ -6,9 +6,9 @@ export interface AnalysisResponse {
   label: "legitimate" | "malicious";
   confidence: number;
 }
-export type AnalysisState =
+export type AnalysisState<T = AnalysisResponse> =
   | { status: "idle" | "edited" | "loading" }
-  | { status: "success"; result: AnalysisResponse }
+  | { status: "success"; result: T }
   | { status: "error"; message: string };
 
 export const examples = [

@@ -2,6 +2,20 @@
 
 **Una segunda mirada a tus mensajes.**
 
+**Clasificador con corpus (0.3):** base SQLite de 39,314 ejemplos y artefacto local
+`corpus-v1-1eaede829e6d`. La web y extensión estiman legítimo/spam/phishing/contenido
+malicioso, reconocen finalidad de factura/cobro y dan una recomendación específica.
+Es un prototipo experimental; métricas, fuentes y errores en
+[docs/resultados-corpus-v1.md](docs/resultados-corpus-v1.md). Preparación y uso en
+[extension/README.md](extension/README.md).
+
+**Actualización 10/11/2026:** la extensión 0.2 incorpora enlaces reales, OCR local
+en español/inglés, importación .eml y análisis con evidencia. La web `/analizar`
+también consulta la API local y separa spam de phishing. Los resultados indican
+señales de riesgo, ausencia de señales claras o análisis no concluyente; no son una
+garantía de seguridad. Instalación en [extension/README.md](extension/README.md) y
+evaluación con límites en [docs/evaluacion-analysis-v2.md](docs/evaluacion-analysis-v2.md).
+
 Sistema inteligente para la detección de correos electrónicos maliciosos.
 
 Proyecto semestral de la materia **Técnicas de Inteligencia Artificial**.
@@ -126,8 +140,8 @@ La API se inicia con `.\.venv\Scripts\python.exe -m src.api` y escucha en
 La instalación descomprimida, la página de correos ficticios y las limitaciones se
 explican en [extension/README.md](extension/README.md).
 
-La interfaz web existente continúa utilizando sus resultados de demostración;
-esta fase conecta únicamente la extensión con la API local.
+La pantalla web `/analizar` y la extensión están conectadas a la API local.
+Las demás pantallas de bandeja, historial y cuenta conservan sus datos ilustrativos.
 
 Desde la versión 0.1.1, la extensión usa **Tanaos en español**, con las etiquetas
 `spam` / `not_spam` y preservando mayúsculas y acentos. Es un filtro de spam, no un

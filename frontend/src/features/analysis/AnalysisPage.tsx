@@ -25,10 +25,11 @@ import { EmailForm } from "@/features/analysis/EmailForm";
 import { AnalysisResult } from "@/features/analysis/AnalysisResult";
 import {
   examples,
-  simulateAnalysis,
   type AnalysisState,
   type EmailDraft,
 } from "@/features/analysis/demo";
+import type { LocalAnalysisResponse } from "./assessment";
+import { analyzeLocalEmail } from "@/features/analysis/api";
 
 import SplitText from "@/components/react-bits/SplitText";
 import { IllustratedFooter } from "@/components/IllustratedFooter";
@@ -39,7 +40,7 @@ const emptyDraft: EmailDraft = { subject: "", body: "" };
 
 function AnalysisPage() {
   const [draft, setDraft] = useState<EmailDraft>(emptyDraft);
-  const [analysis, setAnalysis] = useState<AnalysisState>({ status: "idle" });
+  const [analysis, setAnalysis] = useState<AnalysisState<LocalAnalysisResponse>>({ status: "idle" });
   const [validation, setValidation] = useState("");
   const [pendingDraft, setPendingDraft] = useState<EmailDraft | null>(null);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
@@ -101,7 +102,7 @@ function AnalysisPage() {
     requestRef.current = controller;
     setAnalysis({ status: "loading" });
     try {
-      const result = await simulateAnalysis(draft, controller.signal);
+      const result = await analyzeLocalEmail(draft, controller.signal);
       setAnalysis({ status: "success", result });
     } catch (error) {
       if (controller.signal.aborted) return;
@@ -110,7 +111,7 @@ function AnalysisPage() {
         message:
           error instanceof Error
             ? error.message
-            : "No pudimos completar la demostración.",
+            : "No pudimos completar el análisis local.",
       });
     }
   }
@@ -158,10 +159,10 @@ function AnalysisPage() {
                 <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <p>
                     <strong className="text-foreground">
-                      Esta versión es una demostración.
+                      El análisis se ejecuta localmente en este equipo.
                     </strong>{" "}
-                    Los ejemplos tienen respuestas simuladas. Tus propios
-                    correos no se envían al modelo ni reciben una clasificación.
+                    El asunto y cuerpo se envían solo a la API local para
+                    obtener la clasificación del modelo; no se guardan.
                   </p>
                   <p>
                     El análisis se centra en el texto del mensaje. No incluye
@@ -169,7 +170,7 @@ function AnalysisPage() {
                     de los enlaces.
                   </p>
                   <p>
-                    La confianza del modelo no garantiza seguridad. El
+                    La puntuación del modelo no es una probabilidad de seguridad. El
                     clasificador puede equivocarse y recortar mensajes largos.
                   </p>
                   <p>
@@ -197,8 +198,8 @@ function AnalysisPage() {
 
           <p className="analysis-demo-note">
             <CircleHelp size={16} aria-hidden="true" />
-            <span><strong>Prueba con un ejemplo.</strong> Esta demostración ofrece
-              resultados ficticios; tus mensajes no se envían al modelo.</span>
+            <span><strong>Análisis local.</strong> El correo se analiza en
+              este equipo y no se envía a servicios externos.</span>
           </p>
 
           <div className="analysis-workspace">
@@ -234,7 +235,7 @@ function AnalysisPage() {
                   <p className="analysis-eyebrow">02 / La segunda mirada</p>
                   <h2 id="result-title">Las señales del correo.</h2>
                 </div>
-                <span className="analysis-demo-label">Demostración</span>
+                <span className="analysis-demo-label">Modelo local</span>
               </div>
               <AnalysisResult
                 state={analysis}

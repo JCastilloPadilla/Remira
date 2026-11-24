@@ -75,6 +75,13 @@ class PhishingEmailClassifier:
             source_label=source_label,
         )
 
+    @property
+    def tokenizer(self):
+        return self._pipeline.tokenizer
+
+    def prepare_text(self, email: EmailData) -> str:
+        return " ".join(email.combined_text().split()) if self.preserve_case else preprocess_email(email)
+
 
 class SpanishSpamClassifier(PhishingEmailClassifier):
     """Filtro de spam en español; no convierte spam en un veredicto de phishing."""

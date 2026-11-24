@@ -21,5 +21,6 @@ tmp/
 node_modules/
 frontend/dist/
 extension/dist/
+extension/public/ocr/
 *.tsbuildinfo
 .env.local

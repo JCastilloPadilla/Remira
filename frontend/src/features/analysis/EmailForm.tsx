@@ -117,8 +117,8 @@ export function EmailForm({
               <DialogHeader>
                 <DialogTitle>Prueba con un ejemplo</DialogTitle>
                 <DialogDescription>
-                  Mensajes ficticios con resultados preparados para explorar la
-                  interfaz.
+                  Mensajes ficticios para probar el análisis local. El resultado
+                  se calcula al pulsar Analizar correo.
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-3">

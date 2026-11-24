@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240">
+  <rect width="640" height="240" fill="white"/>
+  <g fill="#111" font-family="Arial, sans-serif" font-size="30">
+    <text x="22" y="55">Aviso de cuenta</text>
+    <text x="22" y="105">Envia tu contrasena para</text>
+    <text x="22" y="150">recuperar el acceso.</text>
+    <text x="22" y="205">Send your password now.</text>
+  </g>
+</svg>

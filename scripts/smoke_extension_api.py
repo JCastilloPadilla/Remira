@@ -30,4 +30,5 @@ if __name__ == '__main__':
         assert result['model'] == 'tanaos/tanaos-spam-detection-spanish'
         assert 0 <= result['confidence'] <= 1
         assert result['max_tokens'] == 512
-        print(f"Muestra {index}: {result['label']} / {result['confidence']:.4f} / HTTP 200")
+        assert result['assessment']['verdict'] in {'suspicious', 'no_clear_signals', 'inconclusive'}
+        print(f"Muestra {index}: {result['assessment']['verdict']} / modelo auxiliar {result['label']} / HTTP 200")

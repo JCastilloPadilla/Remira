@@ -43,15 +43,28 @@ it('lee solo por acción y exige elegir un mensaje si hay varios visibles', asyn
 
 it('muestra el resultado real y lo descarta al releer otro correo', async () => {
   messages = [messages[0]]
-  vi.stubGlobal('fetch', async () => new Response(JSON.stringify({ label: 'spam', confidence: 0.99999, max_tokens: 512 })))
+  vi.stubGlobal('fetch', async () => new Response(JSON.stringify({ label: 'spam', confidence: 0.99999, max_tokens: 512, model: 'Tanaos', language: 'es', task: 'spam_detection',
+    assessment: { verdict: 'inconclusive', reasons: [{ code: 'model_auxiliary_flag', severity: 'info', message: 'Opinión auxiliar del modelo.' }], limitations: [], text: { language: 'es', token_count: 10, processed_tokens: 10, truncated: false }, coverage: { images_total: 0, images_pending: 0, ocr_low_confidence: false, links_complete: true }, links: [], authentication: { source: 'unavailable', verified: false } } })))
   await act(async () => root.render(<App />))
   await click('Leer correo abierto')
   await click('Analizar localmente')
-  expect(container.textContent).toContain('Potencial spam')
-  expect(container.textContent).toContain('> 99.99 %')
+  expect(container.textContent).toContain('Actualiza el análisis local')
+  expect(container.textContent).toContain('spam')
+  expect(container.textContent).not.toContain('Potencialmente malicioso')
   expect(container.textContent).not.toContain('100.0 %')
   messages = [{ subject: 'Nuevo', body: 'Otro contenido' }]
   await click('Volver a leer')
-  expect(container.textContent).not.toContain('Potencial spam')
+  expect(container.textContent).not.toContain('Actualiza el análisis local')
   expect(container.querySelector('textarea')?.value).toBe('Otro contenido')
+})
+
+
+it('mantiene la acción principal fuera de los detalles y la edición colapsada', async () => {
+  messages = [messages[0]]
+  await act(async () => root.render(<App />))
+  expect(container.querySelector('#eml-file')?.closest('details')?.open).toBe(false)
+  await click('Leer correo abierto')
+  expect(container.querySelector('#body')?.closest('details')?.open).toBe(false)
+  const analyze = [...container.querySelectorAll('button')].find(button => button.textContent === 'Analizar localmente')
+  expect(analyze?.closest('details')).toBeNull()
 })
