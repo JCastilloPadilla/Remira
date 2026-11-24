@@ -1,163 +1,71 @@
-# Remira
+<p align="center">
+  <img src="frontend/public/brand/apple-touch-remira-v2.png" alt="Símbolo de las dos hojas de Remira" width="96" height="96">
+</p>
 
-**Una segunda mirada a tus mensajes.**
+<h1 align="center">Remira</h1>
 
-**Clasificador con corpus (0.3):** base SQLite de 39,314 ejemplos y artefacto local
-`corpus-v1-1eaede829e6d`. La web y extensión estiman legítimo/spam/phishing/contenido
-malicioso, reconocen finalidad de factura/cobro y dan una recomendación específica.
-Es un prototipo experimental; métricas, fuentes y errores en
-[docs/resultados-corpus-v1.md](docs/resultados-corpus-v1.md). Preparación y uso en
-[extension/README.md](extension/README.md).
+<p align="center"><strong>Una segunda mirada a tus mensajes.</strong></p>
 
-**Actualización 10/11/2026:** la extensión 0.2 incorpora enlaces reales, OCR local
-en español/inglés, importación .eml y análisis con evidencia. La web `/analizar`
-también consulta la API local y separa spam de phishing. Los resultados indican
-señales de riesgo, ausencia de señales claras o análisis no concluyente; no son una
-garantía de seguridad. Instalación en [extension/README.md](extension/README.md) y
-evaluación con límites en [docs/evaluacion-analysis-v2.md](docs/evaluacion-analysis-v2.md).
+Remira revisa correos electrónicos en tu computadora. Combina un clasificador
+experimental con señales del mensaje para sugerir qué revisar. Es un proyecto
+semestral de **Técnicas de Inteligencia Artificial**.
 
-Sistema inteligente para la detección de correos electrónicos maliciosos.
+## Qué puedes probar
 
-Proyecto semestral de la materia **Técnicas de Inteligencia Artificial**.
-
-El objetivo es desarrollar una aplicación capaz de analizar un correo electrónico y clasificarlo como **legítimo** o **potencialmente malicioso**, mediante aprendizaje automático. La primera versión usa un modelo especializado preentrenado de Hugging Face que se descarga una vez y se ejecuta localmente; no envía el contenido de los correos a un servicio externo.
-
-## Objetivo del MVP
-
-La primera versión funcional permitirá que una persona escriba el asunto y el cuerpo de un correo en una interfaz web. El backend unirá y normalizará el texto y utilizará un modelo previamente entrenado para emitir una clasificación.
-
-```text
-Usuario → Interfaz React → API Flask → Preprocesamiento → Modelo local → Resultado en React
-```
-
-El entrenamiento y la clasificación serán procesos separados. El modelo no se volverá a entrenar cada vez que alguien analice un correo.
-
-## Arquitectura planeada
-
-### Evaluación del modelo preentrenado
-
-```text
-CEAS_08 etiquetado
-    ↓
-Muestra estratificada reproducible
-    ↓
-Preprocesamiento de asunto + cuerpo
-    ↓
-Modelo especializado de Hugging Face ejecutado localmente
-    ↓
-Métricas y matriz de confusión
-```
-
-### Uso del modelo
-
-```text
-Correo recibido
-    ↓
-EmailData
-    ↓
-Preprocesamiento compartido
-    ↓
-Clasificador preentrenado local
-    ↓
-Clasificación: legítimo o potencialmente malicioso
-```
-
-En fases posteriores, la entrada podrá provenir de un formulario web, un archivo `.eml` o una cuenta de correo mediante IMAP. Todas las fuentes deberán producir una estructura interna común antes de pasar al clasificador.
-
-## Tecnologías definidas
-
-- **Python**: lenguaje principal.
-- **Pandas**: carga, limpieza y exploración del dataset.
-- **Transformers y PyTorch**: descarga y ejecución local del modelo de lenguaje especializado.
-- **Scikit-learn**: muestreo estratificado y métricas de evaluación.
-- **Flask**: API local `POST /api/analyze` para la extensión; conexión de la web pendiente.
-- **React y TypeScript**: interfaz web basada en componentes.
-- **Vite**: servidor de desarrollo y compilación del frontend.
-- **Tailwind CSS**: estilos, colores y adaptación a distintos tamaños de pantalla.
-- **shadcn/ui**: componentes de interacción como formularios, botones, pestañas, diálogos y tablas.
-- **React Bits**: componentes gratuitos para animaciones, fondos y detalles visuales.
-- **SQLite**: opcional para historial de análisis.
-
-### Decisión sobre la interfaz web — 29 de septiembre de 2026
-
-El stack acordado para la primera versión web es **React + TypeScript + Vite + Tailwind CSS + shadcn/ui + React Bits**, con **Flask** como backend. Esta decisión sustituye la propuesta inicial de construir la interfaz con HTML, CSS y JavaScript sin un framework de componentes.
-
-La propuesta de pantallas, maquetación, navegación y estados está documentada en [docs/interfaz-web-v1.md](docs/interfaz-web-v1.md).
-
-React gestionará la interfaz y enviará asunto y cuerpo del correo a `POST /api/analyze`. Flask utilizará el preprocesamiento y el clasificador local existentes y devolverá la clasificación y la confianza para mostrarlas en la interfaz.
-
-shadcn/ui aportará los controles de uso diario; React Bits complementará el diseño con efectos visuales seleccionados. Se usarán componentes gratuitos de React Bits, incorporando únicamente los componentes y dependencias necesarios. Los efectos deberán preservar la legibilidad del formulario y del resultado, respetar la preferencia de movimiento reducido y funcionar en dispositivos móviles.
-
-El primer borrador se centrará en introducir asunto y cuerpo, analizar el correo y presentar el resultado, con estados de carga y error. La conexión con Gmail y el historial quedan para etapas posteriores.
-
-Node.js y un gestor de paquetes se utilizan para desarrollar y compilar el frontend; Python seguirá ejecutando la API y el modelo. La landing (`/`), el login (`/login`), la bandeja ficticia (`/bandeja`), el historial ilustrativo (`/historial`), cuenta y conexiones (`/cuenta`), ayuda (`/como-funciona`) y el analizador (`/analizar`) están maquetados en `frontend/`, con navegación mediante React Router, resultados de demostración y sin conexión a Flask. Las instrucciones para ejecutarlos están en [frontend/README.md](frontend/README.md).
-
-## Evaluación prevista
-
-El modelo preentrenado se medirá con CEAS_08 bajo condiciones reproducibles. Más adelante podrá compararse contra modelos propios (Naive Bayes, SVM y Random Forest) con el mismo conjunto de evaluación.
-
-Las métricas previstas son:
-
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Matriz de confusión
-
-Se dará especial atención a los falsos negativos: correos realmente maliciosos que el sistema clasifique como legítimos.
-
-## Estado actual
-
-El dataset de evaluación seleccionado es CEAS_08 y la integración del modelo preentrenado está en desarrollo en la rama `dev`. La interfaz de Remira también está integrada en `dev`: landing, inicio de sesión, bandeja ficticia, historial ilustrativo, cuenta y conexiones, ayuda y análisis manual. Las siete pantallas comparten diseño editorial y navegación, se adaptan a escritorio y móvil y utilizan ejemplos y respuestas simuladas. La rama `feature/web-interface-v1` se integró conservando su historial. La rama `codex/extension-local-v1` añade Flask y una extensión conectada al modelo local; IMAP, OAuth y la recepción automática de correos siguen pendientes.
-
-La primera evaluación reproducible con una muestra estratificada de 100 correos
-obtuvo F1-score de 0.8829. El detalle, incluidos los falsos positivos y falsos
-negativos, está en [docs/resultados-preentrenado.md](docs/resultados-preentrenado.md).
-La descripción de cada módulo y el comando para repetir el experimento están en
-[docs/modelo-preentrenado.md](docs/modelo-preentrenado.md).
-
-Los primeros avances de código están en la rama `feature/foundation-prototype`:
-
-| Commit | Descripción |
+| Interfaz | Funciones |
 | --- | --- |
-| `9949285` | Modelo base `EmailData` para asunto, cuerpo y remitente opcional. |
-| `cdaae50` | Función centralizada de preprocesamiento: combina texto, convierte a minúsculas y normaliza espacios. |
-| `754267a` | Demostración local por consola del flujo previo al entrenamiento. |
+| [Web](frontend/README.md) | Pega el asunto y el cuerpo en `/analizar` y consulta la estimación, las señales y la recomendación. La bandeja, el historial y la cuenta son demostraciones. |
+| [Extensión 0.3](extension/README.md) | Revisa un mensaje abierto en Gmail, importa un archivo `.eml` o extrae texto de imágenes con OCR local en español e inglés. |
 
-Estos avances incluyen pruebas automatizadas y preparan el flujo de texto que utiliza el clasificador preentrenado.
+La API Flask escucha en `127.0.0.1:8765` y procesa los mensajes localmente.
+Los resultados son orientativos. Úsalos para priorizar la revisión del correo.
 
-## Próximos pasos
+## Inicio rápido
 
-### Extensión de navegador — fase 1 local
+Necesitas Python 3.11 y Node.js 22.18 o una versión posterior compatible con los
+proyectos del repositorio. Los comandos siguientes son para PowerShell.
 
-En la rama `codex/extension-local-v1`, `extension/` contiene una extensión Manifest
-V3 en React y TypeScript que lee el mensaje expandido en Gmail por acción del usuario,
-muestra una vista previa y permite enviarla al modelo Python local. No usa Gmail API
-ni OAuth. Si hay varios mensajes expandidos, exige seleccionar uno.
+1. Desde la raíz, crea el entorno e instala las dependencias.
 
-La API se inicia con `.\.venv\Scripts\python.exe -m src.api` y escucha en
-`http://127.0.0.1:8765`. Usa el modelo de la caché local, sin almacenar correos.
-La instalación descomprimida, la página de correos ficticios y las limitaciones se
-explican en [extension/README.md](extension/README.md).
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   ```
 
-La pantalla web `/analizar` y la extensión están conectadas a la API local.
-Las demás pantallas de bandeja, historial y cuenta conservan sus datos ilustrativos.
+2. Prepara el corpus y el modelo según la [guía de instalación](extension/README.md#preparación).
+   Después arranca la API desde la raíz.
 
-Desde la versión 0.1.1, la extensión usa **Tanaos en español**, con las etiquetas
-`spam` / `not_spam` y preservando mayúsculas y acentos. Es un filtro de spam, no un
-veredicto específico de phishing. El modelo anterior sigue disponible para su
-evaluación reproducible; sus métricas no corresponden al nuevo modelo.
-Detalle en [docs/modelo-espanol.md](docs/modelo-espanol.md).
+   ```powershell
+   .\.venv\Scripts\python.exe -m src.api
+   ```
 
-1. Ejecutar y documentar la evaluación del modelo preentrenado con CEAS_08.
-2. Revisar errores y métricas, especialmente falsos negativos.
-3. Comparar contra un baseline propio si se requiere justificar la elección del modelo.
-4. Integrar el clasificador validado con Flask.
+3. En otra terminal, arranca la web.
 
-## Principios del proyecto
+   ```powershell
+   Set-Location frontend
+   npm ci
+   npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
+   ```
 
-- Usar la misma lógica de preprocesamiento durante entrenamiento e inferencia.
-- No asumir columnas, etiquetas ni características antes de inspeccionar el dataset.
-- No almacenar contraseñas, tokens ni secretos en el repositorio.
-- No entrenar modelos desde una petición web.
-- Priorizar un MVP explicable y funcional antes de integrar correo automático, OAuth o un dashboard.
+   Abre [el analizador local](http://127.0.0.1:5173/analizar). Para Chrome o Edge,
+   sigue la [guía de instalación de la extensión](extension/README.md#instalar-o-actualizar).
+
+## Diseño y evaluación
+
+- [Diseño de la interfaz](docs/interfaz-web-v1.md) e [identidad visual](docs/logo-remira-v2.md).
+- [Diseño del clasificador](docs/diseno-clasificador-corpus.md) y [evaluación del análisis con evidencia](docs/evaluacion-analysis-v2.md).
+- [Resultados del corpus experimental](docs/resultados-corpus-v1.md). Combina 39 154 correos públicos de CEAS_08 con 160 ejemplos sintéticos bilingües. El informe describe las métricas por clase y los límites de cada muestra.
+
+## Estructura del repositorio
+
+| Ruta | Contenido |
+| --- | --- |
+| [`frontend/`](frontend/) | Interfaz web en React y TypeScript. |
+| [`extension/`](extension/) | Extensión para navegadores Chromium. |
+| [`src/`](src/) | API Flask, procesamiento de mensajes y clasificación. |
+| [`scripts/`](scripts/) y [`data/`](data/) | Preparación del corpus y entrenamiento. |
+| [`tests/`](tests/) y [`docs/`](docs/) | Pruebas y documentación del proyecto. |
+
+El corpus generado, los modelos entrenados y los paquetes compilados se crean
+localmente. La [guía de datos](data/README.md) documenta la fuente de CEAS_08 y su
+verificación.

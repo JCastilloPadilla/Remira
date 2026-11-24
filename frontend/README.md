@@ -1,16 +1,18 @@
-# Frontend del detector de correos
+# Remira web
 
-Landing de presentación, login, bandeja de Gmail, historial, cuenta, ayuda y pantalla **Analizar correo**, creadas con React, TypeScript, Vite, Tailwind CSS, shadcn/ui y React Bits. React Router gestiona la navegación.
+Interfaz de Remira desarrollada con React, TypeScript, Vite, Tailwind CSS,
+shadcn/ui y React Bits. El analizador manual consulta la API local de Flask.
 
 ## Ejecutar
 
-Requiere Node.js 22.12 o superior dentro de la versión 22, o una versión posterior compatible con Vite.
+Para iniciar el modelo y la API, sigue el [inicio rápido de Remira](../README.md#inicio-rápido).
+Para el servidor web necesitas Node.js 22.18 o una versión posterior compatible.
 
 Desde esta carpeta:
 
 ```powershell
 npm ci
-npm run dev -- --host 127.0.0.1
+npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
 ```
 
 Abrir `http://127.0.0.1:5173`. Para comprobar el código:
@@ -23,7 +25,7 @@ npm run lint
 ## Rutas
 
 - `/`: landing con presentación, cómo funciona, acerca del proyecto, limitaciones y acceso al analizador.
-- `/analizar`: formulario y resultados de demostración.
+- `/analizar`: análisis local del asunto y el cuerpo mediante la API de Flask.
 - `/login`: maqueta de acceso con Google y entrada al analizador sin cuenta.
 - `/bandeja`: bandeja ficticia con búsqueda, filtros, detalle y análisis de los dos ejemplos.
 - `/historial`: registros ficticios con búsqueda, clasificación, intervalo de fechas y detalle en un diálogo.
@@ -42,14 +44,16 @@ Para publicar `dist/`, el servidor deberá devolver `index.html` al abrir las ru
 - Analizar cada ejemplo en la bandeja; los resultados se mantienen por mensaje hasta abandonar la pantalla o recargar.
 - Consultar el aviso de conexión pendiente de Gmail.
 - Introducir asunto y cuerpo; el cuerpo vacío o con espacios se rechaza.
-- Cargar dos ejemplos ficticios y ver resultados simulados, con una espera breve.
-- Consultar clasificación y confianza de demostración.
+- Cargar dos ejemplos ficticios y enviarlos al mismo analizador local que se usa para el texto libre.
+- Consultar la estimación, las señales y la recomendación de revisión.
 - Editar el mensaje e invalidar el resultado anterior.
 - Confirmar o cancelar la limpieza y el reemplazo del contenido.
 - Abrir la ayuda sin perder lo escrito.
 - Usar la pantalla en escritorio o celular.
 
-**Flask y el modelo todavía no están conectados.** Solo los ejemplos exactos tienen una respuesta preparada. Cualquier otro texto presenta un aviso de integración pendiente; no se intenta clasificarlo mediante reglas. No hay almacenamiento persistente ni llamadas a una API.
+El formulario envía el asunto y el cuerpo a `http://127.0.0.1:8765/api/analyze`.
+Si la API está apagada o el modelo requiere preparación, el analizador muestra
+un aviso. La API procesa el contenido en memoria.
 
 La ayuda completa está en `/como-funciona`; el analizador conserva su ayuda breve en un diálogo y abre la guía completa en una pestaña nueva para mantener el borrador. La landing incluye una explicación general del flujo. El login es una maqueta: el botón de Google muestra un aviso y no inicia OAuth, crea sesiones ni lee correos. La bandeja de Gmail es una maqueta con dos mensajes ficticios; no lee correos reales. El historial es una maqueta independiente y no guarda los análisis de otras pantallas. La integración de Gmail, el almacenamiento del historial y la gestión real de cuenta y permisos siguen pendientes.
 
@@ -62,7 +66,7 @@ La ayuda completa está en `/como-funciona`; el analizador conserva su ayuda bre
 - `src/features/account/`: cuenta y conexiones de demostración y sus estilos.
 - `src/features/history/`: historial ilustrativo y sus estilos.
 - `src/features/inbox/`: bandeja de demostración y sus estilos; reutiliza los ejemplos y el servicio simulado del analizador.
-- `src/features/analysis/`: página de análisis, formulario, resultado y servicio de demostración.
+- `src/features/analysis/`: página de análisis, formulario, resultado, cliente de la API y ejemplos compartidos con la bandeja.
 - `src/components/ui/`: controles originales de shadcn/ui, estilo Base Nova.
 - `src/components/react-bits/FadeContent.tsx`: transición de React Bits para el título de la landing y el resultado.
 - `src/index.css`: tokens, estilos de la pantalla y adaptación a distintos tamaños.
@@ -74,14 +78,6 @@ Los controles se instalaron con la CLI oficial de [shadcn/ui](https://github.com
 [FadeContent de React Bits](https://github.com/DavidHDev/react-bits/blob/main/public/r/FadeContent-TS-TW.json) se incorporó desde el registro TypeScript/Tailwind oficial. Se añadió soporte para movimiento reducido y se corrigieron las dependencias del efecto de React. Su licencia se conserva en `src/components/react-bits/LICENSE.md`. La ilustración del encabezado usa CSS y el icono de correo de Lucide; no pretende ser un componente de React Bits.
 
 Las versiones instaladas se fijan en `package-lock.json`. Manrope se sirve desde la aplicación mediante Fontsource; no se solicitan fuentes a Google.
-
-## Verificación de este avance
-
-- `npm run build`: correcto, incluye comprobación de TypeScript; Vite avisa de un paquete JavaScript mayor de 500 kB antes de gzip.
-- `npm run lint`: correcto, sin avisos.
-- Pruebas Python existentes: 12 correctas.
-- Revisión en navegador a 360, 768 y 1440 px: sin desplazamiento horizontal.
-- Flujo comprobado: entrada vacía y espacios, carga con campos bloqueados, ejemplos legítimo y malicioso, invalidación al editar, cancelación y confirmación de limpieza, texto libre con aviso y ayuda en celular.
 
 Las preferencias de movimiento reducido se contemplan en CSS y FadeContent; no se ha realizado una revisión con lector de pantalla ni una prueba cambiando esa preferencia del sistema.
 
